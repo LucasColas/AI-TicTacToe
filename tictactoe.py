@@ -29,9 +29,10 @@ class Grid():
     def print_grid(self):
         for row in self.grid2:
             print(row)
+            break
 
 Grid = Grid()
-Grid.set_cell_value(2, 1, 'x')
+#Grid.set_cell_value(2, 1, 'x')
 
 
 def redraw_window():
