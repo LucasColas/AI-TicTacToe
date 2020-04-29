@@ -24,7 +24,7 @@ class Grid():
         return self.grid2[y][x]
 
     def set_cell_value(self, x, y, value):
-        self.grid2[x][y] = value
+        self.grid2[y][x] = value
 
     def print_grid(self):
         for row in self.grid2:
