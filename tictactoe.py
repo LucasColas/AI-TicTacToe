@@ -41,7 +41,6 @@ def redraw_window():
     pygame.display.flip()
 
 
-
 def ui():
     run = True
     Grid.print_grid()
