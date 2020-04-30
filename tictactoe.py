@@ -9,7 +9,8 @@ Width, Height = 750, 750
 Win = pygame.display.set_mode((Width, Height))
 Bg = (0,255,255)
 
-Red_Cross = pygame.transform.scale(pygame.image.load(os.path.join("assets", "cross")), (Width//4, Height//4))
+Cross = pygame.transform.scale(pygame.image.load(os.path.join("assets", "cross")), (Width//4, Height//4))
+Cirlce = pygame.transform.scale(pygame.image.load(os.path.join("assets", "circle")), (Width//4, Height//4))
 
 clock = pygame.time.Clock()
 FPS = 80
