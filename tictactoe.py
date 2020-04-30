@@ -37,8 +37,6 @@ class Grid():
             print(row)
 
 Grid = Grid()
-#Grid.set_cell_value(2, 1, 'x')
-player = "X"
 
 
 def redraw_window():
@@ -49,6 +47,7 @@ def redraw_window():
 
 
 def ui():
+    player = "X"
     run = True
     Grid.print_grid()
     while run:
@@ -63,8 +62,13 @@ def ui():
 
                 if pygame.mouse.get_pressed()[0]:
                     pos = pygame.mouse.get_pos()
-
                     #print(pos[0] // (Width // 4), pos[1] // (Height // 4))
                     Grid.get_mouse(pos[0] // (Width // 4), pos[1] // (Height // 4), player)
+                    if player == "X":
+                        player = "O"
+                    else:
+                        player = "X"
+                    Grid.print_grid()
+
 
 ui()
