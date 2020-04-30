@@ -1,4 +1,7 @@
 import pygame
+import sys
+import os
+
 pygame.font.init()
 
 Width, Height = 750, 750
