@@ -20,6 +20,8 @@ class Grid():
         self.grid = [((0, Height//4), (Width, Height//4)), ((0, (2*Height)//4), (Width, (2*Height)//4)), ((0, (3*Height)//4), (Width, (3*Height)//4)), ((Width//4, 0), (Width//4, Height)), (((2*Width)//4, 0), ((2*Width)//4, Height)), (((3*Width)//4,0), ((3*Width)//4, Height))]
 
         self.grid2 = [[0 for x in range(4)] for y in range(4)]
+        self.Cross = cross
+        self.Circle = Circle
 
 
     def draw(self, window):
@@ -34,12 +36,11 @@ class Grid():
 
     def get_mouse(self, x, y, player):
         if player == "X":
-            self.set_cell_value(x, y, "X")
+            Win.blit(self.Cross, (x, y))
         elif player == "O":
-            self.set_cell_value(x,y, "O")
+            Win.blit(self.Circle, (x,y))
 
-    def apply(self, x, y):
-        pass
+
 
     def print_grid(self):
         for row in self.grid2:
