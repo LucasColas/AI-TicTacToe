@@ -26,10 +26,15 @@ class Grid():
     def set_cell_value(self, x, y, value):
         self.grid2[y][x] = value
 
+    def get_mouse(self, x, y, player):
+        if player == "X":
+            self.set_cell_value(x, y, "X")
+        elif player == "O":
+            self.set_cell_value(x,y, "O")
+
     def print_grid(self):
         for row in self.grid2:
             print(row)
-            break
 
 Grid = Grid()
 #Grid.set_cell_value(2, 1, 'x')
