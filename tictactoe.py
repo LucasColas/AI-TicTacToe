@@ -38,6 +38,9 @@ class Grid():
         elif player == "O":
             self.set_cell_value(x,y, "O")
 
+    def apply(self, x, y):
+        pass
+
     def print_grid(self):
         for row in self.grid2:
             print(row)
