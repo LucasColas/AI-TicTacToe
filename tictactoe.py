@@ -28,17 +28,24 @@ class Grid():
         for line in self.grid:
             pygame.draw.line(window, (255, 255, 255), line[0], line[1], 2)
 
+        for x in range(len(self.grid2)):
+            for y in range(len(self.grid2[x])):
+                if self.get_cell_value(x,y) == "X":
+                    window.blit(self.Cross, (x,y))
+                elif self.get_cell_value(x,y) == "O":
+                    window.blit(self.Circle, (x,y))
+
     def get_cell_value(self, x,y):
         return self.grid2[y][x]
 
     def set_cell_value(self, x, y, value):
         self.grid2[y][x] = value
 
-    def get_mouse(self, x, y, player, window):
+    def get_mouse(self, x, y, player):
         if player == "X":
-            window.blit(self.Cross, (x, y))
+            self.set_cell_value(x,y, "X")
         elif player == "O":
-            window.blit(self.Circle, (x,y))
+            self.set_cell_value(x, y, "X")
 
 
 
@@ -73,7 +80,7 @@ def ui():
                 if pygame.mouse.get_pressed()[0]:
                     pos = pygame.mouse.get_pos()
                     #print(pos[0] // (Width // 4), pos[1] // (Height // 4))
-                    Grid.get_mouse(pos[0] // (Width // 4), pos[1] // (Height // 4), player, Win)
+                    Grid.get_mouse(pos[0] // (Width // 4), pos[1] // (Height // 4), player)
                     if player == "X":
                         player = "O"
                     else:
