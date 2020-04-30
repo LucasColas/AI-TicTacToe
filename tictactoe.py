@@ -10,7 +10,7 @@ Win = pygame.display.set_mode((Width, Height))
 Bg = (0,255,255)
 
 Cross = pygame.transform.scale(pygame.image.load(os.path.join("assets", "cross.png")), (Width//4, Height//4))
-Circle = pygame.transform.scale(pygame.image.load(os.path.join("assets", "circle.png")), (Width//4, Height//4))
+Circle = pygame.transform.scale(pygame.image.load(os.path.join("assets", "circle.png")), ((Width//4)-8, (Height//4)-8))
 
 clock = pygame.time.Clock()
 FPS = 80
@@ -31,9 +31,9 @@ class Grid():
         for x in range(len(self.grid2)):
             for y in range(len(self.grid2[x])):
                 if self.get_cell_value(x,y) == "X":
-                    window.blit(self.Cross, (x,y))
+                    window.blit(self.Cross, (x*(Width//4),y*(Height//4)))
                 elif self.get_cell_value(x,y) == "O":
-                    window.blit(self.Circle, (x,y))
+                    window.blit(self.Circle, (x*(Width//4),y*(Height//4)))
 
     def get_cell_value(self, x,y):
         return self.grid2[y][x]
@@ -45,7 +45,7 @@ class Grid():
         if player == "X":
             self.set_cell_value(x,y, "X")
         elif player == "O":
-            self.set_cell_value(x, y, "X")
+            self.set_cell_value(x, y, "O")
 
 
 
