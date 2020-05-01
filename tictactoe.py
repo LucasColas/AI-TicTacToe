@@ -32,6 +32,8 @@ class Grid():
         self.Cross = Cross
         self.Circle = Circle
 
+        self.switch = True
+
 
     def draw(self, window):
         for line in self.grid:
@@ -52,11 +54,15 @@ class Grid():
 
     def get_mouse(self, x, y, player):
         if self.get_cell_value(x,y) == 0:
+            self.switch = True
 
             if player == "X":
                 self.set_cell_value(x,y, "X")
             elif player == "O":
                 self.set_cell_value(x, y, "O")
+
+        else:
+            self.switch = False
 
 
 
@@ -95,10 +101,11 @@ def ui():
                     pos = pygame.mouse.get_pos()
                     #print(pos[0] // (Width // 4), pos[1] // (Height // 4))
                     Grid.get_mouse(pos[0] // (Width // 4), pos[1] // (Height // 4), player)
-                    if player == "X":
-                        player = "O"
-                    else:
-                        player = "X"
+                    if Grid.switch:
+                        if player == "X":
+                            player = "O"
+                        else:
+                            player = "X"
                     Grid.print_grid()
 
 
