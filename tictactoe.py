@@ -76,7 +76,7 @@ def ui():
     player = "X"
     run = True
     Grid.print_grid()
-    color = (0,0,255)
+    color = (0,255,0,0)
     while run:
         clock.tick(FPS)
         fill(Circle, color)
