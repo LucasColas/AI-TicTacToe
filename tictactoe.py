@@ -21,7 +21,7 @@ def fill(surface, color):
     for x in range(w):
         for y in range(h):
             a = surface.get_at((x, y))[3]
-            surface.set_at((x, y), pg.Color(r, g, b, a))
+            surface.set_at((x, y), pygame.Color(r, g, b, a))
 
 
 class Grid():
@@ -78,6 +78,7 @@ def ui():
     Grid.print_grid()
     while run:
         clock.tick(FPS)
+        fill(Circle, pygame.color(0,0,255))
 
         redraw_window()
         Win.fill(pygame.Color('lightskyblue4'))
