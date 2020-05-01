@@ -51,10 +51,12 @@ class Grid():
         self.grid2[y][x] = value
 
     def get_mouse(self, x, y, player):
-        if player == "X":
-            self.set_cell_value(x,y, "X")
-        elif player == "O":
-            self.set_cell_value(x, y, "O")
+        if self.get_cell_value(x,y) == 0:
+
+            if player == "X":
+                self.set_cell_value(x,y, "X")
+            elif player == "O":
+                self.set_cell_value(x, y, "O")
 
 
 
