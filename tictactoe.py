@@ -7,7 +7,7 @@ pygame.font.init()
 Width, Height = 750, 750
 
 Win = pygame.display.set_mode((Width, Height))
-Bg = (0,255,255)
+Bg = (0,0,0)
 
 Cross = pygame.transform.scale(pygame.image.load(os.path.join("assets", "cross.png")), (Width//4, Height//4))
 Circle = pygame.transform.scale(pygame.image.load(os.path.join("assets", "circle.png")), ((Width//4), (Height//4)))
