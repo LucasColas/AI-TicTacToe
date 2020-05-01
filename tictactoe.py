@@ -15,6 +15,15 @@ Circle = pygame.transform.scale(pygame.image.load(os.path.join("assets", "circle
 clock = pygame.time.Clock()
 FPS = 80
 
+def fill(surface, color):
+    w, h = surface.get_size()
+    r, g, b, _ = color
+    for x in range(w):
+        for y in range(h):
+            a = surface.get_at((x, y))[3]
+            surface.set_at((x, y), pg.Color(r, g, b, a))
+
+
 class Grid():
     def __init__(self):
         self.grid = [((0, Height//4), (Width, Height//4)), ((0, (2*Height)//4), (Width, (2*Height)//4)), ((0, (3*Height)//4), (Width, (3*Height)//4)), ((Width//4, 0), (Width//4, Height)), (((2*Width)//4, 0), ((2*Width)//4, Height)), (((3*Width)//4,0), ((3*Width)//4, Height))]
@@ -71,6 +80,7 @@ def ui():
         clock.tick(FPS)
 
         redraw_window()
+        Win.fill(pygame.Color('lightskyblue4'))
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 quit()
@@ -86,6 +96,7 @@ def ui():
                     else:
                         player = "X"
                     Grid.print_grid()
+
 
 
 ui()
