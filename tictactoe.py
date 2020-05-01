@@ -76,9 +76,10 @@ def ui():
     player = "X"
     run = True
     Grid.print_grid()
+    color = (0,0,255)
     while run:
         clock.tick(FPS)
-        fill(Circle, pygame.color(0,0,255))
+        fill(Circle, color)
 
         redraw_window()
         Win.fill(pygame.Color('lightskyblue4'))
