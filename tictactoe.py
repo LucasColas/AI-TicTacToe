@@ -66,8 +66,14 @@ class Grid():
         else:
             self.switch = False
 
-    def check(self, x,y):
+    def check_within_bounds(self, x, y):
+        return w >= 0 and w < 4 and y >= 0 and y < 4
+
+    def check(self, x,y, player):
         count = 1
+        for indx, (dirx, diry) in enumerate(self.search_dirs):
+            if self.check_within_bounds(x+dirx, y+diry) and self.get_cell_value(x+dirx, y+diry) == player:
+                pass
 
 
 
