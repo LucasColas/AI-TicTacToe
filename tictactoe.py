@@ -66,7 +66,8 @@ class Grid():
         else:
             self.switch = False
 
-    
+    def check(self, x,y):
+        count = 1
 
 
 
