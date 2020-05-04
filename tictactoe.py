@@ -34,7 +34,7 @@ class Grid():
 
         self.switch = True
 
-        self.search_dirs = [(0,-1), (-1,-1), (-1,0), (0,1), (1,1), (1,0), (1,-1)]
+        self.search_dirs = [(0,-1), (-1,-1), (-1,0), (-1,-1), (0,1), (1,1), (1,0), (1,-1)]
 
 
     def draw(self, window):
