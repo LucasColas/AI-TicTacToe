@@ -62,6 +62,7 @@ class Grid():
                 self.set_cell_value(x,y, "X")
             elif player == "O":
                 self.set_cell_value(x, y, "O")
+            self.check(x,y, player)
 
         else:
             self.switch = False
