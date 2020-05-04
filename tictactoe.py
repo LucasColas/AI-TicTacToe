@@ -104,10 +104,6 @@ class Grid():
                         new_dir = self.search_dirs[3]
 
 
-
-
-
-
     def print_grid(self):
         for row in self.grid2:
             print(row)
