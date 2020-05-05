@@ -84,7 +84,7 @@ class Grid():
                     if count == 4:
                         break
                 if count < 4:
-                    
+
                     new_dir = 0
                     if indx == 0:
                         new_dir = self.search_dirs[4]
@@ -156,7 +156,6 @@ def ui():
                         else:
                             player = "X"
                     Grid.print_grid()
-
 
 
 ui()
