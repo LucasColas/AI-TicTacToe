@@ -68,7 +68,7 @@ class Grid():
             self.switch = False
 
     def check_within_bounds(self, x, y):
-        return x >= 0 and x < 4 and y >= 0 and y < 4
+        return x >= 0 and x < 3 and y >= 0 and y < 3
 
     def check(self, x,y, player):
         count = 1
@@ -76,14 +76,18 @@ class Grid():
             if self.check_within_bounds(x+dirx, y+diry) and self.get_cell_value(x+dirx, y+diry) == player:
                 print("Yes, check")
                 count += 1
+                print("first", count)
                 xx = x + dirx
                 yy = y + diry
 
                 if self.check_within_bounds(xx+dirx, yy+diry) and self.get_cell_value(xx+dirx, yy+diry) == player:
                     count += 1
-                    if count == 4:
-                        break
+                    print("second",count)
+                if count == 4:
+                    print("count", count)
+                    break
                 if count < 4:
+                    print("check")
 
                     new_dir = 0
                     if indx == 0:
@@ -104,15 +108,17 @@ class Grid():
                         new_dir = self.search_dirs[3]
 
 
-                    if self.check_within_bounds(x + new_dir[0], y + new_dir[1]) and self.get_cell_value(x + new_dir[0], y + new_dir[1]) == player:
-                        count += 1
-                        if count == 4:
-                            breal
-                    else:
-                        count = 1
+                if self.check_within_bounds(x + new_dir[0], y + new_dir[1]) and self.get_cell_value(x + new_dir[0], y + new_dir[1]) == player:
+                    count += 1
+                    print("third",count)
+                    if count == 3:
+                        break
+                else:
+                    count = 1
+                    print("fourth", count)
 
-                    if count == 4:
-                        print(player, 'wins')
+                if count == 3:
+                    print(player, 'wins')
 
 
     def print_grid(self):
