@@ -74,6 +74,7 @@ class Grid():
         count = 1
         for indx, (dirx, diry) in enumerate(self.search_dirs):
             if self.check_within_bounds(x+dirx, y+diry) and self.get_cell_value(x+dirx, y+diry) == player:
+                print("Yes, check")
                 count += 1
                 xx = x + dirx
                 yy = y + diry
@@ -82,7 +83,7 @@ class Grid():
                     count += 1
                     if count == 4:
                         break
-                if count < 3:
+                if count < 4:
                     new_dir = 0
 
                     if indx == 0:
