@@ -83,9 +83,9 @@ class Grid():
                 if self.check_within_bounds(xx+dirx, yy+diry) and self.get_cell_value(xx+dirx, yy+diry) == player:
                     count += 1
                     print("second",count)
-                if count == 4:
-                    print("count", count)
-                    break
+                    if count == 4:
+                        print("count", count)
+                        break
                 if count < 4:
                     print("check")
 
