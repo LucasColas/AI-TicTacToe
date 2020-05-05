@@ -108,17 +108,17 @@ class Grid():
                         new_dir = self.search_dirs[3]
 
 
-                if self.check_within_bounds(x + new_dir[0], y + new_dir[1]) and self.get_cell_value(x + new_dir[0], y + new_dir[1]) == player:
-                    count += 1
-                    print("third",count)
-                    if count == 3:
-                        break
-                else:
-                    count = 1
-                    print("fourth", count)
+                    if self.check_within_bounds(x + new_dir[0], y + new_dir[1]) and self.get_cell_value(x + new_dir[0], y + new_dir[1]) == player:
+                        count += 1
+                        print("third",count)
+                        if count == 4:
+                            break
+                    else:
+                        count = 1
+                        print("fourth", count)
 
-                if count == 3:
-                    print(player, 'wins')
+        if count == 4:
+            print(player, 'wins')
 
 
     def print_grid(self):
