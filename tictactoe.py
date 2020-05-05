@@ -84,14 +84,12 @@ class Grid():
                     if count == 4:
                         break
                 if count < 4:
+                    
                     new_dir = 0
-
                     if indx == 0:
                         new_dir = self.search_dirs[4]
-
                     elif indx == 1:
                         new_dir = self.search_dirs[5]
-
                     elif indx == 2:
                         new_dir = self.search_dirs[6]
                     elif indx == 3:
