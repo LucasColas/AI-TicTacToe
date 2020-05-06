@@ -71,6 +71,7 @@ class Grid():
         return x >= 0 and x < 4 and y >= 0 and y < 4
 
     def check(self, x,y, player):
+        """
         count = 1
         for indx, (dirx, diry) in enumerate(self.search_dirs):
             if self.check_within_bounds(x+dirx, y+diry) and self.get_cell_value(x+dirx, y+diry) == player:
@@ -119,6 +120,7 @@ class Grid():
         if count == 4:
             print(player, 'wins')
 
+        """
 
     def print_grid(self):
         for row in self.grid2:
