@@ -62,10 +62,17 @@ class Grid():
                 self.set_cell_value(x,y, "X")
             elif player == "O":
                 self.set_cell_value(x, y, "O")
-            self.check(x,y, player)
+            #self.check(x,y, player)
+            self.check_columns(player)
 
         else:
             self.switch = False
+
+    def check_columns(self, player):
+        for row in self.grid2:
+            for column in row:
+                print(column)
+                break 
 
     def check_within_bounds(self, x, y):
         return x >= 0 and x < 4 and y >= 0 and y < 4
@@ -121,7 +128,9 @@ class Grid():
             print(player, 'wins')
 
         """
-        
+        pass
+
+
 
 
     def print_grid(self):
