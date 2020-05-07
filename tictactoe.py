@@ -58,9 +58,9 @@ class Grid():
         if self.get_cell_value(x,y) == 0:
             self.switch = True
 
-            if player == "X":
+            if player == 1:
                 self.set_cell_value(x,y, 1)
-            elif player == "O":
+            elif player == -1:
                 self.set_cell_value(x, y, -1)
             #self.check(x,y, player)
             self.check_columns(player)
@@ -69,10 +69,9 @@ class Grid():
             self.switch = False
 
     def check_columns(self, player):
-        for x in self.grid2:
-            for y in self.grid2:
-                print(y)
-
+        for row in self.grid2:
+            if row[0] == row[1] == row[2] == row[3] == player:
+                print(player, "wins")
 
 
     def check_within_bounds(self, x, y):
@@ -149,7 +148,7 @@ def redraw_window():
 
 
 def ui():
-    player = "X"
+    player = -1
     run = True
     Grid.print_grid()
     color = (0,255,0,0)
@@ -170,10 +169,10 @@ def ui():
                     #print(pos[0] // (Width // 4), pos[1] // (Height // 4))
                     Grid.get_mouse(pos[0] // (Width // 4), pos[1] // (Height // 4), player)
                     if Grid.switch:
-                        if player == "X":
-                            player = "O"
+                        if player == -1:
+                            player = 1
                         else:
-                            player = "X"
+                            player = -1
                     Grid.print_grid()
 
 
