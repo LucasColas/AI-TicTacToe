@@ -43,9 +43,9 @@ class Grid():
 
         for x in range(len(self.grid2)):
             for y in range(len(self.grid2[x])):
-                if self.get_cell_value(x,y) == "X":
+                if self.get_cell_value(x,y) == 1:
                     window.blit(self.Cross, (x*(Width//4),y*(Height//4)))
-                elif self.get_cell_value(x,y) == "O":
+                elif self.get_cell_value(x,y) == -1:
                     window.blit(self.Circle, (x*(Width//4),y*(Height//4)))
 
     def get_cell_value(self, x,y):
@@ -59,9 +59,9 @@ class Grid():
             self.switch = True
 
             if player == "X":
-                self.set_cell_value(x,y, "X")
+                self.set_cell_value(x,y, 1)
             elif player == "O":
-                self.set_cell_value(x, y, "O")
+                self.set_cell_value(x, y, -1)
             #self.check(x,y, player)
             self.check_columns(player)
 
@@ -72,7 +72,7 @@ class Grid():
         for row in self.grid2:
             for column in row:
                 print(column)
-                break 
+                break
 
     def check_within_bounds(self, x, y):
         return x >= 0 and x < 4 and y >= 0 and y < 4
