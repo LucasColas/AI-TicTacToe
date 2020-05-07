@@ -64,6 +64,7 @@ class Grid():
                 self.set_cell_value(x, y, -1)
             #self.check(x,y, player)
             self.check_rows(player)
+            self.check_columns(player)
 
         else:
             self.switch = False
@@ -72,6 +73,11 @@ class Grid():
         for row in self.grid2:
             if row[0] == row[1] == row[2] == row[3] == player:
                 print(player, "wins")
+
+    def check_columns(self, player):
+        for column in self.grid2:
+            for case in column:
+                pass
 
 
     def check_within_bounds(self, x, y):
