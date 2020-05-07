@@ -69,10 +69,11 @@ class Grid():
             self.switch = False
 
     def check_columns(self, player):
-        for row in self.grid2:
-            for column in row:
-                print(column)
-                break
+        for x in self.grid2:
+            for y in self.grid2:
+                print(y)
+
+
 
     def check_within_bounds(self, x, y):
         return x >= 0 and x < 4 and y >= 0 and y < 4
