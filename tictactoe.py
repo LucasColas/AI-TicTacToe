@@ -75,9 +75,17 @@ class Grid():
                 print(player, "wins")
 
     def check_columns(self, player):
-        for column in self.grid2:
-            for case in column:
-                pass
+        for row in enumerate(self.grid2):
+            """
+            if sum(row) == 4:
+                print(player, "wins")
+            if sum(row) == -4:
+                print(player, "wins")
+            """
+            print(type(row))
+
+
+
 
 
     def check_within_bounds(self, x, y):
