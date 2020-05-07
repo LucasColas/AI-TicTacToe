@@ -63,12 +63,12 @@ class Grid():
             elif player == -1:
                 self.set_cell_value(x, y, -1)
             #self.check(x,y, player)
-            self.check_columns(player)
+            self.check_rows(player)
 
         else:
             self.switch = False
 
-    def check_columns(self, player):
+    def check_rows(self, player):
         for row in self.grid2:
             if row[0] == row[1] == row[2] == row[3] == player:
                 print(player, "wins")
@@ -129,8 +129,6 @@ class Grid():
 
         """
         pass
-
-
 
 
     def print_grid(self):
