@@ -75,15 +75,12 @@ class Grid():
                 print(player, "wins")
 
     def check_columns(self, player):
-        for row in enumerate(self.grid2):
-            """
-            if sum(row) == 4:
-                print(player, "wins")
-            if sum(row) == -4:
-                print(player, "wins")
-            """
-            print(type(row))
-
+        for col in range(len(self.grid2[0])):
+            check = []
+            for row in self.grid2:
+                check.append(row[col])
+            if check.count(check[0]) == len(check) and check[0] != 0:
+                print(player, "wins vertically")
 
 
 
