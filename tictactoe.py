@@ -72,7 +72,10 @@ class Grid():
     def check_rows(self, player):
         for row in self.grid2:
             if row[0] == row[1] == row[2] == row[3] == player:
-                print(player, "wins")
+                if player == -1:
+                    print("O wins")
+                else:
+                    print("X wins")
 
     def check_columns(self, player):
         for col in range(len(self.grid2[0])):
@@ -80,7 +83,10 @@ class Grid():
             for row in self.grid2:
                 check.append(row[col])
             if check.count(check[0]) == len(check) and check[0] != 0:
-                print(player, "wins vertically")
+                if player == -1:
+                    print("O wins vertically")
+                else:
+                    print("X wins vertically")
 
 
 
