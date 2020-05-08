@@ -89,6 +89,10 @@ class Grid():
                     print("X wins vertically")
 
     def check_diagonals(self,player):
+        diags = []
+        for indx in range(len(self.grid2)):
+            diags.append(self.grid2[indx][indx])
+
 
     def print_grid(self):
         for row in self.grid2:
