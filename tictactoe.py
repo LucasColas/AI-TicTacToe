@@ -92,6 +92,11 @@ class Grid():
         diags = []
         for indx in range(len(self.grid2)):
             diags.append(self.grid2[indx][indx])
+        if diags.append(self.grid2[0]) == len(diags) and diags[0] != 0:
+            if player == -1:
+                print("O wins")
+            else:
+                print("X wins")
 
 
     def print_grid(self):
