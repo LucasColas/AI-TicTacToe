@@ -140,7 +140,7 @@ def ui():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 quit()
-            if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.type == pygame.MOUSEBUTTONDOWN and not Game.game_over:
                 #print("Yes !")
 
                 if pygame.mouse.get_pressed()[0]:
