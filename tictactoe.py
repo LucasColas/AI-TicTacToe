@@ -140,7 +140,7 @@ def ui():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 quit()
-            if event.type == pygame.MOUSEBUTTONDOWN and not Game.game_over:
+            if event.type == pygame.MOUSEBUTTONDOWN and not Grid.game_over:
                 #print("Yes !")
 
                 if pygame.mouse.get_pressed()[0]:
@@ -153,6 +153,10 @@ def ui():
                         else:
                             player = -1
                     Grid.print_grid()
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE and Grid.game_over:
+                    pass
 
 
 ui()
