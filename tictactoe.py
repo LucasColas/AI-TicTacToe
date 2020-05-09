@@ -114,7 +114,7 @@ class Grid():
     def reset(self):
         for y in range(len(self.grid2)):
             for x in range(len(self.grid2[y])):
-                self.get_cell_value(x, y, 0)
+                self.set_cell_value(x, y, 0)
 
 
     def print_grid(self):
