@@ -33,9 +33,7 @@ class Grid():
         self.Circle = Circle
 
         self.switch = True
-
-        self.search_dirs = [(0,-1), (-1,-1), (-1,0), (-1,-1), (0,1), (1,1), (1,0), (1,-1)]
-
+        self.game_over = False
 
     def draw(self, window):
         for line in self.grid:
