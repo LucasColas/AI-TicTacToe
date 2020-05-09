@@ -111,6 +111,11 @@ class Grid():
             print("It's over !")
             self.game_over = True
 
+    def reset(self):
+        for y in range(len(self.grid2)):
+            for in range(len(self.grid2[y])):
+                self.get_cell_value(x, y, 0)
+
 
     def print_grid(self):
         for row in self.grid2:
@@ -156,7 +161,7 @@ def ui():
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE and Grid.game_over:
-                    pass
+                    Grid.reset()
 
 
 ui()
