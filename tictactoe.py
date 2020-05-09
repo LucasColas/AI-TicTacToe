@@ -64,6 +64,7 @@ class Grid():
             self.check_rows(player)
             self.check_columns(player)
             self.check_diagonals(player)
+            self.check_game()
 
         else:
             self.switch = False
@@ -99,6 +100,15 @@ class Grid():
                 print("O wins (Diagonal)")
             else:
                 print("X wins (Diagonal)")
+            self.game_over = True
+
+    def check_game(self):
+        zero = []
+        for row in self.grid2:
+            for case in row:
+                zero.append(case)
+        if zero.count(0) == 0:
+            print("It's over !")
             self.game_over = True
 
 
