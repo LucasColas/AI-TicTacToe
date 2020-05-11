@@ -124,6 +124,7 @@ class Grid():
 
     def getMove(self):
         if self.game_over:
+            pass 
 
 Grid = Grid()
 
