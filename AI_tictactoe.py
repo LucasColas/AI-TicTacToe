@@ -58,6 +58,7 @@ class Grid():
 
             if player == 1:
                 self.set_cell_value(x,y, 1)
+                self.getMove()
             elif player == -1:
                 self.set_cell_value(x, y, -1)
             #self.check(x,y, player)
@@ -120,6 +121,9 @@ class Grid():
     def print_grid(self):
         for row in self.grid2:
             print(row)
+
+    def getMove(self):
+        if self.game_over:
 
 Grid = Grid()
 
