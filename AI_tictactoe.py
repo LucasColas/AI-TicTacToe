@@ -148,7 +148,7 @@ def ui():
             if event.type == pygame.MOUSEBUTTONDOWN and not Grid.game_over:
                 #print("Yes !")
 
-                if pygame.mouse.get_pressed()[0]:
+                if pygame.mouse.get_pressed()[0] and player == -1:
                     pos = pygame.mouse.get_pos()
                     #print(pos[0] // (Width // 4), pos[1] // (Height // 4))
                     Grid.get_mouse(pos[0] // (Width // 4), pos[1] // (Height // 4), player)
