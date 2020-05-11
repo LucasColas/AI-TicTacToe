@@ -86,9 +86,9 @@ class Grid():
                 check.append(row[col])
             if check.count(check[0]) == len(check) and check[0] != 0:
                 if player == -1:
-                    print("O wins vertically")
+                    print("O wins")
                 else:
-                    print("X wins vertically")
+                    print("X wins")
                 self.game_over = True
 
     def check_diagonals(self,player):
@@ -97,9 +97,9 @@ class Grid():
             diags.append(self.grid2[indx][indx])
         if diags.count(diags[0]) == len(diags) and diags[0] != 0:
             if player == -1:
-                print("O wins (Diagonal)")
+                print("O wins")
             else:
-                print("X wins (Diagonal)")
+                print("X wins")
             self.game_over = True
 
     def check_game(self):
