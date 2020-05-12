@@ -1,7 +1,7 @@
 import pygame
 import sys
 import os
-from math import infinity as inf
+import math
 
 pygame.font.init()
 
@@ -128,7 +128,7 @@ Grid = Grid()
 
 def getBestMove(state, player):
     if Grid.game_over:
-        pass 
+        pass
 
 def redraw_window():
     Win.fill(Bg)
