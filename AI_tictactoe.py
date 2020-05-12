@@ -112,6 +112,7 @@ class Grid():
         if zero.count(0) == 0:
             print("It's over !")
             self.game_over = True
+        return self.game_over, "No winner"
 
     def reset(self):
         for y in range(len(self.grid2)):
@@ -123,12 +124,18 @@ class Grid():
         for row in self.grid2:
             print(row)
 
+    def getBestMove(self, state, player):
+        if self.game_over and player == 'O':
+            return -1
+
+        elif self.game_over and player == 'X':
+            return 1
+
+        elif self.game_over and
+
 
 Grid = Grid()
 
-def getBestMove(state, player):
-    if Grid.game_over:
-        pass
 
 def redraw_window():
     Win.fill(Bg)
@@ -138,7 +145,7 @@ def redraw_window():
 
 
 def ui():
-    player = -1
+    player = -1 #O
     run = True
     Grid.print_grid()
     color = (0,255,0,0)
