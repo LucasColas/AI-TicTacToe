@@ -1,6 +1,7 @@
 import pygame
 import sys
 import os
+from math import infinity as inf
 
 pygame.font.init()
 
@@ -122,12 +123,12 @@ class Grid():
         for row in self.grid2:
             print(row)
 
-    def getMove(self):
-        if self.game_over:
-            pass 
 
 Grid = Grid()
 
+def getBestMove(state, player):
+    if Grid.game_over:
+        pass 
 
 def redraw_window():
     Win.fill(Bg)
