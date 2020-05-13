@@ -125,6 +125,11 @@ class Grid():
 
         return cells
 
+    def good_move(self, x, y):
+        if [x,y] in empty_cells():
+            return True
+        else:
+            return False
     def reset(self):
         for y in range(len(self.grid2)):
             for x in range(len(self.grid2[y])):
