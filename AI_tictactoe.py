@@ -116,6 +116,15 @@ class Grid():
             self.game_over = True
         return self.game_over, "No winner"
 
+    def empty_cells(self):
+        cells = []
+        for x, row in enumerate(self.grid2):
+            for y, cell in enumerate(self.grid2):
+                if cell == 0:
+                    cells.append([x, y])
+
+        return cells
+
     def reset(self):
         for y in range(len(self.grid2)):
             for x in range(len(self.grid2[y])):
