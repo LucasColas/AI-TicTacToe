@@ -130,6 +130,8 @@ class Grid():
             return True
         else:
             return False
+
+
     def reset(self):
         for y in range(len(self.grid2)):
             for x in range(len(self.grid2[y])):
