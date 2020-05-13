@@ -92,6 +92,7 @@ class Grid():
                 else:
                     print("X wins")
                 self.game_over = True
+            return self.game_over, player
 
     def check_diagonals(self,player):
         diags = []
@@ -103,6 +104,7 @@ class Grid():
             else:
                 print("X wins")
             self.game_over = True
+        return self.game_over, player
 
     def check_game(self):
         zero = []
@@ -125,13 +127,15 @@ class Grid():
             print(row)
 
     def getBestMove(self, state, player):
+        GO, no_winner = check_game
         if self.game_over and player == 'O':
             return -1
 
         elif self.game_over and player == 'X':
             return 1
 
-        elif self.game_over and
+        elif check_game == 'No winner':
+            return 0
 
 
 Grid = Grid()
