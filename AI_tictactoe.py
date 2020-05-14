@@ -60,7 +60,6 @@ class Grid():
 
             if player == 1:
                 self.set_cell_value(x,y, 1)
-                self.getMove()
             elif player == -1:
                 self.set_cell_value(x, y, -1)
             #self.check(x,y, player)
@@ -169,10 +168,6 @@ class Grid():
                 minEval = min(value, evaluate)
                 return minEval
 
-
-        for cell in empty_cells():
-            pass
-
 Grid = Grid()
 
 
@@ -183,7 +178,7 @@ def redraw_window():
     pygame.display.flip()
 
 
-def ui():
+def main():
     player = -1 #O
     run = True
     Grid.print_grid()
@@ -217,4 +212,4 @@ def ui():
                     Grid.game_over = False
 
 
-ui()
+main()
