@@ -149,15 +149,17 @@ class Grid():
         if maximizingPlayer:
             value = -infinity
             for cell in empty_cells:
-                evaluate = getBestMove(depth - 1, )
+                evaluate = getBestMove(depth - 1, -1, False)
+                maxEval = max(value, evaluate)
+
 
         for cell in empty_cells():
             pass
 
-        if self.game_over and player == 'O':
+        if self.game_over and player == -1:
             return -1
 
-        elif self.game_over and player == 'X':
+        elif self.game_over and player == 1:
             return 1
 
         elif no_winner == 'No winner':
