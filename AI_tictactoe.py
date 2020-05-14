@@ -151,7 +151,11 @@ class Grid():
             for cell in empty_cells:
                 evaluate = getBestMove(depth - 1, -1, False)
                 maxEval = max(value, evaluate)
-                return max 
+                return max
+        else:
+            value = +infinity
+            for cell in empty_cells:
+                evaluate = get
 
 
         for cell in empty_cells():
