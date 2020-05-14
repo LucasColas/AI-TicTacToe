@@ -161,11 +161,13 @@ class Grid():
             for cell in empty_cells():
                 evaluate = getBestMove(depth - 1, -1, False)
                 maxEval = max(value, evaluate)
-                return max
+                return maxEval
         else:
             value = +infinity
             for cell in empty_cells():
-                evaluate = get
+                evaluate = getBestMove(depth -1, 1, True)
+                minEval = min(value, evaluate)
+                return minEval
 
 
         for cell in empty_cells():
