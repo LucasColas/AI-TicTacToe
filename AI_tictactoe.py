@@ -149,7 +149,7 @@ class Grid():
         if maximizingPlayer:
             value = -infinity
             for cell in empty_cells:
-                
+                evaluate = getBestMove(depth - 1, )
 
         for cell in empty_cells():
             pass
