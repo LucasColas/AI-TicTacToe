@@ -143,11 +143,13 @@ class Grid():
         for row in self.grid2:
             print(row)
 
-    def getBestMove(self, depth, state, player, maximizingPlayer):
+    def getBestMove(self, depth, player, maximizingPlayer):
         GO, no_winner = check_game()
 
         if maximizingPlayer:
             value = -infinity
+            for cell in empty_cells:
+
 
         for cell in empty_cells():
             pass
