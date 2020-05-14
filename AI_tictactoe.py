@@ -2,6 +2,7 @@ import pygame
 import sys
 import os
 from math import inf as infinity
+from random import choice
 
 pygame.font.init()
 
