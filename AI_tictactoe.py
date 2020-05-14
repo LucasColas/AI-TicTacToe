@@ -149,7 +149,7 @@ class Grid():
         if maximizingPlayer:
             value = -infinity
             for cell in empty_cells:
-
+                
 
         for cell in empty_cells():
             pass
@@ -162,6 +162,8 @@ class Grid():
 
         elif no_winner == 'No winner':
             return 0
+
+
 
 
 
