@@ -143,8 +143,15 @@ class Grid():
         for row in self.grid2:
             print(row)
 
-    def getBestMove(self, state, player):
+    def getBestMove(self, depth, state, player, maximizingPlayer):
         GO, no_winner = check_game()
+
+        if maximizingPlayer:
+            value = -infinity
+
+        for cell in empty_cells():
+            pass
+
         if self.game_over and player == 'O':
             return -1
 
@@ -153,6 +160,7 @@ class Grid():
 
         elif no_winner == 'No winner':
             return 0
+
 
 
 Grid = Grid()
