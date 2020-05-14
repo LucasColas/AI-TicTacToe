@@ -144,14 +144,14 @@ class Grid():
             print(row)
 
     def getBestMove(self, state, player):
-        GO, no_winner = check_game
+        GO, no_winner = check_game()
         if self.game_over and player == 'O':
             return -1
 
         elif self.game_over and player == 'X':
             return 1
 
-        elif check_game == 'No winner':
+        elif no_winner == 'No winner':
             return 0
 
 
