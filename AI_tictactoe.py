@@ -67,6 +67,8 @@ class Grid():
             self.check_columns(player)
             self.check_diagonals(player)
             self.check_game()
+            if len(self.empty_cells()) > 0:
+                return
 
         else:
             self.switch = False
@@ -157,14 +159,14 @@ class Grid():
 
         if maximizingPlayer:
             value = -infinity
-            for cell in empty_cells():
-                evaluate = getBestMove(depth - 1, -1, False)
+            for cell in self.empty_cells():
+                evaluate = self.getBestMove(depth - 1, -1, False)
                 maxEval = max(value, evaluate)
                 return maxEval
         else:
             value = +infinity
-            for cell in empty_cells():
-                evaluate = getBestMove(depth -1, 1, True)
+            for cell in self.empty_cells():
+                evaluate = self.getBestMove(depth -1, 1, True)
                 minEval = min(value, evaluate)
                 return minEval
 
