@@ -144,35 +144,32 @@ class Grid():
             print(row)
 
     def getBestMove(self, depth, player, maximizingPlayer):
+        if depth == 0 or self.game_over:
+            if player == -1:
+                return -1
+
+            elif player == 1:
+                return 1
+
+            elif no_winner == 'No winner':
+                return 0
+
         GO, no_winner = check_game()
 
         if maximizingPlayer:
             value = -infinity
-            for cell in empty_cells:
+            for cell in empty_cells():
                 evaluate = getBestMove(depth - 1, -1, False)
                 maxEval = max(value, evaluate)
                 return max
         else:
             value = +infinity
-            for cell in empty_cells:
+            for cell in empty_cells():
                 evaluate = get
 
 
         for cell in empty_cells():
             pass
-
-        if self.game_over and player == -1:
-            return -1
-
-        elif self.game_over and player == 1:
-            return 1
-
-        elif no_winner == 'No winner':
-            return 0
-
-
-
-
 
 Grid = Grid()
 
