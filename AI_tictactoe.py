@@ -167,6 +167,7 @@ class Grid():
                 evaluate = self.getBestMove(depth - 1, 1, False)
                 maxEval = max(value, evaluate)
                 return cell
+                
         else:
             value = +infinity
             for cell in self.empty_cells():
