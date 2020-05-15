@@ -160,13 +160,13 @@ class Grid():
         if maximizingPlayer:
             value = -infinity
             for cell in self.empty_cells():
-                evaluate = self.getBestMove(depth - 1, -1, False)
+                evaluate = self.getBestMove(depth - 1, 1, False)
                 maxEval = max(value, evaluate)
                 return maxEval
         else:
             value = +infinity
             for cell in self.empty_cells():
-                evaluate = self.getBestMove(depth -1, 1, True)
+                evaluate = self.getBestMove(depth -1, -1, True)
                 minEval = min(value, evaluate)
                 return minEval
 
