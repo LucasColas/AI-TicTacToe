@@ -177,7 +177,6 @@ class Grid():
 
 Grid = Grid()
 
-
 def redraw_window():
     Win.fill(Bg)
 
