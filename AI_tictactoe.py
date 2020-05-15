@@ -135,7 +135,7 @@ class Grid():
             return False
 
     def set_move(self, x,y):
-        pass 
+        pass
 
 
     def reset(self):
