@@ -59,6 +59,7 @@ class Grid():
             self.switch = True
 
             if player == 1:
+
                 self.set_cell_value(x,y, 1)
             elif player == -1:
                 self.set_cell_value(x, y, -1)
@@ -133,6 +134,9 @@ class Grid():
         else:
             return False
 
+    def set_move(self, x,y):
+        pass 
+
 
     def reset(self):
         for y in range(len(self.grid2)):
@@ -162,13 +166,14 @@ class Grid():
             for cell in self.empty_cells():
                 evaluate = self.getBestMove(depth - 1, 1, False)
                 maxEval = max(value, evaluate)
-                return maxEval
+                return cell
         else:
             value = +infinity
             for cell in self.empty_cells():
                 evaluate = self.getBestMove(depth -1, -1, True)
                 minEval = min(value, evaluate)
-                return minEval
+                return cell
+
 
 Grid = Grid()
 
