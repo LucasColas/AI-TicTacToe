@@ -47,6 +47,11 @@ class Grid():
                     window.blit(self.Cross, (x*(Width//4),y*(Height//4)))
                 elif self.get_cell_value(x,y) == -1:
                     window.blit(self.Circle, (x*(Width//4),y*(Height//4)))
+    def check(self,player):
+        self.check_rows(player)
+        self.check_columns(player)
+        self.check_diagonals(player)
+        self.check_game()
 
     def get_cell_value(self, x,y):
         return self.grid2[y][x]
@@ -57,22 +62,18 @@ class Grid():
     def get_mouse(self, x, y, player):
         if self.get_cell_value(x,y) == 0:
             self.switch = True
-            self.set_cell_value(x, y, player)
+
+            if player == 1:
+                depth = len(self.empty_cells())
+                position = self.getBestMove(depth, 1, maximizingPlayer)
+                self.set_cell_value(x,y, 1)
+            elif player == -1:
+                self.set_cell_value(x, y, -1)
             #self.check(x,y, player)
-            self.check_rows(player)
-            self.check_columns(player)
-            self.check_diagonals(player)
-            self.check_game()
+
 
         else:
             self.switch = False
-
-    def ai_turn(self, player):
-        if player == 1:
-            depth = len(self.empty_cells())
-
-            position = self.getBestMove(depth, player, True)
-
 
     def check_rows(self, player):
         for row in self.grid2:
@@ -149,6 +150,7 @@ class Grid():
             print(row)
 
     def getBestMove(self, depth, player, maximizingPlayer):
+        GO, no_winner = check_game()
         if depth == 0 or self.game_over:
             if player == -1:
                 return -1
@@ -158,8 +160,6 @@ class Grid():
 
             elif no_winner == 'No winner':
                 return 0
-
-        GO, no_winner = check_game()
 
         if maximizingPlayer:
             value = -infinity
@@ -200,7 +200,7 @@ def main():
             if event.type == pygame.QUIT:
                 quit()
             if event.type == pygame.MOUSEBUTTONDOWN and not Grid.game_over:
-                #print("Yes !")
+                Grid.check(player)
 
                 if pygame.mouse.get_pressed()[0] and player == -1:
                     pos = pygame.mouse.get_pos()
@@ -212,6 +212,9 @@ def main():
                         else:
                             player = -1
                     Grid.print_grid()
+
+                if player == 1:
+
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE and Grid.game_over:
