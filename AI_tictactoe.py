@@ -62,10 +62,13 @@ class Grid():
     def get_mouse(self, x, y, player):
         if self.get_cell_value(x,y) == 0:
             self.switch = True
-
+            """
             if player == 1:
                 depth = len(self.empty_cells())
                 position = self.getBestMove(depth, 1, maximizingPlayer)
+                self.set_cell_value(x,y, 1)
+            """
+            if player == 1:
                 self.set_cell_value(x,y, 1)
             elif player == -1:
                 self.set_cell_value(x, y, -1)
