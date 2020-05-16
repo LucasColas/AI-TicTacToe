@@ -59,7 +59,8 @@ class Grid():
             self.switch = True
 
             if player == 1:
-
+                depth = len(self.empty_cells())
+                position = self.getBestMove(depth, 1, maximizingPlayer)
                 self.set_cell_value(x,y, 1)
             elif player == -1:
                 self.set_cell_value(x, y, -1)
