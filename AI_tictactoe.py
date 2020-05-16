@@ -57,13 +57,7 @@ class Grid():
     def get_mouse(self, x, y, player):
         if self.get_cell_value(x,y) == 0:
             self.switch = True
-
-            if player == 1:
-                depth = len(self.empty_cells())
-                position = self.getBestMove(depth, 1, maximizingPlayer)
-                self.set_cell_value(x,y, 1)
-            elif player == -1:
-                self.set_cell_value(x, y, -1)
+            self.set_cell_value(x, y, player)
             #self.check(x,y, player)
             self.check_rows(player)
             self.check_columns(player)
@@ -72,6 +66,13 @@ class Grid():
 
         else:
             self.switch = False
+
+    def ai_turn(self, player):
+        if player == 1:
+            depth = len(self.empty_cells())
+
+            position = self.getBestMove(depth, player, True)
+
 
     def check_rows(self, player):
         for row in self.grid2:
