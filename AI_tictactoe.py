@@ -135,10 +135,6 @@ class Grid():
         else:
             return False
 
-    def set_move(self, x,y):
-        pass
-
-
     def reset(self):
         for y in range(len(self.grid2)):
             for x in range(len(self.grid2[y])):
