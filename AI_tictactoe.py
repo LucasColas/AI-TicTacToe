@@ -214,6 +214,9 @@ def main():
                     Grid.print_grid()
 
                 if player == 1:
+                    depth = len(Grid.empty_cells)
+                    position = Grid.getBestMove(depth, player, True)
+                    Grid.get_mouse(position[0], position[1], player)
 
 
             if event.type == pygame.KEYDOWN:
