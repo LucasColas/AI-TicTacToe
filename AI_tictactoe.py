@@ -215,7 +215,7 @@ def main():
                 if player == 1:
                     depth = len(Grid.empty_cells())
                     position = Grid.getBestMove(depth, player, True)
-                    Grid.get_mouse(position[0], position[1], player)
+                    Grid.get_mouse(int(position[0]), int(position[1]), player)
 
                     if Grid.switch:
                         if player == 1:
