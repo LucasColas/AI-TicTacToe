@@ -162,13 +162,18 @@ class Grid():
 
 
     def getBestMove(self, depth, player, maximizingPlayer):
+        position = []
+
+        if depth == 0:
+            return position
+
 
         if maximizingPlayer:
             value = -infinity
             for cell in self.empty_cells():
                 evaluate = self.getBestMove(depth - 1, 1, False)
                 maxEval = max(value, evaluate)
-                return cell
+                return position = cell
 
         else:
             value = +infinity
