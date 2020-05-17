@@ -149,7 +149,7 @@ class Grid():
             print(row)
 
     def getBestMove(self, depth, player, maximizingPlayer):
-        GO, no_winner = check_game()
+        GO, no_winner = self.check_game()
         if depth == 0 or self.game_over:
             if player == -1:
                 return -1
