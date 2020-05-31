@@ -87,6 +87,7 @@ class Grid():
                 else:
                     print("X wins")
                 self.game_over = True
+                return self.game_over, player
 
         #Check columns
         for col in range(len(self.grid2[0])):
@@ -99,9 +100,19 @@ class Grid():
                 else:
                     print("X wins")
                 self.game_over = True
-            return self.game_over, player
+                return self.game_over, player
 
         #Check diagonals
+        diags = []
+        for indx in range(len(self.grid2)):
+            diags.append(self.grid2[indx][indx])
+        if diags.count(diags[0]) == len(diags) and diags[0] != 0:
+            if player == -1:
+                print("O wins")
+            else:
+                print("X wins")
+            self.game_over = True
+            return self.game_over, player
 
 """
     def check_rows(self, player):
