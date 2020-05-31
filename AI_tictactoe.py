@@ -77,7 +77,33 @@ class Grid():
 
         else:
             self.switch = False
+    def winning(self, player):
+        #Check rows
+        for row in self.grid2:
+            if row[0] == row[1] == row[2] == row[3] == player:
 
+                if player == -1:
+                    print("O wins")
+                else:
+                    print("X wins")
+                self.game_over = True
+
+        #Check columns
+        for col in range(len(self.grid2[0])):
+            check = []
+            for row in self.grid2:
+                check.append(row[col])
+            if check.count(check[0]) == len(check) and check[0] != 0:
+                if player == -1:
+                    print("O wins")
+                else:
+                    print("X wins")
+                self.game_over = True
+            return self.game_over, player
+
+        #Check diagonals
+
+"""
     def check_rows(self, player):
         for row in self.grid2:
             if row[0] == row[1] == row[2] == row[3] == player:
@@ -87,6 +113,7 @@ class Grid():
                 else:
                     print("X wins")
                 self.game_over = True
+
 
     def check_columns(self, player):
         for col in range(len(self.grid2[0])):
@@ -112,6 +139,8 @@ class Grid():
                 print("X wins")
             self.game_over = True
         return self.game_over, player
+
+"""
 
     def check_game(self):
         zero = []
