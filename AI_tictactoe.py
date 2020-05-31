@@ -175,15 +175,16 @@ def main():
                             player = -1
                     Grid.print_grid()
 
+                """
                 if player == 1:
                     depth = len(Grid.empty_cells())
-                    print(position)
                     Grid.get_mouse(position[0], position[1], player)
                     if Grid.switch:
                         if player == 1:
                             player = 1
                         else:
                             player = -1
+                """
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE and Grid.game_over:
