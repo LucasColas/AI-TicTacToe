@@ -55,20 +55,14 @@ class Grid():
         self.grid2[y][x] = value
 
     def get_mouse(self, x, y, player):
+        self.check_game()
         if self.get_cell_value(x,y) == 0:
             self.switch = True
-            """
-            if player == 1:
-                depth = len(self.empty_cells())
-                position = self.getBestMove(depth, 1, maximizingPlayer)
-                self.set_cell_value(x,y, 1)
-            """
             if player == 1:
                 self.set_cell_value(x,y, 1)
             elif player == -1:
                 self.set_cell_value(x, y, -1)
-            #self.check(x,y, player)
-
+            self.winning(player)
 
         else:
             self.switch = False
@@ -140,7 +134,6 @@ class Grid():
             for x in range(len(self.grid2[y])):
                 self.set_cell_value(x, y, 0)
 
-
     def print_grid(self):
         for row in self.grid2:
             print(row)
@@ -171,7 +164,6 @@ def main():
                 quit()
             if event.type == pygame.MOUSEBUTTONDOWN and not Grid.game_over:
                 Grid.winning(player)
-
                 if pygame.mouse.get_pressed()[0] and player == -1:
                     pos = pygame.mouse.get_pos()
                     #print(pos[0] // (Width // 4), pos[1] // (Height // 4))
