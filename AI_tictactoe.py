@@ -17,7 +17,7 @@ Circle = pygame.transform.scale(pygame.image.load(os.path.join("assets", "circle
 clock = pygame.time.Clock()
 FPS = 80
 
-def fill(surface, color):
+def fill(surface, color): #Change the color of a .png image
     w, h = surface.get_size()
     r, g, b, _ = color
     for x in range(w):
