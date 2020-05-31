@@ -47,11 +47,6 @@ class Grid():
                     window.blit(self.Cross, (x*(Width//4),y*(Height//4)))
                 elif self.get_cell_value(x,y) == -1:
                     window.blit(self.Circle, (x*(Width//4),y*(Height//4)))
-    def check(self,player):
-        self.check_rows(player)
-        self.check_columns(player)
-        self.check_diagonals(player)
-        self.check_game()
 
     def get_cell_value(self, x,y):
         return self.grid2[y][x]
@@ -77,6 +72,7 @@ class Grid():
 
         else:
             self.switch = False
+
     def winning(self, player):
         #Check rows
         for row in self.grid2:
@@ -114,45 +110,6 @@ class Grid():
             self.game_over = True
             return self.game_over, player
 
-"""
-    def check_rows(self, player):
-        for row in self.grid2:
-            if row[0] == row[1] == row[2] == row[3] == player:
-
-                if player == -1:
-                    print("O wins")
-                else:
-                    print("X wins")
-                self.game_over = True
-
-
-    def check_columns(self, player):
-        for col in range(len(self.grid2[0])):
-            check = []
-            for row in self.grid2:
-                check.append(row[col])
-            if check.count(check[0]) == len(check) and check[0] != 0:
-                if player == -1:
-                    print("O wins")
-                else:
-                    print("X wins")
-                self.game_over = True
-            return self.game_over, player
-
-    def check_diagonals(self,player):
-        diags = []
-        for indx in range(len(self.grid2)):
-            diags.append(self.grid2[indx][indx])
-        if diags.count(diags[0]) == len(diags) and diags[0] != 0:
-            if player == -1:
-                print("O wins")
-            else:
-                print("X wins")
-            self.game_over = True
-        return self.game_over, player
-
-"""
-
     def check_game(self):
         zero = []
         for row in self.grid2:
@@ -188,41 +145,6 @@ class Grid():
         for row in self.grid2:
             print(row)
 
-    def end_Minimax(self, depth):
-        GO, no_winner = self.check_game()
-        if depth == 0 or GO:
-            if player == -1:
-                return -1
-
-            elif player == 1:
-                return 1
-
-            elif no_winner == 'No winner':
-                return 0
-
-
-    def getBestMove(self, depth, player, maximizingPlayer):
-
-
-        if depth == 0:
-            return position
-
-
-        if maximizingPlayer:
-            value = -infinity
-            for cell in self.empty_cells():
-                evaluate = self.getBestMove(depth - 1, 1, False)
-                maxEval = max(value, evaluate)
-                position = cell
-                return position
-
-        else:
-            value = +infinity
-            for cell in self.empty_cells():
-                evaluate = self.getBestMove(depth -1, -1, True)
-                minEval = min(value, evaluate)
-                return cell
-
 
 Grid = Grid()
 
@@ -248,7 +170,7 @@ def main():
             if event.type == pygame.QUIT:
                 quit()
             if event.type == pygame.MOUSEBUTTONDOWN and not Grid.game_over:
-                Grid.check(player)
+                Grid.winning(player)
 
                 if pygame.mouse.get_pressed()[0] and player == -1:
                     pos = pygame.mouse.get_pos()
@@ -263,7 +185,7 @@ def main():
 
                 if player == 1:
                     depth = len(Grid.empty_cells())
-                    position = Grid.getBestMove(depth, player, True)
+                    #position = Grid.getBestMove(depth, player, True)
                     print(position)
                     Grid.get_mouse(position[0], position[1], player)
 
