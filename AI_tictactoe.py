@@ -191,5 +191,4 @@ def main():
                     Grid.reset()
                     Grid.game_over = False
 
-
 main()
