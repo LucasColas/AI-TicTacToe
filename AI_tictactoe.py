@@ -77,7 +77,7 @@ class Grid():
                 else:
                     print("X wins")
                 self.game_over = True
-                return self.game_over, player
+                return self.game_over
 
         #Check columns
         for col in range(len(self.grid2[0])):
@@ -90,7 +90,7 @@ class Grid():
                 else:
                     print("X wins")
                 self.game_over = True
-                return self.game_over, player
+                return self.game_over
 
         #Check diagonals
         diags = []
@@ -102,7 +102,7 @@ class Grid():
             else:
                 print("X wins")
             self.game_over = True
-            return self.game_over, player
+            return self.game_over
 
     def check_game(self):
         zero = []
@@ -112,7 +112,7 @@ class Grid():
         if zero.count(0) == 0:
             print("It's over !")
             self.game_over = True
-        return self.game_over, "No winner"
+        return self.game_over
 
     def empty_cells(self):
         cells = []
@@ -140,6 +140,18 @@ class Grid():
 
 
 Grid = Grid()
+
+def is_it_over(player):
+    return Grid.empty_cells() == 0 or Grid.check_game() or Grid.winning(player)
+
+def minimax(player, Grid, depth, Alpha, Beta, MaximizingPlayer):
+    valid_locations = Grid.empty_cells()
+    terminal_node = is_it_over(player)
+
+    if depth == 0 or terminal_node:
+        if terminal_node:
+            pass
+
 
 def redraw_window():
     Win.fill(Bg)
