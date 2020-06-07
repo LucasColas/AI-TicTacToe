@@ -134,6 +134,11 @@ class Grid():
             for x in range(len(self.grid2[y])):
                 self.set_cell_value(x, y, 0)
 
+    def rewards(self, player):
+        
+
+
+
     def print_grid(self):
         for row in self.grid2:
             print(row)
