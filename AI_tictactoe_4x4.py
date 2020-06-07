@@ -138,7 +138,9 @@ class Grid():
 
         score = 0
         if player == -1:
-            
+            opp_piece = 1
+        if player == 1:
+            opp_piece = -1
 
         if self.grid2.count(player) == 4:
             score += 400
