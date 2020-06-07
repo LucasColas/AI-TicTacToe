@@ -137,6 +137,8 @@ class Grid():
     def rewards(self, player):
 
         score = 0
+        if player == -1:
+            
 
         if self.grid2.count(player) == 4:
             score += 400
