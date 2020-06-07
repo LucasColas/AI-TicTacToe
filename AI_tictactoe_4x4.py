@@ -134,7 +134,7 @@ class Grid():
             for x in range(len(self.grid2[y])):
                 self.set_cell_value(x, y, 0)
 
-    def rewards(self, player):
+    def rewards(self, board, player):
         score = 0
         opp_piece = 1
         if player == -1:
@@ -142,19 +142,19 @@ class Grid():
         else:
             opp_piece = -1
 
-        if self.grid2.count(player) == 4:
+        if board.count(player) == 4:
             score += 400
 
-        if self.grid2.count(player) == 3 and self.grid2.count(-1) == 1:
+        if board.count(player) == 3 and self.grid2.count(-1) == 1:
             score += 50
 
-        if self.grid2.count(player) == 2 and self.grid2.count(-1) == 2:
+        if board.count(player) == 2 and self.grid2.count(-1) == 2:
             score += 10
 
-        if self.grid2.count(player) == 1 and self.grid2.count(-1) == 3:
+        if board.count(player) == 1 and self.grid2.count(-1) == 3:
             score -= 10
 
-        if self.grid2.count(opp_piece) == 3 and self.grid2.count(-1) = 1:
+        if board.count(opp_piece) == 3 and self.grid2.count(-1) = 1:
             score -= 10
 
         return score
@@ -165,12 +165,13 @@ class Grid():
         #Score (horizontally)
         for row in range(len(self.grid2)):
             new_board = [int(h) for h in range(self.grid2[row])]
-            pieces = new_board.count(player)
+            board = new_board.count(player)
             score += self.rewards(player)
 
         #Score (vertically)
-        for col in range(len(self.grid2[0])):
-            pass
+        for row in range(len(self.grid2)):
+            for i in range(len(self.grid2)-1):
+                pass 
 
 
     def print_grid(self):
