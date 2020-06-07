@@ -137,9 +137,10 @@ class Grid():
     def rewards(self, player):
 
         score = 0
+        opp_piece = 1
         if player == -1:
             opp_piece = 1
-        if player == 1:
+        else:
             opp_piece = -1
 
         if self.grid2.count(player) == 4:
@@ -154,8 +155,10 @@ class Grid():
         if self.grid2.count(player) == 1 and self.grid2.count(-1) == 3:
             score -= 10
 
-        return score
+        if self.grid2.count(opp_piece) == 3 and self.grid2.count(-1) = 1:
+            score -= 10
 
+        return score
 
     def print_grid(self):
         for row in self.grid2:
