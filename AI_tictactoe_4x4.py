@@ -135,7 +135,24 @@ class Grid():
                 self.set_cell_value(x, y, 0)
 
     def rewards(self, player):
-        
+
+        score = 0
+
+        if self.grid2.count(player) == 4:
+            score += 400
+
+        if self.grid2.count(player) == 3 and self.grid2.count(-1) == 1:
+            score += 50
+
+        if self.grid2.count(player) == 2 and self.grid2.count(-1) == 2:
+            score += 10
+
+        if self.grid2.count(player) == 1 and self.grid2.count(-1) == 3:
+            score -= 10
+
+        return score
+
+
 
 
 
