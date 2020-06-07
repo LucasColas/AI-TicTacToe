@@ -165,9 +165,10 @@ class Grid():
         #Score (horizontally)
         for row in range(len(self.grid2)):
             new_board = [int(h) for h in range(self.grid2[row])]
-            
+            pieces = new_board.count(player)
+            score += self.rewards(player)
 
-
+        
 
     def print_grid(self):
         for row in self.grid2:
