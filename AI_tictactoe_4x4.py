@@ -164,8 +164,10 @@ class Grid():
 
         #Score (horizontally)
         for row in range(len(self.grid2)):
-            new_board = board[row]
-            score += self.rewards()
+            new_board = [int(j) for j in list(self.grid2[row])]
+            for col in range(len(new_board)):
+                board = board[row]
+                score += self.rewards()
 
         #Score (vertically)
         for row in range(len(self.grid2)):
