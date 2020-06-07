@@ -169,7 +169,7 @@ class Grid():
             score += self.rewards(player)
 
         #Score (vertically)
-        for row in range(len(self.grid2)):
+        for col in range(len(self.grid2[0])):
             pass
 
 
