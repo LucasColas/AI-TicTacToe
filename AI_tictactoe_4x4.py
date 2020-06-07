@@ -135,7 +135,6 @@ class Grid():
                 self.set_cell_value(x, y, 0)
 
     def rewards(self, player):
-
         score = 0
         opp_piece = 1
         if player == -1:
