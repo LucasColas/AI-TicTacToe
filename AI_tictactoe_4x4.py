@@ -162,7 +162,12 @@ class Grid():
     def evaluate(self, player):
         score = 0
 
-         
+        #Score (horizontally)
+        for row in range(len(self.grid2)):
+            new_board = [int(h) for h in range(self.grid2[row])]
+            
+
+
 
     def print_grid(self):
         for row in self.grid2:
