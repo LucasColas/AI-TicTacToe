@@ -160,7 +160,9 @@ class Grid():
         return score
 
     def evaluate(self, player):
-        pass 
+        score = 0
+
+         
 
     def print_grid(self):
         for row in self.grid2:
