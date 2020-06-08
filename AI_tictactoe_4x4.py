@@ -176,6 +176,7 @@ class Grid():
                 score += self.reward(new_board, player)
 
         #Score (diagonally)
+        # First diagonal (from the left to the right)
         board_dg = []
         for position in range(len(self.grid2)):
             extension = self.grid2[position][position]
@@ -183,6 +184,7 @@ class Grid():
                 if position == (len(self.grid2)-1):
                     score += self.reward(board, player)
 
+        # Second diagonal (from the right to the left)
         board_dg2 = []
         for indx, position in enumerate(reversed(range(len(self.grid2)))):
             extension = self.grid2[indx][position]
