@@ -188,9 +188,7 @@ class Grid():
             extension = self.grid2[indx][position]
             board_dg2.append(extension)
             if position == (len(self.grid2)-1):
-
-
-
+                score += self.reward(board, player)
 
     def print_grid(self):
         for row in self.grid2:
