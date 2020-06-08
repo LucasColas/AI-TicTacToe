@@ -176,9 +176,12 @@ class Grid():
                 score += self.reward(new_board, player)
 
         #Score (diagonally)
+        board = []
         for position in range(len(self.grid2)):
-            board = [self.grid2[position][position]]
-            score += self.reward(board, player)
+            extension = self.grid2[position][position]
+            board.append(extension)
+                for times in range(len(self.grid2)):
+                    score += self.reward(board, player)
 
 
     def print_grid(self):
