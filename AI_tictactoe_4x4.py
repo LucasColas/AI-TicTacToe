@@ -172,13 +172,14 @@ class Grid():
         #Score (vertically)
         for row in range(len(self.grid2)):
             for i in range(len(self.grid2)-1):
-                new_board = board[row][i]
+                new_board = [board[row][i]]
                 score += self.reward(new_board, player)
 
         #Score (diagonally)
         for position in range(len(self.grid2)):
-            board = self.grid2[position][position]
-            
+            board = [self.grid2[position][position]]
+            score += self.reward(board, player)
+
 
     def print_grid(self):
         for row in self.grid2:
