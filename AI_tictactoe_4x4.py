@@ -184,8 +184,11 @@ class Grid():
                     score += self.reward(board, player)
 
         board_dg2 = []
-        for position in reversed(range(len(self.grid2))):
-            
+        for indx, position in enumerate(reversed(range(len(self.grid2)))):
+            extension = self.grid2[indx][position]
+            board_dg2.append(extension)
+            if position == (len(self.grid2)-1):
+
 
 
 
