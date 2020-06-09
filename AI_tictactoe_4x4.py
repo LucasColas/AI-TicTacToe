@@ -210,7 +210,6 @@ def minimax(player, Grid, depth, Alpha, Beta, MaximizingPlayer):
         if terminal_node:
             pass
 
-
 def redraw_window():
     Win.fill(Bg)
 
