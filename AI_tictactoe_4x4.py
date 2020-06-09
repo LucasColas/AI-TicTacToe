@@ -291,6 +291,9 @@ def main():
                     Grid.game_over = False
 
             if player == -1 and not Grid.game_over:
-                pass
+                Alpha = -infinity
+                Beta = +infinity
+                position, score = minimax(player, Grid_board, Alpha, Beta, True)
+                Grid.get_mouse(Grid_board, position[0], position[1], player)
 
 main()
