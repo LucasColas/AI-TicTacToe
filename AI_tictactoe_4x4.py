@@ -51,17 +51,17 @@ class Grid():
     def get_cell_value(self, x,y):
         return self.grid2[y][x]
 
-    def set_cell_value(self, x, y, value):
-        self.grid2[y][x] = value
+    def set_cell_value(self, grid, x, y, value):
+        grid[y][x] = value
 
-    def get_mouse(self, x, y, player):
+    def get_mouse(self, grid, x, y, player):
         self.check_game()
         if self.get_cell_value(x,y) == 0:
             self.switch = True
             if player == 1:
-                self.set_cell_value(x,y, 1)
+                self.set_cell_value(grid, x,y, 1)
             elif player == -1:
-                self.set_cell_value(x, y, -1)
+                self.set_cell_value(grid, x, y, -1)
             self.winning(player)
 
         else:
@@ -221,9 +221,11 @@ def minimax(player, Grid, depth, Alpha, Beta, MaximizingPlayer):
     if MaximizingPlayer:
         best = -infinity
         for case in valid_locations():
-
+            x,y = case[0], case[1]
             new_grid = Grid.copy()
-            minimax(player, new_grid, depth, Alpha, Beta, MaximizingPlayer)
+            Grid.set_cell_value(x,y, player)
+            score = max(best, minimax(player, new_grid, depth, Alpha, Beta, MaximizingPlayer))
+        return score
 
 
 def redraw_window():
@@ -252,24 +254,13 @@ def main():
                 if pygame.mouse.get_pressed()[0] and player == -1:
                     pos = pygame.mouse.get_pos()
                     #print(pos[0] // (Width // 4), pos[1] // (Height // 4))
-                    Grid.get_mouse(pos[0] // (Width // 4), pos[1] // (Height // 4), player)
+                    Grid.get_mouse(Grid.grid2, pos[0] // (Width // 4), pos[1] // (Height // 4), player)
                     if Grid.switch:
                         if player == -1:
                             player = 1
                         else:
                             player = -1
                     Grid.print_grid()
-
-                """
-                if player == 1:
-                    depth = len(Grid.empty_cells())
-                    Grid.get_mouse(position[0], position[1], player)
-                    if Grid.switch:
-                        if player == 1:
-                            player = 1
-                        else:
-                            player = -1
-                """
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE and Grid.game_over:
