@@ -228,6 +228,16 @@ def minimax(player, Grid, depth, Alpha, Beta, MaximizingPlayer):
             score = max(best, minimax(player, new_grid, depth, Alpha, Beta, MaximizingPlayer))
         return score
 
+    else: #Minimizing
+        best = +infinity
+        for case in valid_locations():
+            x,y = case[0], case[1]
+            new_grid = Grid.copy()
+            Grid.set_cell_value(x,y, player)
+            score = min(best, minimax(player, new_grid, depth, Alpha, Beta, MaximizingPlayer))
+        return score
+
+
 
 def redraw_window():
     Win.fill(Bg)
