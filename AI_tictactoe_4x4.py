@@ -199,6 +199,7 @@ class Grid():
 
 
 Grid = Grid()
+Grid_board = Grid.grid2
 
 def is_it_over(player):
     return Grid.empty_cells() == 0 or Grid.check_game() or Grid.winning(player)
@@ -254,7 +255,7 @@ def main():
                 if pygame.mouse.get_pressed()[0] and player == -1:
                     pos = pygame.mouse.get_pos()
                     #print(pos[0] // (Width // 4), pos[1] // (Height // 4))
-                    Grid.get_mouse(Grid.grid2, pos[0] // (Width // 4), pos[1] // (Height // 4), player)
+                    Grid.get_mouse(Grid_board, pos[0] // (Width // 4), pos[1] // (Height // 4), player)
                     if Grid.switch:
                         if player == -1:
                             player = 1
