@@ -251,7 +251,6 @@ def minimax(player, Grid, depth, Alpha, Beta, MaximizingPlayer):
         return position, score
 
 
-
 def redraw_window():
     Win.fill(Bg)
 
