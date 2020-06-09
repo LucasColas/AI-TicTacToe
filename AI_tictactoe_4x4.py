@@ -192,6 +192,7 @@ class Grid():
             if indx == (len(self.grid2)-1):
                 score += self.reward(board, player)
 
+
     def print_grid(self):
         for row in self.grid2:
             print(row)
