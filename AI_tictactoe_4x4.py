@@ -209,7 +209,14 @@ def minimax(player, Grid, depth, Alpha, Beta, MaximizingPlayer):
 
     if depth == 0 or terminal_node:
         if terminal_node:
-            pass
+            if player == -1:
+                return (None, -10000000)
+            elif player == 1:
+                return (None, 10000000)
+            else:
+                return (None, 0)
+        else:
+            return (None,Grid.evaluate(player))
 
 def redraw_window():
     Win.fill(Bg)
