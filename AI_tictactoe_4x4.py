@@ -295,5 +295,6 @@ def main():
                 Beta = +infinity
                 position, score = minimax(player, Grid_board, Alpha, Beta, True)
                 Grid.get_mouse(Grid_board, position[0], position[1], player)
+                Grid.print_grid()
 
 main()
