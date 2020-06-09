@@ -189,7 +189,7 @@ class Grid():
         for indx, position in enumerate(reversed(range(len(self.grid2)))):
             extension = self.grid2[indx][position]
             board_dg2.append(extension)
-            if position == (len(self.grid2)-1):
+            if indx == (len(self.grid2)-1):
                 score += self.reward(board, player)
 
     def print_grid(self):
