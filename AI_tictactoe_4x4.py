@@ -218,6 +218,10 @@ def minimax(player, Grid, depth, Alpha, Beta, MaximizingPlayer):
         else:
             return (None,Grid.evaluate(player))
 
+    if MaximizingPlayer:
+        best = -infinity
+        for case in valid_locations()
+
 def redraw_window():
     Win.fill(Bg)
 
