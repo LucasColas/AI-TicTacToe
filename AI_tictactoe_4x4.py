@@ -258,7 +258,7 @@ def redraw_window():
 
 
 def main():
-    player = -1 #O
+    player =  # -1 = O(player) and 1 = X (AI)
     run = True
     Grid.print_grid()
     color = (0,255,0,0)
