@@ -259,6 +259,8 @@ def redraw_window():
 
 
 def main():
+    global Grid
+    Grid_board = Grid.grid2
     start = [-1,1]
     player = random.choice(start) # -1 = O(player) and 1 = X (AI)
     run = True
