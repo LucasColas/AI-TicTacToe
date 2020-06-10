@@ -225,7 +225,7 @@ def minimax(player, Grid, depth, Alpha, Beta, MaximizingPlayer):
             x,y = case[0], case[1]
             new_grid = Grid.copy()
             Grid.set_cell_value(x,y, player)
-            score = max(best, minimax(player, new_grid, depth, Alpha, Beta, False)[1])
+            score = max(best, minimax(player, new_grid, depth-1, Alpha, Beta, False)[1])
             if score > best:
                 best = score
                 position = case
@@ -241,7 +241,7 @@ def minimax(player, Grid, depth, Alpha, Beta, MaximizingPlayer):
             x,y = case[0], case[1]
             new_grid = Grid.copy()
             Grid.set_cell_value(x,y, player)
-            score = min(best, minimax(player, new_grid, depth, Alpha, Beta, True)[1])
+            score = min(best, minimax(player, new_grid, depth-1, Alpha, Beta, True)[1])
             if score < best:
                 best = score
                 position = case
@@ -293,6 +293,7 @@ def main():
             if player == -1 and not Grid.game_over:
                 Alpha = -infinity
                 Beta = +infinity
+                depth = 3
                 position, score = minimax(player, Grid_board, Alpha, Beta, True)
                 Grid.get_mouse(Grid_board, position[0], position[1], player)
                 Grid.print_grid()
