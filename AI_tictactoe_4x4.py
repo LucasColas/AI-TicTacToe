@@ -205,7 +205,7 @@ def is_it_over(player):
     return Grid.empty_cells() == 0 or Grid.check_game() or Grid.winning(player)
 
 def minimax(player, Grid, depth, Alpha, Beta, MaximizingPlayer):
-    valid_locations = Grid.empty_cells()
+    valid_locations = [Grid.empty_cells()]
     terminal_node = is_it_over(player)
 
     if depth == 0 or terminal_node:
