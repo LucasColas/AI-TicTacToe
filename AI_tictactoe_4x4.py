@@ -154,7 +154,7 @@ class Grid():
         if board.count(player) == 1 and self.grid2.count(-1) == 3:
             score -= 10
 
-        if board.count(opp_piece) == 3 and self.grid2.count(-1) = 1:
+        if board.count(opp_piece) == 3 and self.grid2.count(-1) == 1:
             score -= 10
 
         return score
