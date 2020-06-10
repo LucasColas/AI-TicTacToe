@@ -204,8 +204,7 @@ Grid = Grid()
 def is_it_over(player):
     return Grid.empty_cells() == 0 or Grid.check_game() or Grid.winning(player)
 
-def minimax(player, Grid, depth, Alpha, Beta, MaximizingPlayer):
-    gloabl Grid
+def minimax(player, Grid_board, depth, Alpha, Beta, MaximizingPlayer):
     valid_locations = Grid.empty_cells()
     terminal_node = is_it_over(player)
 
@@ -218,13 +217,13 @@ def minimax(player, Grid, depth, Alpha, Beta, MaximizingPlayer):
             else:
                 return (None, 0)
         else:
-            return (None,Grid.evaluate(player))
+            return (None,Grid_board.evaluate(player))
 
     if MaximizingPlayer:
         best = -infinity
         for case in valid_locations():
             x,y = case[0], case[1]
-            new_grid = Grid.copy()
+            new_grid = Grid_board.copy()
             Grid.set_cell_value(x,y, player)
             score = max(best, minimax(player, new_grid, depth-1, Alpha, Beta, False)[1])
             if score > best:
@@ -240,7 +239,7 @@ def minimax(player, Grid, depth, Alpha, Beta, MaximizingPlayer):
         best = +infinity
         for case in valid_locations():
             x,y = case[0], case[1]
-            new_grid = Grid.copy()
+            new_grid = Grid_board.copy()
             Grid.set_cell_value(x,y, player)
             score = min(best, minimax(player, new_grid, depth-1, Alpha, Beta, True)[1])
             if score < best:
