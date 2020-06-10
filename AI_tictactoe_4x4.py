@@ -289,7 +289,7 @@ def main():
                     Grid.reset()
                     Grid.game_over = False
 
-            if player == -1 and not Grid.game_over:
+            if player == 1 and not Grid.game_over:
                 Alpha = -infinity
                 Beta = +infinity
                 depth = 3
