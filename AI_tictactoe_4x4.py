@@ -181,8 +181,8 @@ class Grid():
         for position in range(len(self.grid2)):
             extension = self.grid2[position][position]
             board_dg.append(extension)
-                if position == (len(self.grid2)-1):
-                    score += self.reward(board, player)
+            if position == (len(self.grid2)-1):
+                score += self.reward(board, player)
 
         # Second diagonal (from the right to the left)
         board_dg2 = []
