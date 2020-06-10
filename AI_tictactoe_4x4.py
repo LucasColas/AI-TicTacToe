@@ -197,7 +197,6 @@ class Grid():
         for row in self.grid2:
             print(row)
 
-
 Grid = Grid()
 Grid_board = Grid.grid2
 
