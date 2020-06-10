@@ -294,7 +294,7 @@ def main():
                 Alpha = -infinity
                 Beta = +infinity
                 depth = 3
-                position, score = minimax(player, Grid_board, Alpha, Beta, True)
+                position, score = minimax(player, Grid_board, depth, Alpha, Beta, True)
                 Grid.get_mouse(Grid_board, position[0], position[1], player)
                 Grid.print_grid()
 
