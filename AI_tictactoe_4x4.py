@@ -198,7 +198,7 @@ class Grid():
         for row in self.grid2:
             print(row)
 
-grid_instance = Grid()
+Grid = Grid()
 
 
 def is_it_over(player):
