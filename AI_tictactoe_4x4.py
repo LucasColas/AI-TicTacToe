@@ -200,7 +200,6 @@ class Grid():
 Grid = Grid()
 Grid_board = Grid.grid2
 
-
 def is_it_over(player):
     return Grid.empty_cells() == 0 or Grid.check_game() or Grid.winning(player)
 
