@@ -300,7 +300,7 @@ def main():
             if player == 1 and not Grid.game_over:
                 Alpha = -infinity
                 Beta = +infinity
-                depth = 3
+                depth = 5
                 position, score = minimax(player, Grid_board, depth, Alpha, Beta, True)
                 Grid.get_mouse(Grid_board, position[0], position[1], player)
                 Grid.print_grid()
