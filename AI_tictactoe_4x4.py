@@ -130,10 +130,10 @@ class Grid():
         else:
             return False
 
-    def reset(self):
+    def reset(self, grid):
         for y in range(len(self.grid2)):
             for x in range(len(self.grid2[y])):
-                self.set_cell_value(x, y, 0)
+                self.set_cell_value(grid, x, y, 0)
 
     def rewards(self, board, player):
         score = 0
@@ -294,7 +294,7 @@ def main():
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE and Grid.game_over:
-                    Grid.reset()
+                    Grid.reset(Grid_board)
                     Grid.game_over = False
 
             if player == 1 and not Grid.game_over:
