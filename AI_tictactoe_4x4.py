@@ -172,8 +172,8 @@ class Grid():
         board_vt = []
         for row in range(len(self.grid2)):
             for i in range(len(self.grid2)-1):
-                board_vt.append(board[i][row])
-                score += self.reward(board_vt, player)
+                board_vt.append(self.grid2[i][row])
+                score += self.rewards(board_vt, player)
 
         #Score (diagonally)
         # First diagonal (from the left to the right)
@@ -182,7 +182,7 @@ class Grid():
             extension = self.grid2[position][position]
             board_dg.append(extension)
             if position == (len(self.grid2)-1):
-                score += self.reward(board_dg, player)
+                score += self.rewards(board_dg, player)
 
         # Second diagonal (from the right to the left)
         board_dg2 = []
@@ -190,7 +190,7 @@ class Grid():
             extension = self.grid2[indx][position]
             board_dg2.append(extension)
             if indx == (len(self.grid2)-1):
-                score += self.reward(board_dg2, player)
+                score += self.rewards(board_dg2, player)
 
 
     def print_grid(self):
