@@ -304,5 +304,10 @@ def main():
                 position, score = minimax(player, Grid_board, depth, Alpha, Beta, True)
                 Grid.get_mouse(Grid_board, position[0], position[1], player)
                 Grid.print_grid()
+                if Grid.switch:
+                    if player == -1:
+                        player = 1
+                    else:
+                        player = -1
 
 main()
