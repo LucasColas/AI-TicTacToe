@@ -207,6 +207,7 @@ def is_it_over(player):
 def minimax(player, Grid_board, depth, Alpha, Beta, MaximizingPlayer):
     valid_locations = Grid.empty_cells()
     terminal_node = is_it_over(player)
+    print("enter minimax")
 
     if depth == 0 or terminal_node:
         if terminal_node:
