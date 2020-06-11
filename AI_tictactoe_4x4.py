@@ -236,7 +236,7 @@ def minimax(player, Grid_board, depth, Alpha, Beta, MaximizingPlayer):
             print("Check valid_locations")
             x,y = case[0], case[1]
 
-            new_grid = Grid_board.copy()
+            new_grid = list(Grid_board)
             Grid.set_cell_value(new_grid,x,y, player)
 
             score = max(best, minimax(player, new_grid, depth-1, Alpha, Beta, False)[1])
@@ -256,7 +256,7 @@ def minimax(player, Grid_board, depth, Alpha, Beta, MaximizingPlayer):
         for case in valid_locations:
             x,y = case[0], case[1]
 
-            new_grid = Grid_board.copy()
+            new_grid = list(Grid_board)
             Grid.set_cell_value(new_grid,x,y, player)
 
             score = min(best, minimax(player, new_grid, depth-1, Alpha, Beta, True)[1])
