@@ -218,6 +218,7 @@ def minimax(player, Grid_board, depth, Alpha, Beta, MaximizingPlayer):
                 return (None, 0)
         else:
             return (None,Grid_board.evaluate(player))
+            print("evaluate")
 
     if MaximizingPlayer:
         best = -infinity
