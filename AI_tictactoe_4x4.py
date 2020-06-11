@@ -210,6 +210,7 @@ def minimax(player, Grid_board, depth, Alpha, Beta, MaximizingPlayer):
 
     if depth == 0 or terminal_node:
         if terminal_node:
+            print("terminal_node")
             if player == -1:
                 return (None, -10000000)
             elif player == 1:
