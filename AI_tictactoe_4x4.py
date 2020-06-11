@@ -119,8 +119,8 @@ class Grid():
         cells = []
         for row in range(len(self.grid2)):
             for col in range(len(self.grid2[row])):
-                if self.grid2[col][row] == 0:
-                    cells.append([x, y])
+                if self.grid2[row][col] == 0:
+                    cells.append([row, col])
 
         return cells
 
@@ -235,7 +235,7 @@ def minimax(player, Grid_board, depth, Alpha, Beta, MaximizingPlayer):
             print("Check valid_locations")
             x,y = case[0], case[1]
             new_grid = Grid_board.copy()
-            new_grid.set_cell_value(x,y, player)
+            Grid.set_cell_value(x,y, player)
             score = max(best, minimax(player, new_grid, depth-1, Alpha, Beta, False)[1])
             if score > best:
                 best = score
@@ -251,7 +251,7 @@ def minimax(player, Grid_board, depth, Alpha, Beta, MaximizingPlayer):
         for case in valid_locations:
             x,y = case[0], case[1]
             new_grid = Grid_board.copy()
-            new_grid.set_cell_value(x,y, player)
+            Grid.set_cell_value(x,y, player)
             score = min(best, minimax(player, new_grid, depth-1, Alpha, Beta, True)[1])
             if score < best:
                 best = score
