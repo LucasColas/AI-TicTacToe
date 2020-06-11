@@ -117,8 +117,8 @@ class Grid():
 
     def empty_cells(self):
         cells = []
-        for row in self.grid2:
-            for col in self.grid2[row]:
+        for row in range(len(self.grid2)):
+            for col in range(len(self.grid2[row])):
                 if self.grid2[col][row] == 0:
                     cells.append([x, y])
 
