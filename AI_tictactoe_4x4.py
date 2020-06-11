@@ -206,6 +206,7 @@ def is_it_over(player):
 
 def minimax(player, Grid_board, depth, Alpha, Beta, MaximizingPlayer):
     valid_locations = Grid.empty_cells()
+    print("valid_locations", valid_locations)
     terminal_node = is_it_over(player)
     print("enter minimax")
 
@@ -224,12 +225,14 @@ def minimax(player, Grid_board, depth, Alpha, Beta, MaximizingPlayer):
 
 
     if MaximizingPlayer:
+        print("MaximizingPlayer")
         best = -infinity
         pos1 = random.randint(0,3)
         pos2 = random.randint(0,3)
         position = [0, 0]
         score = 0
         for case in valid_locations:
+            print("Check valid_locations")
             x,y = case[0], case[1]
             new_grid = Grid_board.copy()
             new_grid.set_cell_value(x,y, player)
@@ -248,7 +251,7 @@ def minimax(player, Grid_board, depth, Alpha, Beta, MaximizingPlayer):
         for case in valid_locations:
             x,y = case[0], case[1]
             new_grid = Grid_board.copy()
-            Grid.set_cell_value(x,y, player)
+            new_grid.set_cell_value(x,y, player)
             score = min(best, minimax(player, new_grid, depth-1, Alpha, Beta, True)[1])
             if score < best:
                 best = score
