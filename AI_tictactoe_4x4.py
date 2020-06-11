@@ -273,7 +273,6 @@ def main():
     while run:
         clock.tick(FPS)
         fill(Circle, color)
-
         redraw_window()
         Win.fill(pygame.Color('lightskyblue4'))
         for event in pygame.event.get():
