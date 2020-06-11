@@ -227,7 +227,7 @@ def minimax(player, Grid_board, depth, Alpha, Beta, MaximizingPlayer):
         best = -infinity
         pos1 = random.randint(0,3)
         pos2 = random.randint(0,3)
-        position = [pos1, pos2]
+        position = [0, 0]
         score = 0
         for case in valid_locations:
             x,y = case[0], case[1]
