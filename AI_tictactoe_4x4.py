@@ -166,14 +166,13 @@ class Grid():
         #Score (horizontally)
         for row in range(len(self.grid2)):
             new_board = [int(j) for j in self.grid2[row]]
-            for col in range(len(new_board)):
-                board = new_board[col]
-                score += self.rewards(board, player)
+            score += self.rewards(board, player)
 
         #Score (vertically)
+        board_vt
         for row in range(len(self.grid2)):
             for i in range(len(self.grid2)-1):
-                new_board = [board[row][i]]
+                board_vt.append(board[i][row])
                 score += self.reward(new_board, player)
 
         #Score (diagonally)
@@ -221,7 +220,7 @@ def minimax(player, Grid_board, depth, Alpha, Beta, MaximizingPlayer):
                 return (None, 0)
         else:
             print("evaluate")
-            return (None,Grid_board.evaluate(player))
+            return (None,Grid.evaluate(player))
 
 
     if MaximizingPlayer:
@@ -234,13 +233,17 @@ def minimax(player, Grid_board, depth, Alpha, Beta, MaximizingPlayer):
         for case in valid_locations:
             print("Check valid_locations")
             x,y = case[0], case[1]
+
             new_grid = Grid_board.copy()
             Grid.set_cell_value(new_grid,x,y, player)
+
             score = max(best, minimax(player, new_grid, depth-1, Alpha, Beta, False)[1])
+
             if score > best:
                 best = score
                 position = case
             Alpha = max(Alpha, score)
+
             if Alpha >= Beta:
                 break
         return position, score
@@ -250,7 +253,7 @@ def minimax(player, Grid_board, depth, Alpha, Beta, MaximizingPlayer):
         best = +infinity
         for case in valid_locations:
             x,y = case[0], case[1]
-            
+
             new_grid = Grid_board.copy()
             Grid.set_cell_value(new_grid,x,y, player)
 
