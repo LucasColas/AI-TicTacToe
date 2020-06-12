@@ -205,7 +205,7 @@ Grid = Grid()
 def is_it_over(player):
     return Grid.empty_cells() == 0 or Grid.check_game() or Grid.winning(player)
 
-def minimax(player, Grid_board, depth, Alpha, Beta, MaximizingPlayer):
+def minimax(Grid_board, depth, Alpha, Beta, MaximizingPlayer):
     valid_locations = Grid.empty_cells()
     print("valid_locations", valid_locations)
     terminal_node = is_it_over(player)
@@ -228,18 +228,18 @@ def minimax(player, Grid_board, depth, Alpha, Beta, MaximizingPlayer):
     if MaximizingPlayer:
         print("MaximizingPlayer")
         best = -infinity
-        pos1 = random.randint(0,3)
-        pos2 = random.randint(0,3)
-        position = [0, 0]
+        pos1 = random.randint(2,3)
+        pos2 = random.randint(2,3)
+        position = [pos1, pos2]
         score = 0
         for case in valid_locations:
             print("Check valid_locations")
             x,y = case[0], case[1]
 
             new_grid = list(Grid_board)
-            Grid.set_cell_value(new_grid,x,y, player)
+            Grid.set_cell_value(new_grid,x,y, -1)
 
-            score = max(best, minimax(player, new_grid, depth-1, Alpha, Beta, False)[1])
+            score = max(best, minimax(new_grid, depth-1, Alpha, Beta, False)[1])
 
             if score > best:
                 best = score
@@ -257,9 +257,9 @@ def minimax(player, Grid_board, depth, Alpha, Beta, MaximizingPlayer):
             x,y = case[0], case[1]
 
             new_grid = list(Grid_board)
-            Grid.set_cell_value(new_grid,x,y, player)
+            Grid.set_cell_value(new_grid,x,y, 1)
 
-            score = min(best, minimax(player, new_grid, depth-1, Alpha, Beta, True)[1])
+            score = min(best, minimax(new_grid, depth-1, Alpha, Beta, True)[1])
             if score < best:
                 best = score
                 position = case
@@ -314,7 +314,7 @@ def main():
                 Alpha = -infinity
                 Beta = +infinity
                 depth = 5
-                position, score = minimax(player, Grid_board, depth, Alpha, Beta, True)
+                position, score = minimax(Grid_board, depth, Alpha, Beta, True)
                 Grid.get_mouse(Grid_board, position[0], position[1], player)
                 Grid.print_grid()
                 if Grid.switch:
