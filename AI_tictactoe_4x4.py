@@ -202,21 +202,21 @@ class Grid():
 Grid = Grid()
 
 
-def is_it_over(player):
+def is_it_over():
     return Grid.empty_cells() == 0 or Grid.check_game() or Grid.winning(-1) or Grid.winning(1)
 
 def minimax(Grid_board, depth, Alpha, Beta, MaximizingPlayer):
     valid_locations = Grid.empty_cells()
     print("valid_locations", valid_locations)
-    terminal_node = is_it_over(player)
+    terminal_node = is_it_over()
     print("enter minimax")
 
     if depth == 0 or terminal_node:
         if terminal_node:
             print("terminal_node")
-            if player == -1:
+            if Grid.winning(-1):
                 return (None, -10000000)
-            elif player == 1:
+            elif Grid.winning(1):
                 return (None, 10000000)
             else:
                 return (None, 0)
@@ -237,15 +237,17 @@ def minimax(Grid_board, depth, Alpha, Beta, MaximizingPlayer):
             x,y = case[0], case[1]
 
             new_grid = list(Grid_board)
-            Grid.set_cell_value(new_grid,x,y, -1)
+            Grid.set_cell_value(new_grid,x,y, 1)
+            print("New grid", new_grid)
+            print("Grid", Grid_board)
 
             score = max(best, minimax(new_grid, depth-1, Alpha, Beta, False)[1])
 
             if score > best:
                 best = score
                 position = case
-            Alpha = max(Alpha, score)
 
+            Alpha = max(Alpha, score)
             if Alpha >= Beta:
                 break
         return position, score
@@ -257,13 +259,16 @@ def minimax(Grid_board, depth, Alpha, Beta, MaximizingPlayer):
             x,y = case[0], case[1]
 
             new_grid = list(Grid_board)
-            Grid.set_cell_value(new_grid,x,y, 1)
+            Grid.set_cell_value(new_grid,x,y, -1)
+            print(new_grid)
 
             score = min(best, minimax(new_grid, depth-1, Alpha, Beta, True)[1])
+
             if score < best:
                 best = score
                 position = case
             Beta = min(Beta, score)
+
             if Beta >= Alpha:
                 break
         return position, score
@@ -310,17 +315,19 @@ def main():
                     Grid.reset(Grid_board)
                     Grid.game_over = False
 
-            if player == 1 and not Grid.game_over:
-                Alpha = -infinity
-                Beta = +infinity
-                depth = 5
-                position, score = minimax(Grid_board, depth, Alpha, Beta, True)
-                Grid.get_mouse(Grid_board, position[0], position[1], player)
-                Grid.print_grid()
-                if Grid.switch:
-                    if player == -1:
-                        player = 1
-                    else:
-                        player = -1
+
+        if player == 1 and not Grid.game_over:
+            Alpha = -infinity
+            Beta = +infinity
+            depth = 5
+            position, score = minimax(Grid_board, depth, Alpha, Beta, True)
+            print("called minimax")
+            Grid.get_mouse(Grid_board, position[0], position[1], player)
+            Grid.print_grid()
+            if Grid.switch:
+                if player == -1:
+                    player = 1
+                else:
+                    player = -1
 
 main()
