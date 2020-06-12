@@ -222,7 +222,7 @@ def minimax(Grid_board, depth, Alpha, Beta, MaximizingPlayer):
                 return (None, 0)
         else:
             print("evaluate")
-            return (None,Grid.evaluate(-1))
+            return (None,Grid.evaluate(1))
 
     if MaximizingPlayer:
         print("MaximizingPlayer")
