@@ -203,7 +203,7 @@ Grid = Grid()
 
 
 def is_it_over(player):
-    return Grid.empty_cells() == 0 or Grid.check_game() or Grid.winning(player)
+    return Grid.empty_cells() == 0 or Grid.check_game() or Grid.winning(-1) or Grid.winning(1)
 
 def minimax(Grid_board, depth, Alpha, Beta, MaximizingPlayer):
     valid_locations = Grid.empty_cells()
@@ -222,7 +222,7 @@ def minimax(Grid_board, depth, Alpha, Beta, MaximizingPlayer):
                 return (None, 0)
         else:
             print("evaluate")
-            return (None,Grid.evaluate(player))
+            return (None,Grid.evaluate(-1))
 
 
     if MaximizingPlayer:
@@ -230,7 +230,7 @@ def minimax(Grid_board, depth, Alpha, Beta, MaximizingPlayer):
         best = -infinity
         pos1 = random.randint(2,3)
         pos2 = random.randint(2,3)
-        position = [pos1, pos2]
+        position = [0, 0]
         score = 0
         for case in valid_locations:
             print("Check valid_locations")
