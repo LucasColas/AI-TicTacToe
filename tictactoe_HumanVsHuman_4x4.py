@@ -1,7 +1,7 @@
 import pygame
 import sys
 import os
-
+import random 
 pygame.font.init()
 
 Width, Height = 750, 750
@@ -132,7 +132,8 @@ def redraw_window():
 
 
 def main():
-    player = -1
+    start = [-1,1]
+    player = random.choice(start)
     run = True
     Grid.print_grid()
     color = (0,255,0,0)
