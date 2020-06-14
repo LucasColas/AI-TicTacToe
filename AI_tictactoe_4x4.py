@@ -196,6 +196,7 @@ def main():
     player = random.choice(start)
     run = True
     Grid.print_grid()
+    board = Grid.grid2
     color = (0,255,0,0)
     while run:
         clock.tick(FPS)
