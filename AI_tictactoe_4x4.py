@@ -123,7 +123,7 @@ class Grid():
             print(row)
 
 def empty_cells(board):
-    
+
     empty = []
 
     for row in range(len(board)):
