@@ -131,7 +131,7 @@ def redraw_window():
     pygame.display.flip()
 
 
-def ui():
+def main():
     player = -1
     run = True
     Grid.print_grid()
@@ -165,4 +165,4 @@ def ui():
                     Grid.game_over = False
 
 
-ui()
+main()

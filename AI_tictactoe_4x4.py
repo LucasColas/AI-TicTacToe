@@ -183,17 +183,18 @@ def evaluate(board, player):
 
     return score
 
-Grid = Grid()
-
 def redraw_window():
     Win.fill(Bg)
 
     Grid.draw(Win)
     pygame.display.flip()
 
+Grid = Grid()
 
 def main():
-    player = -1
+    random.randint()
+    start = [-1,1]
+    player = random.choice(start)
     run = True
     Grid.print_grid()
     color = (0,255,0,0)
