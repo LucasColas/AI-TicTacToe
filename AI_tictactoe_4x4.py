@@ -214,7 +214,6 @@ def main():
 
             if event.type == pygame.MOUSEBUTTONDOWN and not Grid.game_over:
                 #print("Yes !")
-
                 if pygame.mouse.get_pressed()[0]:
                     pos = pygame.mouse.get_pos()
                     if player == 1 and not Grid.game_over:
