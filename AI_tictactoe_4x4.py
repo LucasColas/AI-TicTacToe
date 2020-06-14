@@ -119,71 +119,73 @@ class Grid():
             for x in range(len(self.grid2[y])):
                 self.set_cell_value(x, y, 0)
 
-    def rewards(self, board, player):
-        score = 0
-        opp_piece = 1
-        if player == -1:
-            opp_piece = 1
-        else:
-            opp_piece = -1
-
-        if board.count(player) == 4:
-            score += 400
-
-        if board.count(player) == 3 and self.grid2.count(-1) == 1:
-            score += 50
-
-        if board.count(player) == 2 and self.grid2.count(-1) == 2:
-            score += 10
-
-        if board.count(player) == 1 and self.grid2.count(-1) == 3:
-            score -= 10
-
-        if board.count(opp_piece) == 3 and self.grid2.count(-1) == 1:
-            score -= 10
-
-        return score
-
-    def evaluate(self, player):
-        score = 0
-
-        #Score (horizontally)
-        for row in range(len(self.grid2)):
-            new_board = [int(j) for j in self.grid2[row]]
-            score += self.rewards(new_board, player)
-
-        #Score (vertically)
-        board_vt = []
-        for row in range(len(self.grid2)):
-            for i in range(len(self.grid2)-1):
-                board_vt.append(self.grid2[i][row])
-                score += self.rewards(board_vt, player)
-
-        #Score (diagonally)
-        # First diagonal (from the left to the right)
-        board_dg = []
-        for position in range(len(self.grid2)):
-            extension = self.grid2[position][position]
-            board_dg.append(extension)
-            if position == (len(self.grid2)-1):
-                score += self.rewards(board_dg, player)
-
-        # Second diagonal (from the right to the left)
-        board_dg2 = []
-        for indx, position in enumerate(reversed(range(len(self.grid2)))):
-            extension = self.grid2[indx][position]
-            board_dg2.append(extension)
-            if indx == (len(self.grid2)-1):
-                score += self.rewards(board_dg2, player)
-
-        return score
-
-
     def print_grid(self):
         for row in self.grid2:
             print(row)
 
+def rewards(self, board, player):
+    score = 0
+    opp_piece = 1
+    if player == -1:
+        opp_piece = 1
+    else:
+        opp_piece = -1
+
+    if board.count(player) == 4:
+        score += 400
+
+    if board.count(player) == 3 and self.grid2.count(-1) == 1:
+        score += 50
+
+    if board.count(player) == 2 and self.grid2.count(-1) == 2:
+        score += 10
+
+    if board.count(player) == 1 and self.grid2.count(-1) == 3:
+        score -= 10
+
+    if board.count(opp_piece) == 3 and self.grid2.count(-1) == 1:
+        score -= 10
+
+    return score
+
+
+def evaluate(self, player):
+    score = 0
+
+    #Score (horizontally)
+    for row in range(len(self.grid2)):
+        new_board = [int(j) for j in self.grid2[row]]
+        score += self.rewards(new_board, player)
+
+    #Score (vertically)
+    board_vt = []
+    for row in range(len(self.grid2)):
+        for i in range(len(self.grid2)-1):
+            board_vt.append(self.grid2[i][row])
+            score += self.rewards(board_vt, player)
+
+    #Score (diagonally)
+    # First diagonal (from the left to the right)
+    board_dg = []
+    for position in range(len(self.grid2)):
+        extension = self.grid2[position][position]
+        board_dg.append(extension)
+        if position == (len(self.grid2)-1):
+            score += self.rewards(board_dg, player)
+
+    # Second diagonal (from the right to the left)
+    board_dg2 = []
+    for indx, position in enumerate(reversed(range(len(self.grid2)))):
+        extension = self.grid2[indx][position]
+        board_dg2.append(extension)
+        if indx == (len(self.grid2)-1):
+            score += self.rewards(board_dg2, player)
+
+    return score
+
 Grid = Grid()
+
+
 
 
 def redraw_window():
