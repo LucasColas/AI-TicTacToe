@@ -123,9 +123,14 @@ class Grid():
             print(row)
 
 def empty_cells(board):
+    empty = []
     for row in range(len(board)):
         for col in range(len(board[row])):
-            pass
+            if board[row][col] == 0:
+                empty.append(board[row][col])
+
+    return empty
+
 
 def rewards(board, player):
     score = 0
