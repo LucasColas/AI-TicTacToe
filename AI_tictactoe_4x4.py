@@ -331,9 +331,10 @@ def main():
             Alpha = -infinity
             Beta = +infinity
             depth = 5
-            position, score = minimax(Grid_board, depth, Alpha, Beta, True)
-            print("called minimax", position[0], position[1])
-            Grid.get_mouse(Grid_board, position[0], position[1], player)
+            minimax_info = minimax(Grid_board, depth, Alpha, Beta, True)
+            position1, position2, score = minimax_info[0], minimax_info[1], minimax_info[2]
+            print("called minimax", position1, position2)
+            Grid.get_mouse(Grid_board, position1, position2, player)
             Grid.print_grid()
             if Grid.switch:
                 if player == -1:
