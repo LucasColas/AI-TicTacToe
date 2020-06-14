@@ -310,7 +310,9 @@ def main():
             if event.type == pygame.QUIT:
                 quit()
             if event.type == pygame.MOUSEBUTTONDOWN and not Grid.game_over:
-                if pygame.mouse.get_pressed()[0] and player == -1:
+                #print("Yes !")
+
+                if pygame.mouse.get_pressed()[0]:
                     pos = pygame.mouse.get_pos()
                     #print(pos[0] // (Width // 4), pos[1] // (Height // 4))
                     Grid.get_mouse(Grid_board, pos[0] // (Width // 4), pos[1] // (Height // 4), player)
@@ -325,24 +327,4 @@ def main():
                 if event.key == pygame.K_SPACE and Grid.game_over:
                     Grid.reset(Grid_board)
                     Grid.game_over = False
-
-
-        if player == 1 and not Grid.game_over:
-            Alpha = -infinity
-            Beta = +infinity
-            depth = 5
-            minimax_info = minimax(Grid_board, depth, Alpha, Beta, True)
-            position1, position2, score = minimax_info[0], minimax_info[1], minimax_info[2]
-            print("called minimax", position1, position2)
-            Grid.get_mouse(Grid_board, position1, position2, player)
-            Grid.print_grid()
-            if Grid.switch:
-                if player == -1:
-                    player = 1
-                else:
-                    player = -1
-            print("player" ,player)
-
-
-
 main()
