@@ -150,7 +150,6 @@ def rewards(board, player):
 
 def evaluate(board, player):
     score = 0
-
     #Score (horizontally)
     for row in range(len(board)):
         new_board = [int(j) for j in board[row]]
