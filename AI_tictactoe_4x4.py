@@ -2,8 +2,7 @@ import pygame
 import sys
 import os
 import random
-from random import inf as infinity
-
+from math import inf as infinity
 
 pygame.font.init()
 
@@ -218,8 +217,7 @@ def main():
 
                 if pygame.mouse.get_pressed()[0]:
                     pos = pygame.mouse.get_pos()
-                    if player == 1:
-                        
+                    if player == 1 and not Grid.game_over:
                         #print(pos[0] // (Width // 4), pos[1] // (Height // 4))
                         Grid.get_mouse(pos[0] // (Width // 4), pos[1] // (Height // 4), player)
                         if Grid.switch:
