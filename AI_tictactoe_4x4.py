@@ -1,9 +1,6 @@
 import pygame
 import sys
 import os
-import random
-from math import inf as infinity
-from random import choice
 
 pygame.font.init()
 
@@ -18,7 +15,7 @@ Circle = pygame.transform.scale(pygame.image.load(os.path.join("assets", "circle
 clock = pygame.time.Clock()
 FPS = 80
 
-def fill(surface, color): #Change the color of a .png image
+def fill(surface, color):
     w, h = surface.get_size()
     r, g, b, _ = color
     for x in range(w):
@@ -52,24 +49,27 @@ class Grid():
     def get_cell_value(self, x,y):
         return self.grid2[y][x]
 
-    def set_cell_value(self, grid, x, y, value):
-        grid[y][x] = value
+    def set_cell_value(self, x, y, value):
+        self.grid2[y][x] = value
 
-    def get_mouse(self, grid, x, y, player):
-        self.check_game()
+    def get_mouse(self, x, y, player):
         if self.get_cell_value(x,y) == 0:
             self.switch = True
+
             if player == 1:
-                self.set_cell_value(grid, x,y, 1)
+                self.set_cell_value(x,y, 1)
             elif player == -1:
-                self.set_cell_value(grid, x, y, -1)
-            self.winning(player)
+                self.set_cell_value(x, y, -1)
+            #self.check(x,y, player)
+            self.check_rows(player)
+            self.check_columns(player)
+            self.check_diagonals(player)
+            self.check_game()
 
         else:
             self.switch = False
 
-    def winning(self, player):
-        #Check rows
+    def check_rows(self, player):
         for row in self.grid2:
             if row[0] == row[1] == row[2] == row[3] == player:
 
@@ -78,9 +78,8 @@ class Grid():
                 else:
                     print("X wins")
                 self.game_over = True
-                return self.game_over
 
-        #Check columns
+    def check_columns(self, player):
         for col in range(len(self.grid2[0])):
             check = []
             for row in self.grid2:
@@ -91,9 +90,8 @@ class Grid():
                 else:
                     print("X wins")
                 self.game_over = True
-                return self.game_over
 
-        #Check diagonals
+    def check_diagonals(self,player):
         diags = []
         for indx in range(len(self.grid2)):
             diags.append(self.grid2[indx][indx])
@@ -103,7 +101,6 @@ class Grid():
             else:
                 print("X wins")
             self.game_over = True
-            return self.game_over
 
     def check_game(self):
         zero = []
@@ -113,86 +110,11 @@ class Grid():
         if zero.count(0) == 0:
             print("It's over !")
             self.game_over = True
-        return self.game_over
 
-    def empty_cells(self):
-        cells = []
-        for row in range(len(self.grid2)):
-            for col in range(len(self.grid2[row])):
-                if self.grid2[row][col] == 0:
-                    cells.append([row, col])
-
-        return cells
-
-    def good_move(self, x, y):
-        if [x,y] in empty_cells():
-            return True
-        else:
-            return False
-
-    def reset(self, grid):
+    def reset(self):
         for y in range(len(self.grid2)):
             for x in range(len(self.grid2[y])):
-                self.set_cell_value(grid, x, y, 0)
-
-    def rewards(self, board, player):
-        score = 0
-        opp_piece = 1
-        if player == -1:
-            opp_piece = 1
-        else:
-            opp_piece = -1
-
-        if board.count(player) == 4:
-            score += 400
-
-        if board.count(player) == 3 and self.grid2.count(-1) == 1:
-            score += 50
-
-        if board.count(player) == 2 and self.grid2.count(-1) == 2:
-            score += 10
-
-        if board.count(player) == 1 and self.grid2.count(-1) == 3:
-            score -= 10
-
-        if board.count(opp_piece) == 3 and self.grid2.count(-1) == 1:
-            score -= 10
-
-        return score
-
-    def evaluate(self, player):
-        score = 0
-
-        #Score (horizontally)
-        for row in range(len(self.grid2)):
-            new_board = [int(j) for j in self.grid2[row]]
-            score += self.rewards(new_board, player)
-
-        #Score (vertically)
-        board_vt = []
-        for row in range(len(self.grid2)):
-            for i in range(len(self.grid2)-1):
-                board_vt.append(self.grid2[i][row])
-                score += self.rewards(board_vt, player)
-
-        #Score (diagonally)
-        # First diagonal (from the left to the right)
-        board_dg = []
-        for position in range(len(self.grid2)):
-            extension = self.grid2[position][position]
-            board_dg.append(extension)
-            if position == (len(self.grid2)-1):
-                score += self.rewards(board_dg, player)
-
-        # Second diagonal (from the right to the left)
-        board_dg2 = []
-        for indx, position in enumerate(reversed(range(len(self.grid2)))):
-            extension = self.grid2[indx][position]
-            board_dg2.append(extension)
-            if indx == (len(self.grid2)-1):
-                score += self.rewards(board_dg2, player)
-
-        return score
+                self.set_cell_value(x, y, 0)
 
 
     def print_grid(self):
@@ -202,89 +124,6 @@ class Grid():
 Grid = Grid()
 
 
-def is_it_over():
-    return Grid.empty_cells() == 0 or Grid.check_game() or Grid.winning(-1) or Grid.winning(1)
-
-def minimax(Grid_board, depth, Alpha, Beta, MaximizingPlayer):
-    valid_locations = Grid.empty_cells()
-    print("valid_locations", valid_locations)
-    terminal_node = is_it_over()
-    print("enter minimax")
-
-    if depth == 0 or terminal_node:
-        if terminal_node:
-            print("terminal_node")
-            if Grid.winning(-1):
-                return (None, -10000000)
-            elif Grid.winning(1):
-                return (None, 10000000)
-            else:
-                return (None, 0)
-        else:
-            print("evaluate")
-            return (None,Grid.evaluate(1))
-
-    if MaximizingPlayer:
-        print("MaximizingPlayer")
-        best = -infinity
-        pos1 = random.randint(2,3)
-        pos2 = random.randint(2,3)
-        position = [0, 0]
-        score = 0
-        return_min = []
-        for case in valid_locations:
-            print("Check valid_locations")
-            x,y = case[0], case[1]
-
-            new_grid = list(Grid_board)
-            Grid.set_cell_value(new_grid,x,y, 1)
-            print("New grid", new_grid)
-            print("Grid", Grid_board)
-
-            score = max(best, minimax(new_grid, depth-1, Alpha, Beta, False)[1])
-
-            if score > best:
-                best = score
-                position = case
-
-            Alpha = max(Alpha, score)
-            if Alpha >= Beta:
-                break
-        return_min.append(position[0])
-        return_min.append(position[1])
-        return_min.append(score)
-        return return_min
-
-
-    else: #Minimizing
-        best = +infinity
-        return_min = []
-        pos1 = random.randint(2,3)
-        pos2 = random.randint(2,3)
-        position = [0, 0]
-        score = 0
-        for case in valid_locations:
-            x,y = case[0], case[1]
-
-            new_grid = list(Grid_board)
-            Grid.set_cell_value(new_grid,x,y, -1)
-            print(new_grid)
-
-            score = min(best, minimax(new_grid, depth-1, Alpha, Beta, True)[1])
-
-            if score < best:
-                best = score
-                position = case
-            Beta = min(Beta, score)
-
-            if Beta >= Alpha:
-                break
-        return_min.append(position[0])
-        return_min.append(position[1])
-        return_min.append(score)
-        return return_min
-
-
 def redraw_window():
     Win.fill(Bg)
 
@@ -292,20 +131,17 @@ def redraw_window():
     pygame.display.flip()
 
 
-def main():
-    global Grid
-    Grid_board = Grid.grid2
-    start = [-1,1]
-    player = random.choice(start) # -1 = O(player) and 1 = X (AI)
+def ui():
+    player = -1
     run = True
     Grid.print_grid()
     color = (0,255,0,0)
     while run:
         clock.tick(FPS)
         fill(Circle, color)
+
         redraw_window()
         Win.fill(pygame.Color('lightskyblue4'))
-        Grid.winning(player)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 quit()
@@ -315,7 +151,7 @@ def main():
                 if pygame.mouse.get_pressed()[0]:
                     pos = pygame.mouse.get_pos()
                     #print(pos[0] // (Width // 4), pos[1] // (Height // 4))
-                    Grid.get_mouse(Grid_board, pos[0] // (Width // 4), pos[1] // (Height // 4), player)
+                    Grid.get_mouse(pos[0] // (Width // 4), pos[1] // (Height // 4), player)
                     if Grid.switch:
                         if player == -1:
                             player = 1
@@ -325,6 +161,8 @@ def main():
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE and Grid.game_over:
-                    Grid.reset(Grid_board)
+                    Grid.reset()
                     Grid.game_over = False
-main()
+
+
+ui()
