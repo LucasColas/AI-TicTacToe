@@ -227,6 +227,4 @@ def main():
                                 player = -1
                         Grid.print_grid()
 
-
-
 main()
