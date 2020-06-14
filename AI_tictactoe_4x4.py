@@ -218,14 +218,16 @@ def main():
 
                 if pygame.mouse.get_pressed()[0]:
                     pos = pygame.mouse.get_pos()
-                    #print(pos[0] // (Width // 4), pos[1] // (Height // 4))
-                    Grid.get_mouse(pos[0] // (Width // 4), pos[1] // (Height // 4), player)
-                    if Grid.switch:
-                        if player == -1:
-                            player = 1
-                        else:
-                            player = -1
-                    Grid.print_grid()
+                    if player == 1:
+                        
+                        #print(pos[0] // (Width // 4), pos[1] // (Height // 4))
+                        Grid.get_mouse(pos[0] // (Width // 4), pos[1] // (Height // 4), player)
+                        if Grid.switch:
+                            if player == -1:
+                                player = 1
+                            else:
+                                player = -1
+                        Grid.print_grid()
 
 
 
