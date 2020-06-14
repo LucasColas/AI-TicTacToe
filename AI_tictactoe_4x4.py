@@ -186,8 +186,6 @@ def evaluate(self, player):
 Grid = Grid()
 
 
-
-
 def redraw_window():
     Win.fill(Bg)
 
