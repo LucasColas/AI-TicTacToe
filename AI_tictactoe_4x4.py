@@ -123,7 +123,9 @@ class Grid():
             print(row)
 
 def empty_cells(board):
-    pass
+    for row in range(len(board)):
+        for col in range(len(board[row])):
+            pass
 
 def rewards(board, player):
     score = 0
