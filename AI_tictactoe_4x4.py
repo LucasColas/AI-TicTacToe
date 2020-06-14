@@ -148,7 +148,6 @@ def rewards(self, board, player):
 
     return score
 
-
 def evaluate(self, player):
     score = 0
 
@@ -184,7 +183,6 @@ def evaluate(self, player):
     return score
 
 Grid = Grid()
-
 
 def redraw_window():
     Win.fill(Bg)
