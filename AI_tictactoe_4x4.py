@@ -192,8 +192,27 @@ def evaluate(board, player):
 
     return score
 
+def check_game(board, player):
+    for row in board:
+        if row[0] == row[1] == row[2] == row[3] == player:
+            return True
+
+    for col in range(len(board[0])):
+        check = []
+        for row in board:
+            check.append(row[col])
+        if check.count(check[0]) == len(check) and check[0] != 0:
+            return True
+
+    diags = []
+    for indx in range(len(board)):
+        diags.append(board[indx][indx])
+    if diags.count(diags[0]) == len(diags) and diags[0] != 0:
+        return True
+
+
 def terminal_node(player):
-    return Grid.check_rows(player) or Grid.check_game
+    return Grid.check_game()
 
 
 def minimax(board, depth, alpha, beta, MaximizingPlayer):
