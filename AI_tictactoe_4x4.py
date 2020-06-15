@@ -222,13 +222,13 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
     if depth == 0 or terminal_node:
         if terminal_node:
             if check_game(board, -1):
-                return (None, -1000000)
+                return (None, None, -1000000)
 
             elif check_game(board, 1):
-                return (None, 1000000)
+                return (None, None, 1000000)
 
             else:
-                return (None, 0)
+                return (None, None, 0)
 
         else:
             return None, evaluate(board, 1)
