@@ -129,7 +129,7 @@ def empty_cells(board):
     for row in range(len(board)):
         for col in range(len(board[row])):
             if board[row][col] == 0:
-                empty.append(board[row][col])
+                empty.append([row, col])
 
     return empty
 
@@ -158,6 +158,7 @@ def rewards(board, player):
     return score
 
 def evaluate(board, player):
+
     score = 0
     #Score (horizontally)
     for row in range(len(board)):
