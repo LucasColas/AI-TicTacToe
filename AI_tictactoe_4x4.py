@@ -245,6 +245,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
             if max > value:
                 value = max
                 x_pos, y_pos = x,y
+            alpha = max(alpha, value)
             if alpha >= beta:
                 break
 
@@ -263,7 +264,8 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
             if min < value:
                 value = min
                 x_pos, y_pos = x,y
-
+                
+            beta = min(beta, value)
             if alpha >= beta:
                 break
 
