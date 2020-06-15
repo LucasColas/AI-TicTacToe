@@ -211,8 +211,8 @@ def check_game(board, player):
         return True
 
 
-def terminal_node(player):
-    return Grid.check_game()
+def terminal_node(board):
+    return check_game(board, -1) or check_game(board, 1) or len(empty_cells(board)) == 0
 
 
 def minimax(board, depth, alpha, beta, MaximizingPlayer):
