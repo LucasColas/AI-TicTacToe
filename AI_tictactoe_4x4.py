@@ -231,7 +231,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
                 return (None, None, 0)
 
         else:
-            return None, evaluate(board, 1)
+            return (None, None, evaluate(board, 1))
 
     if maximizingPlayer:
         value = -infinity
@@ -241,7 +241,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
             x,y = case[0], case[1]
             new_board = board.copy()
             Grid.set_cell_value(x,y, 1)
-            max = max(value, minimax(new_board, depth, alpha, beta, False)[2])
+            max = max(value, minimax(new_board, depth-1, alpha, beta, False)[2])
             if max > value:
                 value = max
                 x_pos, y_pos = x,y
@@ -259,12 +259,11 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
             x,y = case[0], case[1]
             new_board = board.copy()
             Grid.set_cell_value(x,y, -1)
-            min = min(value, minimax(new_board, depth, alpha, beta, False)[2])
-
+            min = min(value, minimax(new_board, depth-1, alpha, beta, False)[2])
             if min < value:
                 value = min
                 x_pos, y_pos = x,y
-                
+
             beta = min(beta, value)
             if alpha >= beta:
                 break
@@ -296,6 +295,7 @@ def main():
 
         redraw_window()
         Win.fill(pygame.Color('lightskyblue4'))
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 quit()
@@ -309,7 +309,7 @@ def main():
                 #print("Yes !")
                 if pygame.mouse.get_pressed()[0]:
                     pos = pygame.mouse.get_pos()
-                    if player == 1 and not Grid.game_over:
+                    if player == -1 and not Grid.game_over:
                         #print(pos[0] // (Width // 4), pos[1] // (Height // 4))
                         Grid.get_mouse(pos[0] // (Width // 4), pos[1] // (Height // 4), player)
                         if Grid.switch:
@@ -318,5 +318,15 @@ def main():
                             else:
                                 player = -1
                         Grid.print_grid()
+
+        if player == 1 and not Grid.game_over:
+                x, y, score = minimax(board, depth, alpha, beta, True)
+                Grid.get_mouse(x, y, player)
+                if Grid.switch:
+                    if player == -1:
+                        player = 1
+                    else:
+                        player = -1
+                Grid.print_grid()
 
 main()
