@@ -216,7 +216,35 @@ def terminal_node(board):
 
 
 def minimax(board, depth, alpha, beta, MaximizingPlayer):
-    pass
+    valid_locations = empty_cells(board)
+    terminal_node = terminal_node(board)
+
+    if depth == 0 or terminal_node:
+        if terminal_node:
+            if check_game(board, -1):
+                return (None, -1000000)
+
+            elif check_game(board, 1):
+                return (None, 1000000)
+
+            else:
+                return (None, 0)
+
+        else:
+            return None, evaluate(board, 1)
+
+    if maximizingPlayer:
+        max = -infinity
+        for case in valid_locations:
+            x,y = case[0], case[1]
+            new_board = board.copy()
+            Grid.set_cell_value(x,y, 1)
+            max = max(max, minimax(new_board, depth, alpha, beta, False)[1])
+
+            if alpha >= beta:
+                break
+
+        return x,y
 
 
 def redraw_window():
@@ -235,6 +263,9 @@ def main():
     Grid.print_grid()
     board = Grid.grid2
     color = (0,255,0,0)
+    alpha = -infinity
+    beta = +infinity
+    depth = 5
     while run:
         clock.tick(FPS)
         fill(Circle, color)
