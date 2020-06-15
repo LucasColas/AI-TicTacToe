@@ -112,6 +112,7 @@ class Grid():
         if zero.count(0) == 0:
             print("It's over !")
             self.game_over = True
+        return self.game_over
 
     def reset(self):
         for y in range(len(self.grid2)):
@@ -190,6 +191,14 @@ def evaluate(board, player):
             score += self.rewards(board_dg2, player)
 
     return score
+
+def terminal_node(player):
+    return Grid.check_rows(player) or Grid.check_game
+
+
+def minimax(board, depth, alpha, beta, MaximizingPlayer):
+    pass
+
 
 def redraw_window():
     Win.fill(Bg)
