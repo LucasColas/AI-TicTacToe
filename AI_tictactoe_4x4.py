@@ -234,18 +234,40 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
             return None, evaluate(board, 1)
 
     if maximizingPlayer:
-        max = -infinity
+        value = -infinity
+        x_pos = random.randint(0,3)
+        y_pos = random.randint(0,3)
         for case in valid_locations:
             x,y = case[0], case[1]
             new_board = board.copy()
             Grid.set_cell_value(x,y, 1)
-            max = max(max, minimax(new_board, depth, alpha, beta, False)[1])
+            max = max(value, minimax(new_board, depth, alpha, beta, False)[2])
+            if max > value:
+                value = max
+                x_pos, y_pos = x,y
+            if alpha >= beta:
+                break
+
+        return (x_pos, y_pos, max)
+
+    else:
+        value = +infinity
+        x_pos = random.randint(0,3)
+        y_pos = random.randint(0,3)
+        for case in valid_locations:
+            x,y = case[0], case[1]
+            new_board = board.copy()
+            Grid.set_cell_value(x,y, -1)
+            min = min(value, minimax(new_board, depth, alpha, beta, False)[2])
+
+            if min < value:
+                value = min
+                x_pos, y_pos = x,y
 
             if alpha >= beta:
                 break
 
-        return x,y
-
+        return (x_pos, y_pos, min)
 
 def redraw_window():
     Win.fill(Bg)
