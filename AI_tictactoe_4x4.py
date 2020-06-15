@@ -279,7 +279,6 @@ def redraw_window():
 Grid = Grid()
 
 def main():
-    random.randint()
     start = [-1,1]
     player = random.choice(start)
     run = True
