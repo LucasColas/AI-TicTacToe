@@ -164,14 +164,14 @@ def evaluate(board, player):
     #Score (horizontally)
     for row in range(len(board)):
         new_board = [int(j) for j in board[row]]
-        score += self.rewards(new_board, player)
+        score += rewards(new_board, player)
 
     #Score (vertically)
     board_vt = []
     for row in range(len(board)):
         for i in range(len(board)-1):
             board_vt.append(board[i][row])
-            score += self.rewards(board_vt, player)
+            score += rewards(board_vt, player)
 
     #Score (diagonally)
     # First diagonal (from the left to the right)
@@ -180,7 +180,7 @@ def evaluate(board, player):
         extension = board[position][position]
         board_dg.append(extension)
         if position == (len(board)-1):
-            score += self.rewards(board_dg, player)
+            score += rewards(board_dg, player)
 
     # Second diagonal (from the right to the left)
     board_dg2 = []
@@ -188,7 +188,7 @@ def evaluate(board, player):
         extension = board[indx][position]
         board_dg2.append(extension)
         if indx == (len(board)-1):
-            score += self.rewards(board_dg2, player)
+            score += rewards(board_dg2, player)
 
     return score
 
@@ -242,7 +242,8 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
             x,y = case[0], case[1]
             new_board = board.copy()
             Grid.set_cell_value(x,y, 1)
-            max = max(value, minimax(new_board, depth-1, alpha, beta, False)[2])
+            call_minimax = minimax(new_board, depth-1, alpha, beta, True)[2]
+            max = max(value, call_minimax)
             if max > value:
                 value = max
                 x_pos, y_pos = x,y
@@ -261,7 +262,8 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
             x,y = case[0], case[1]
             new_board = board.copy()
             Grid.set_cell_value(x,y, -1)
-            min = min(value, minimax(new_board, depth-1, alpha, beta, True)[2])
+            call_minimax = minimax(new_board, depth-1, alpha, beta, True)[2]
+            min = min(value, call_minimax)
             if min < value:
                 value = min
                 x_pos, y_pos = x,y
