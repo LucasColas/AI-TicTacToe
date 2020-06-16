@@ -244,7 +244,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
             Grid.set_cell_value(x,y, 1)
             call_minimax = minimax(new_board, depth-1, alpha, beta, True)[2]
             max_value = max(value, call_minimax)
-            if max > value:
+            if max_value > value:
                 value = max
                 x_pos, y_pos = x,y
             alpha = max(alpha, value)
@@ -264,7 +264,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
             Grid.set_cell_value(x,y, -1)
             call_minimax = minimax(new_board, depth-1, alpha, beta, True)[2]
             min_value = min(value, call_minimax)
-            if min < value:
+            if min_value < value:
                 value = min
                 x_pos, y_pos = x,y
             beta = min(beta, value)
