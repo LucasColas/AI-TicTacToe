@@ -237,13 +237,13 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
         value = -infinity
         x_pos = random.randint(0,3)
         y_pos = random.randint(0,3)
-        max = -infinity
+        max_value = -infinity
         for case in valid_locations:
             x,y = case[0], case[1]
             new_board = board.copy()
             Grid.set_cell_value(x,y, 1)
             call_minimax = minimax(new_board, depth-1, alpha, beta, True)[2]
-            max = max(value, call_minimax)
+            max_value = max(value, call_minimax)
             if max > value:
                 value = max
                 x_pos, y_pos = x,y
@@ -257,13 +257,13 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
         value = +infinity
         x_pos = random.randint(0,3)
         y_pos = random.randint(0,3)
-        min = +infinity
+        min_value = +infinity
         for case in valid_locations:
             x,y = case[0], case[1]
             new_board = board.copy()
             Grid.set_cell_value(x,y, -1)
             call_minimax = minimax(new_board, depth-1, alpha, beta, True)[2]
-            min = min(value, call_minimax)
+            min_value = min(value, call_minimax)
             if min < value:
                 value = min
                 x_pos, y_pos = x,y
