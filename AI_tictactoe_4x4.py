@@ -243,15 +243,20 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
             new_board = board.copy()
             Grid.set_cell_value(x,y, 1)
             call_minimax = minimax(new_board, depth-1, alpha, beta, True)[2]
+            print(value)
+            print(call_minimax)
             max_value = max(value, call_minimax)
             if max_value > value:
-                value = max
+                value = max_value
                 x_pos, y_pos = x,y
-            alpha = max(alpha, value)
+            #print(alpha)
+            #print(value)
+            Alpha = max(alpha, value)
+            #print(alpha)
             if Alpha >= beta:
                 break
 
-        return (x_pos, y_pos, max)
+        return (x_pos, y_pos, max_value)
 
     else:
         value = +infinity
@@ -267,11 +272,11 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
             if min_value < value:
                 value = min
                 x_pos, y_pos = x,y
-            beta = min(beta, value)
-            if alpha >= beta:
+            Beta = min(beta, value)
+            if alpha >= Beta:
                 break
 
-        return (x_pos, y_pos, min)
+        return (x_pos, y_pos, min_value)
 
 def redraw_window():
     Win.fill(Bg)
