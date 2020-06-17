@@ -127,7 +127,6 @@ def good_case(board, x,y):
     return board[y][x] == 0
 
 def empty_cells(board):
-
     empty = []
 
     for row in range(len(board)):
