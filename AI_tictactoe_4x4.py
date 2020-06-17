@@ -250,7 +250,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
                 print("board", board)
                 print("new board", new_board)
 
-                call_minimax = minimax(new_board, depth-1, alpha, beta, True)[2]
+                call_minimax = minimax(new_board, depth-1, alpha, beta, False)[2]
                 #print(value)
                 #print(call_minimax)
                 max_value = max(value, call_minimax)
