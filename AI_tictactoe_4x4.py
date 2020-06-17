@@ -239,13 +239,12 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
         else:
             print("else")
             return (None, None, evaluate(board, 1))
-
-    if MaximizingPlayer:
-        value = -infinity
-        x_pos = random.randint(0,3)
-        y_pos = random.randint(0,3)
-        max_value = -infinity
-        if len(valid_locations) > 0:
+    if len(valid_locations) > 0:
+        if MaximizingPlayer:
+            value = -infinity
+            x_pos = random.randint(0,3)
+            y_pos = random.randint(0,3)
+            max_value = -infinity
             for case in valid_locations:
                 print("case", case)
                 x,y = case[0], case[1]
@@ -255,7 +254,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
                 print("new board", new_board)
 
                 call_minimax = minimax(new_board, depth-1, alpha, beta, False)[2]
-                #print(value)
+                    #print(value)
                 print("call_minimax", call_minimax)
                 max_value = max(value, call_minimax)
                 if max_value > value:
@@ -264,18 +263,17 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
                 #print(alpha)
                 #print(value)
                 Alpha = max(alpha, value)
-                #print(alpha)
+                    #print(alpha)
                 if Alpha >= beta:
                     break
-                print("return")
+            print("return")
             return (x_pos, y_pos, max_value)
 
-    else:
-        value = infinity
-        x_pos = random.randint(0,3)
-        y_pos = random.randint(0,3)
-        min_value = infinity
-        if len(valid_locations) > 0:
+        else:
+            value = infinity
+            x_pos = random.randint(0,3)
+            y_pos = random.randint(0,3)
+            min_value = infinity
             for case in valid_locations:
                 print("case else", case)
                 x,y = case[0], case[1]
@@ -291,7 +289,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
                 Beta = min(beta, value)
                 if alpha >= Beta:
                     break
-            print("return")
+            print("return ")
             return (x_pos, y_pos, min_value)
 
 def redraw_window():
