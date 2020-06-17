@@ -220,6 +220,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
     valid_locations = empty_cells(board)
     print("valid_locations", valid_locations)
     terminal_node = is_terminal_node(board)
+    print("depth", depth)
 
     if depth == 0 or terminal_node:
         if terminal_node:
@@ -246,6 +247,9 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
                 x,y = case[0], case[1]
                 new_board = board.copy()
                 Grid.set_cell_value(new_board, x,y, 1)
+                print("board", board)
+                print("new board", new_board)
+
                 call_minimax = minimax(new_board, depth-1, alpha, beta, True)[2]
                 #print(value)
                 #print(call_minimax)
@@ -269,9 +273,12 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
         min_value = infinity
         if len(valid_locations) > 0:
             for case in valid_locations:
+                print("case else", case)
                 x,y = case[0], case[1]
                 new_board = board.copy()
                 Grid.set_cell_value(new_board, x,y, -1)
+                print("board", board)
+                print("new board", new_board)
                 call_minimax = minimax(new_board, depth-1, alpha, beta, True)[2]
                 min_value = min(value, call_minimax)
                 if min_value < value:
