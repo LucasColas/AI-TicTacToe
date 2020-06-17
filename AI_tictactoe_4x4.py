@@ -267,7 +267,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
                 #print(alpha)
                 if Alpha >= beta:
                     break
-
+        print("return")
         return (x_pos, y_pos, max_value)
 
     else:
@@ -291,7 +291,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
                 Beta = min(beta, value)
                 if alpha >= Beta:
                     break
-
+        print("return")
         return (x_pos, y_pos, min_value)
 
 def redraw_window():
