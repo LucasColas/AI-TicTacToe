@@ -264,7 +264,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
         x_pos = random.randint(0,3)
         y_pos = random.randint(0,3)
         min_value = +infinity
-        if and len(valid_locations) > 0
+        if len(valid_locations) > 0:
             for case in valid_locations:
                 x,y = case[0], case[1]
                 new_board = board.copy()
