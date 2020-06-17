@@ -213,6 +213,7 @@ def check_game(board, player):
 
 
 def is_terminal_node(board):
+    print(len(empty_cells(board)))
     return check_game(board, -1) or check_game(board, 1) or len(empty_cells(board)) == 0
 
 
@@ -220,10 +221,12 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
     valid_locations = empty_cells(board)
     print("valid_locations", valid_locations)
     terminal_node = is_terminal_node(board)
-    print("depth", depth)
+    print("terminal_node", terminal_node)
 
     if depth == 0 or terminal_node:
+        print("depth 0 or terminal_node")
         if terminal_node:
+            print("terminal_node")
             if check_game(board, -1):
                 return (None, None, -1000000)
 
@@ -234,6 +237,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
                 return (None, None, 0)
 
         else:
+            print("else")
             return (None, None, evaluate(board, 1))
 
     if MaximizingPlayer:
@@ -252,7 +256,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
 
                 call_minimax = minimax(new_board, depth-1, alpha, beta, False)[2]
                 #print(value)
-                #print(call_minimax)
+                print("call_minimax", call_minimax)
                 max_value = max(value, call_minimax)
                 if max_value > value:
                     value = max_value
@@ -282,7 +286,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
                 call_minimax = minimax(new_board, depth-1, alpha, beta, True)[2]
                 min_value = min(value, call_minimax)
                 if min_value < value:
-                    value = min
+                    value = min_value
                     x_pos, y_pos = x,y
                 Beta = min(beta, value)
                 if alpha >= Beta:
