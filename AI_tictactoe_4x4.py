@@ -238,23 +238,24 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
         x_pos = random.randint(0,3)
         y_pos = random.randint(0,3)
         max_value = -infinity
-        for case in valid_locations and len(valid_locations) > 0:
-            x,y = case[0], case[1]
-            new_board = board.copy()
-            Grid.set_cell_value(new_board, x,y, 1)
-            call_minimax = minimax(new_board, depth-1, alpha, beta, True)[2]
-            print(value)
-            print(call_minimax)
-            max_value = max(value, call_minimax)
-            if max_value > value:
-                value = max_value
-                x_pos, y_pos = x,y
-            #print(alpha)
-            #print(value)
-            Alpha = max(alpha, value)
-            #print(alpha)
-            if Alpha >= beta:
-                break
+        if len(valid_locations) > 0:
+            for case in valid_locations:
+                x,y = case[0], case[1]
+                new_board = board.copy()
+                Grid.set_cell_value(new_board, x,y, 1)
+                call_minimax = minimax(new_board, depth-1, alpha, beta, True)[2]
+                print(value)
+                print(call_minimax)
+                max_value = max(value, call_minimax)
+                if max_value > value:
+                    value = max_value
+                    x_pos, y_pos = x,y
+                #print(alpha)
+                #print(value)
+                Alpha = max(alpha, value)
+                #print(alpha)
+                if Alpha >= beta:
+                    break
 
         return (x_pos, y_pos, max_value)
 
@@ -263,18 +264,19 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
         x_pos = random.randint(0,3)
         y_pos = random.randint(0,3)
         min_value = +infinity
-        for case in valid_locations and len(valid_locations) > 0:
-            x,y = case[0], case[1]
-            new_board = board.copy()
-            Grid.set_cell_value(new_board, x,y, -1)
-            call_minimax = minimax(new_board, depth-1, alpha, beta, True)[2]
-            min_value = min(value, call_minimax)
-            if min_value < value:
-                value = min
-                x_pos, y_pos = x,y
-            Beta = min(beta, value)
-            if alpha >= Beta:
-                break
+        if and len(valid_locations) > 0
+            for case in valid_locations:
+                x,y = case[0], case[1]
+                new_board = board.copy()
+                Grid.set_cell_value(new_board, x,y, -1)
+                call_minimax = minimax(new_board, depth-1, alpha, beta, True)[2]
+                min_value = min(value, call_minimax)
+                if min_value < value:
+                    value = min
+                    x_pos, y_pos = x,y
+                Beta = min(beta, value)
+                if alpha >= Beta:
+                    break
 
         return (x_pos, y_pos, min_value)
 
