@@ -135,6 +135,15 @@ def empty_cells(board):
 
     return empty
 
+def valid_locations(board):
+    valid_locations = []
+    for x in range(len(board)):
+        for y in range(len(board[row])):
+            if good_case(board, x,y):
+                valid_locations.append([x,y])
+
+    return valid_locations
+
 
 def rewards(board, player):
     score = 0
@@ -214,7 +223,7 @@ def check_game(board, player):
 
 def is_terminal_node(board):
     print(len(empty_cells(board)))
-    return check_game(board, -1) or check_game(board, 1) or len(empty_cells(board)) == 0
+    return check_game(board, -1) or check_game(board, 1) or len(valid_locations(board)) == 0
 
 
 def minimax(board, depth, alpha, beta, MaximizingPlayer):
