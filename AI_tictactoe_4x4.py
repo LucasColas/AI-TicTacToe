@@ -222,7 +222,6 @@ def check_game(board, player):
 
 
 def is_terminal_node(board):
-    print(len(empty_cells(board)))
     return check_game(board, -1) or check_game(board, 1) or len(valid_locations(board)) == 0
 
 
