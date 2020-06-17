@@ -51,7 +51,7 @@ class Grid():
     def get_cell_value(self, x,y):
         return self.grid2[y][x]
 
-    def set_cell_value(self, x, y, value):
+    def set_cell_value(self,board, x, y, value):
         self.grid2[y][x] = value
 
     def get_mouse(self, x, y, player):
@@ -59,9 +59,9 @@ class Grid():
             self.switch = True
 
             if player == 1:
-                self.set_cell_value(x,y, 1)
+                self.set_cell_value(board, x,y, 1)
             elif player == -1:
-                self.set_cell_value(x, y, -1)
+                self.set_cell_value(board, x, y, -1)
             #self.check(x,y, player)
             self.check_rows(player)
             self.check_columns(player)
@@ -266,7 +266,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
         for case in valid_locations:
             x,y = case[0], case[1]
             new_board = board.copy()
-            Grid.set_cell_value(x,y, -1)
+            Grid.set_cell_value(board, x,y, -1)
             call_minimax = minimax(new_board, depth-1, alpha, beta, True)[2]
             min_value = min(value, call_minimax)
             if min_value < value:
@@ -318,7 +318,7 @@ def main():
                     pos = pygame.mouse.get_pos()
                     if player == -1 and not Grid.game_over:
                         #print(pos[0] // (Width // 4), pos[1] // (Height // 4))
-                        Grid.get_mouse(pos[0] // (Width // 4), pos[1] // (Height // 4), player)
+                        Grid.get_mouse(board, pos[0] // (Width // 4), pos[1] // (Height // 4), player)
                         if Grid.switch:
                             if player == -1:
                                 player = 1
@@ -328,7 +328,7 @@ def main():
 
         if player == 1 and not Grid.game_over:
                 x, y, score = minimax(board, depth, alpha, beta, True)
-                Grid.get_mouse(x, y, player)
+                Grid.get_mouse(board, x, y, player)
                 if Grid.switch:
                     if player == -1:
                         player = 1
