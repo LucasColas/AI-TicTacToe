@@ -123,6 +123,9 @@ class Grid():
         for row in self.grid2:
             print(row)
 
+def good_case(board, x,y):
+    return board[y][x] == 0
+
 def empty_cells(board):
 
     empty = []
@@ -330,12 +333,13 @@ def main():
 
         if player == 1 and not Grid.game_over:
                 x, y, score = minimax(board, depth, alpha, beta, True)
-                Grid.get_mouse(board, x, y, player)
-                if Grid.switch:
-                    if player == -1:
-                        player = 1
-                    else:
-                        player = -1
-                Grid.print_grid()
+                if good_case(board, x,y):
+                    Grid.get_mouse(board, x, y, player)
+                    if Grid.switch:
+                        if player == -1:
+                            player = 1
+                        else:
+                            player = -1
+                    Grid.print_grid()
 
 main()
