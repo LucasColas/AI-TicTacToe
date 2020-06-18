@@ -230,7 +230,7 @@ def is_terminal_node(board):
 
 
 def minimax(board, depth, alpha, beta, MaximizingPlayer):
-    valid_locations = empty_cells(board)
+    valid_locations = valid_locations(board)
     print("valid_locations", valid_locations)
     terminal_node = is_terminal_node(board)
     print("terminal_node", terminal_node)
@@ -251,7 +251,6 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
             else:
                 print("No one wins")
                 return (None, None, 0)
-
         else:
             print("else")
             print("evaluate", evaluate(board,1))
@@ -261,6 +260,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
         value = -infinity
         x_pos = random.randint(0,3)
         y_pos = random.randint(0,3)
+        print(x_pos)
         max_value = -infinity
         for box in valid_locations:
             print("box", box)
@@ -270,11 +270,12 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
             #print("board", board)
             #print("new board", new_board)
             max_value = max(value, minimax(new_board, depth-1, alpha, beta, False)[2])
-            if max_value > value:
+            if max_value >= value:
                 value = max_value
                 x_pos, y_pos = x,y
                 #print(alpha)
                 #print(value)
+            print(x_pos)
             Alpha = max(alpha, value)
                 #print(alpha)
             if Alpha >= beta:
@@ -296,7 +297,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
             print("new board", new_board)
             call_minimax = minimax(new_board, depth-1, alpha, beta, True)[2]
             min_value = min(value, call_minimax)
-            if min_value < value:
+            if min_value <= value:
                 value = min_value
                 x_pos, y_pos = x,y
             Beta = min(beta, value)
@@ -321,8 +322,8 @@ def main():
     board = Grid.grid2
     color = (0,255,0,0)
     alpha = -infinity
-    beta = +infinity
-    depth = 5
+    beta = infinity
+    depth = 3
     while run:
         clock.tick(FPS)
         fill(Circle, color)
