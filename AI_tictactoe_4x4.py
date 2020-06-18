@@ -355,6 +355,7 @@ def main():
 
         if player == 1 and not Grid.game_over:
                 x, y, score = minimax(board, depth, alpha, beta, True)
+                print("called minimax")
                 if good_box(board, x,y):
                     Grid.get_mouse(board, x, y, player)
                     if Grid.switch:
