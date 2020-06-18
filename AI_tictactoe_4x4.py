@@ -59,9 +59,9 @@ class Grid():
             self.switch = True
 
             if player == 1:
-                self.set_cell_value(board, x,y, 1)
+                self.set_cell_value(x,y, 1)
             elif player == -1:
-                self.set_cell_value(board, x, y, -1)
+                self.set_cell_value(x, y, -1)
             #self.check(x,y, player)
             self.check_rows(player)
             self.check_columns(player)
@@ -234,7 +234,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
     print("valid_locations", valid_locations)
     terminal_node = is_terminal_node(board)
     print("terminal_node", terminal_node)
-    print("depth", depth)
+    print("depth : ", depth)
 
     if depth == 0 or terminal_node:
         print("depth 0 or terminal_node")
@@ -267,9 +267,8 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
             x,y = box[0], box[1]
             new_board = board.copy()
             put_in_the_box(new_board, x,y, 1)
-            print("board", board)
-            print("new board", new_board)
-
+            #print("board", board)
+            #print("new board", new_board)
             call_minimax = minimax(new_board, depth-1, alpha, beta, False)[2]
             #print(value)
             print("call_minimax", call_minimax)
