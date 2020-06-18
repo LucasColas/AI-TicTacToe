@@ -138,8 +138,8 @@ def empty_cells(board):
 def valid_locations(board):
     valid_locations = []
     for x in range(len(board)):
-        for y in range(len(board[row])):
-            if good_case(board, x,y):
+        for y in range(len(board[x])):
+            if good_case(board, y,x):
                 valid_locations.append([x,y])
 
     return valid_locations
