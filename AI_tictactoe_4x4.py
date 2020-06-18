@@ -51,7 +51,7 @@ class Grid():
     def get_cell_value(self, x,y):
         return self.grid2[y][x]
 
-    def set_cell_value(self,board, x, y, value):
+    def set_cell_value(self, x, y, value):
         self.grid2[y][x] = value
 
     def get_mouse(self, board, x, y, player):
@@ -144,6 +144,8 @@ def valid_locations(board):
 
     return valid_locations
 
+def put_in_the_box(board,x,y, value):
+    return board[y][x] == value
 
 def rewards(board, player):
     score = 0
@@ -221,6 +223,8 @@ def check_game(board, player):
         return True
 
 
+
+
 def is_terminal_node(board):
     return check_game(board, -1) or check_game(board, 1) or len(valid_locations(board)) == 0
 
@@ -262,7 +266,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
             print("box", box)
             x,y = box[0], box[1]
             new_board = board.copy()
-            Grid.set_cell_value(new_board, x,y, 1)
+            put_in_the_box(new_board, x,y, 1)
             print("board", board)
             print("new board", new_board)
 
@@ -291,7 +295,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
             print("box else", box)
             x,y = box[0], box[1]
             new_board = board.copy()
-            Grid.set_cell_value(new_board, x,y, -1)
+            put_in_the_box(new_board, x,y, -1)
             print("board", board)
             print("new board", new_board)
             call_minimax = minimax(new_board, depth-1, alpha, beta, True)[2]
