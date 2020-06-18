@@ -269,10 +269,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
             put_in_the_box(new_board, x,y, 1)
             #print("board", board)
             #print("new board", new_board)
-            call_minimax = minimax(new_board, depth-1, alpha, beta, False)[2]
-            #print(value)
-            print("call_minimax", call_minimax)
-            max_value = max(value, call_minimax)
+            max_value = max(value, minimax(new_board, depth-1, alpha, beta, False)[2])
             if max_value > value:
                 value = max_value
                 x_pos, y_pos = x,y
