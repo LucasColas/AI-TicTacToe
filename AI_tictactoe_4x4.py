@@ -281,7 +281,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
                 #print(alpha)
             if Alpha >= beta:
                 break
-            print(value)
+            print("value", value)
         print("return")
         return (x_pos, y_pos, max_value)
 
