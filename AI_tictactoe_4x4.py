@@ -135,7 +135,7 @@ def empty_cells(board):
 
     return empty
 
-def valid_locations(board):
+def get_valid_locations(board):
     valid_locations = []
     for x in range(len(board)):
         for y in range(len(board[x])):
@@ -226,34 +226,34 @@ def check_game(board, player):
 
 
 def is_terminal_node(board):
-    return check_game(board, -1) or check_game(board, 1) or len(valid_locations(board)) == 0
+    return check_game(board, -1) or check_game(board, 1) or len(get_valid_locations(board)) == 0
 
 
 def minimax(board, depth, alpha, beta, MaximizingPlayer):
-    valid_locations = valid_locations(board)
-    print("valid_locations", valid_locations)
+    valid_locations = get_valid_locations(board)
+    #print("valid_locations", valid_locations)
     terminal_node = is_terminal_node(board)
-    print("terminal_node", terminal_node)
-    print("depth : ", depth)
+    #print("terminal_node", terminal_node)
+    #print("depth : ", depth)
 
     if depth == 0 or terminal_node:
-        print("depth 0 or terminal_node")
+        #print("depth 0 or terminal_node")
         if terminal_node:
-            print("terminal_node")
+            #print("terminal_node")
             if check_game(board, -1):
-                print("Player wins")
+                #print("Player wins")
                 return (None, None, -1000000)
 
             elif check_game(board, 1):
-                print("AI wins")
+                #print("AI wins")
                 return (None, None, 1000000)
 
             else:
-                print("No one wins")
+                #print("No one wins")
                 return (None, None, 0)
         else:
-            print("else")
-            print("evaluate", evaluate(board,1))
+            #print("else")
+            #print("evaluate", evaluate(board,1))
             return (None, None, evaluate(board, 1))
 
     if MaximizingPlayer:
@@ -289,12 +289,12 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
         y_pos = random.randint(0,3)
         min_value = infinity
         for box in valid_locations:
-            print("box else", box)
+            #print("box else", box)
             x,y = box[0], box[1]
             new_board = board.copy()
             put_in_the_box(new_board, x,y, -1)
-            print("board", board)
-            print("new board", new_board)
+            #print("board", board)
+            #print("new board", new_board)
             call_minimax = minimax(new_board, depth-1, alpha, beta, True)[2]
             min_value = min(value, call_minimax)
             if min_value <= value:
