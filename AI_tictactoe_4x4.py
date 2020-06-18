@@ -260,7 +260,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
         value = -infinity
         x_pos = random.randint(0,3)
         y_pos = random.randint(0,3)
-        print(x_pos)
+        print(x_pos, y_pos)
         max_value = -infinity
         for box in valid_locations:
             print("box", box)
@@ -275,7 +275,8 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
                 x_pos, y_pos = x,y
                 #print(alpha)
                 #print(value)
-            print(x_pos)
+                print(" > ")
+            print(x_pos, y_pos)
             Alpha = max(alpha, value)
                 #print(alpha)
             if Alpha >= beta:
@@ -299,6 +300,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
             if min_value <= value:
                 value = min_value
                 x_pos, y_pos = x,y
+                print(" < ")
             Beta = min(beta, value)
             if alpha >= Beta:
                 break
