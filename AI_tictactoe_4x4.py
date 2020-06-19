@@ -224,7 +224,6 @@ def check_game(board, player):
 
 
 
-
 def is_terminal_node(board):
     return check_game(board, -1) or check_game(board, 1) or len(get_valid_locations(board)) == 0
 
@@ -234,7 +233,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
     print("valid_locations", valid_locations)
     terminal_node = is_terminal_node(board)
     #print("terminal_node", terminal_node)
-    #print("depth : ", depth)
+    print("depth : ", depth)
 
     if depth == 0 or terminal_node:
         #print("depth 0 or terminal_node")
@@ -267,8 +266,6 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
             x,y = box[0], box[1]
             new_board = board.copy()
             put_in_the_box(new_board, x,y, 1)
-            #print("board", board)
-            #print("new board", new_board)
             max_value = max(value, minimax(new_board, depth-1, alpha, beta, False)[2])
             print("max_value", max_value)
             print("value", value)
@@ -360,13 +357,13 @@ def main():
                 x, y, score = minimax(board, 1, alpha, beta, True)
                 print("called minimax")
                 print("x : ", x, "y : ", y, "score", score)
-                #if good_box(board, x,y):
-                Grid.get_mouse(board, x, y, player)
-                if Grid.switch:
-                    if player == -1:
-                        player = 1
-                    else:
-                        player = -1
-                Grid.print_grid()
+                if Grid.get_cell_value(x,y) == 0:
+                    Grid.get_mouse(board, x, y, player)
+                    if Grid.switch:
+                        if player == -1:
+                            player = 1
+                        else:
+                            player = -1
+                    Grid.print_grid()
 
 main()
