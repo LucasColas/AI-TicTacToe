@@ -233,7 +233,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
     print("valid_locations", valid_locations)
     terminal_node = is_terminal_node(board)
     #print("terminal_node", terminal_node)
-    print("depth : ", depth)
+    #print("depth : ", depth)
 
     if depth == 0 or terminal_node:
         #print("depth 0 or terminal_node")
@@ -274,9 +274,9 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
                 x_pos, y_pos = x,y
                 #print(" > ")
 
-            Alpha = max(alpha, value)
+            alpha = max(alpha, value)
                 #print(alpha)
-            if Alpha >= beta:
+            if alpha >= beta:
                 break
             print("value", value)
         print("return")
@@ -299,8 +299,8 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
                 value = min_value
                 x_pos, y_pos = x,y
                 print(" < ")
-            Beta = min(beta, value)
-            if alpha >= Beta:
+            beta = min(beta, value)
+            if alpha >= beta:
                 break
         print("return ")
         return (x_pos, y_pos, min_value)
