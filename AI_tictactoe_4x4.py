@@ -280,7 +280,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
                 break
             print("value", value)
         print("return")
-        return (x_pos, y_pos, max_value)
+        return x_pos, y_pos, max_value
 
     else:
         value = infinity
@@ -303,7 +303,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
             if alpha >= beta:
                 break
         print("return ")
-        return (x_pos, y_pos, min_value)
+        return x_pos, y_pos, min_value
 
 def redraw_window():
     Win.fill(Bg)
