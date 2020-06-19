@@ -165,8 +165,26 @@ def rewards(board, player):
     if board.count(player) == 1 and board.count(-1) == 3:
         score -= 10
 
+    if board.count(player) == 1:
+        score += 3
+
+    if board.count(player) == 2:
+        score += 6
+
+    if board.count(player) == 3:
+        score += 10
+
     if board.count(opp_piece) == 3 and board.count(-1) == 1:
         score -= 10
+
+    if board.count(opp_piece) == 2 :
+        score -= 20
+
+    if board.count(opp_piece) == 3:
+        score -= 30
+
+    if board.count(opp_piece) == 4:
+        score -= 400
 
     return score
 
@@ -223,7 +241,6 @@ def check_game(board, player):
         return True
 
 
-
 def is_terminal_node(board):
     return check_game(board, -1) or check_game(board, 1) or len(get_valid_locations(board)) == 0
 
@@ -252,7 +269,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
                 return (None, None, 0)
         else:
             #print("else")
-            #print("evaluate", evaluate(board,1))
+            print("evaluate", evaluate(board,1))
             return (None, None, evaluate(board, 1))
 
     if MaximizingPlayer:
@@ -288,7 +305,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
         y_pos = random.randint(0,3)
         min_value = infinity
         for box in valid_locations:
-            #print("box else", box)
+            print("box else", box)
             x,y = box[0], box[1]
             new_board = board.copy()
             put_in_the_box(new_board, x,y, -1)
