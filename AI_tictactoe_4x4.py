@@ -231,7 +231,7 @@ def is_terminal_node(board):
 
 def minimax(board, depth, alpha, beta, MaximizingPlayer):
     valid_locations = get_valid_locations(board)
-    #print("valid_locations", valid_locations)
+    print("valid_locations", valid_locations)
     terminal_node = is_terminal_node(board)
     #print("terminal_node", terminal_node)
     #print("depth : ", depth)
@@ -260,7 +260,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
         value = -infinity
         x_pos = random.randint(0,3)
         y_pos = random.randint(0,3)
-        print(x_pos, y_pos)
+        print("random pos", x_pos, y_pos)
         max_value = -infinity
         for box in valid_locations:
             print("box", box)
@@ -270,13 +270,13 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
             #print("board", board)
             #print("new board", new_board)
             max_value = max(value, minimax(new_board, depth-1, alpha, beta, False)[2])
-            if max_value >= value:
+            print("max_value", max_value)
+            print("value", value)
+            if max_value > value:
                 value = max_value
                 x_pos, y_pos = x,y
-                #print(alpha)
-                #print(value)
-                print(" > ")
-            print(x_pos, y_pos)
+                #print(" > ")
+
             Alpha = max(alpha, value)
                 #print(alpha)
             if Alpha >= beta:
@@ -357,15 +357,16 @@ def main():
                         Grid.print_grid()
 
         if player == 1 and not Grid.game_over:
-                x, y, score = minimax(board, depth, alpha, beta, True)
+                x, y, score = minimax(board, 1, alpha, beta, True)
                 print("called minimax")
-                if good_box(board, x,y):
-                    Grid.get_mouse(board, x, y, player)
-                    if Grid.switch:
-                        if player == -1:
-                            player = 1
-                        else:
-                            player = -1
-                    Grid.print_grid()
+                print("x : ", x, "y : ", y, "score", score)
+                #if good_box(board, x,y):
+                Grid.get_mouse(board, x, y, player)
+                if Grid.switch:
+                    if player == -1:
+                        player = 1
+                    else:
+                        player = -1
+                Grid.print_grid()
 
 main()
