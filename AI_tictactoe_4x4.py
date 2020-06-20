@@ -191,6 +191,8 @@ def rewards(board, player):
 def evaluate(board, player):
 
     score = 0
+
+    """
     #Score (horizontally)
     for row in range(len(board)):
         new_board = [int(j) for j in board[row]]
@@ -220,7 +222,13 @@ def evaluate(board, player):
         if indx == (len(board)-1):
             score += rewards(board_dg2, player)
 
-    return score
+    """
+
+    if check_game(board, -1):
+        return score -= 5
+
+    else:
+        return score += 5
 
 def check_game(board, player):
     for row in board:
@@ -231,14 +239,22 @@ def check_game(board, player):
         check = []
         for row in board:
             check.append(row[col])
-        if check.count(check[0]) == len(check) and check[0] != 0:
+        if check.count(player) == len(check) and check[0] != 0:
             return True
 
     diags = []
     for indx in range(len(board)):
         diags.append(board[indx][indx])
-    if diags.count(diags[0]) == len(diags) and diags[0] != 0:
+    if diags.count(player) == len(diags) and diags[0] != 0:
         return True
+
+
+    diags_2 = []
+    for indx, position in enumerate(reversed(range(len(board)))):
+        extension = board[indx][position]
+        diags_2.append(extension)
+    if diags_2.count(player) == len(diags_2):
+        return True 
 
 
 def is_terminal_node(board):
@@ -288,11 +304,12 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
             print("value", value)
             if max_value > value:
                 value = max_value
-                x_pos, y_pos = x,y
+                x_pos = x
+                y_pos = y
                 #print(" > ")
 
             alpha = max(alpha, value)
-                #print(alpha)
+
             if alpha >= beta:
                 break
             print("value", value)
