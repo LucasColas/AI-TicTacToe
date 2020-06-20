@@ -104,6 +104,9 @@ class Grid():
                 print("X wins")
             self.game_over = True
 
+        diags_2 = []
+        
+
     def check_game(self):
         zero = []
         for row in self.grid2:

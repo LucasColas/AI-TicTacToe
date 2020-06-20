@@ -103,6 +103,13 @@ class Grid():
                 print("X wins")
             self.game_over = True
 
+        diags_2 = []
+        for indx, position in enumerate(reversed(range(len(self.grid2)))):
+            ext = self.grid2[indx][indx]
+            diags_2.append(ext)
+        if diags_2.count(player) == len(diags_2):
+            self.game_over = True
+
     def check_game(self):
         zero = []
         for row in self.grid2:
