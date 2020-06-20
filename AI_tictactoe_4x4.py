@@ -105,7 +105,16 @@ class Grid():
             self.game_over = True
 
         diags_2 = []
-        
+        for indx, rev_indx in enumerate(reversed(range(len(self.grid2)))):
+            ext = self.grid2[indx][rev_indx]
+            diags_2.append(ext)
+        if diags_2.count(player) == len(diags_2):
+            if player == -1:
+                print("O wins")
+            else:
+                print("X wins")
+            self.game_over = True
+
 
     def check_game(self):
         zero = []
@@ -256,11 +265,15 @@ def check_game(board, player):
         return True
 
     diags_2 = []
-    for indx, position in enumerate(reversed(range(len(board)))):
-        extension = board[indx][position]
-        diags_2.append(extension)
+    for indx, rev_indx in enumerate(reversed(range(len(self.grid2)))):
+        ext = self.grid2[indx][rev_indx]
+        diags_2.append(ext)
     if diags_2.count(player) == len(diags_2):
-        return True
+        if player == -1:
+            print("O wins")
+        else:
+            print("X wins")
+        self.game_over = True
 
 
 def is_terminal_node(board):
