@@ -239,9 +239,10 @@ def evaluate(board, player):
     if check_game(board, -1):
         score -= 5
 
-    elif:
-        return += 5
-    else :
+    elif check_game(board, 1):
+        score += 5
+
+    else:
         score = 0
 
     return score
@@ -265,7 +266,7 @@ def check_game(board, player):
         return True
 
     diags_2 = []
-    for indx, rev_indx in enumerate(reversed(range(len(self.grid2)))):
+    for indx, rev_indx in enumerate(reversed(range(len(board)))):
         ext = self.grid2[indx][rev_indx]
         diags_2.append(ext)
     if diags_2.count(player) == len(diags_2):
