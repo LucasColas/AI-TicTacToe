@@ -254,7 +254,7 @@ def check_game(board, player):
         extension = board[indx][position]
         diags_2.append(extension)
     if diags_2.count(player) == len(diags_2):
-        return True 
+        return True
 
 
 def is_terminal_node(board):
