@@ -267,7 +267,7 @@ def check_game(board, player):
 
     diags_2 = []
     for indx, rev_indx in enumerate(reversed(range(len(board)))):
-        ext = self.grid2[indx][rev_indx]
+        ext = board[indx][rev_indx]
         diags_2.append(ext)
     if diags_2.count(player) == len(diags_2):
         return True
@@ -332,7 +332,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
         print("return")
         return x_pos, y_pos, max_value
 
-    else:
+    if not MaximizingPlayer:
         value = infinity
         x_pos = random.randint(0,3)
         y_pos = random.randint(0,3)
