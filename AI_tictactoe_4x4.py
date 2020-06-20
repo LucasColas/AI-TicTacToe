@@ -225,10 +225,14 @@ def evaluate(board, player):
     """
 
     if check_game(board, -1):
-        return score -= 5
+        score -= 5
 
-    else:
-        return score += 5
+    elif:
+        return += 5
+    else :
+        score = 0
+
+    return score
 
 def check_game(board, player):
     for row in board:
