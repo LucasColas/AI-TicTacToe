@@ -108,7 +108,10 @@ class Grid():
             ext = self.grid2[indx][rev_indx]
             diags_2.append(ext)
         if diags_2.count(player) == len(diags_2):
-            print(player, "wins")
+            if player == -1:
+                print("O wins")
+            else:
+                print("X wins")
             self.game_over = True
 
     def check_game(self):
