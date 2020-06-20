@@ -252,7 +252,6 @@ def check_game(board, player):
     if diags.count(player) == len(diags) and diags[0] != 0:
         return True
 
-
     diags_2 = []
     for indx, position in enumerate(reversed(range(len(board)))):
         extension = board[indx][position]
