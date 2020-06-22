@@ -252,6 +252,7 @@ def is_terminal_node(board):
 def minimax(board, depth, MaximizingPlayer):
     terminal_node = is_terminal_node(board)
     valid_locations = get_valid_locations(board)
+    print(valid_locations)
 
     if terminal_node or depth == 0:
         if check_game(board, -1):
