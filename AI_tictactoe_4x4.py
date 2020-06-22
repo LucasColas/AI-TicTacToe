@@ -355,7 +355,7 @@ def main():
                         Grid.print_grid()
 
         if player == 1 and not Grid.game_over:
-                x, y, score = minimax(board, 4, True)
+                x, y, score = minimax(board, 3, True)
                 print("called minimax")
                 print("x : ", x, "y : ", y, "score", score)
 
