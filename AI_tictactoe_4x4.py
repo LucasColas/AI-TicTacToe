@@ -281,10 +281,9 @@ def is_terminal_node(board):
     return check_game(board, -1) or check_game(board, 1) or len(get_valid_locations(board)) == 0
 
 
-def minimax(board, depth, alpha, beta, MaximizingPlayer):
+def minimax(board, depth, MaximizingPlayer):
     terminal_node = is_terminal_node(board)
     valid_locations = get_valid_locations(board)
-
 
     if terminal_node or depth == 0:
         if check_game(board, -1):
@@ -293,7 +292,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
             return None, None, 1000000000
 
         else:
-            return evaluate(board, 1)
+            return None, None, evaluate(board, 1)
 
     if MaximizingPlayer:
         value = -infinity
@@ -305,7 +304,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
             x_,y_ = good_box2(board, x,y)
             new_board = board.copy()
             put_in_the_box(new_board,x_, y_, 1)
-            score = max(value, minimax(new_board, depth-1, alpha, beta, MaximizingPlayer)[2])
+            score = max(value, minimax(new_board, depth-1, MaximizingPlayer)[2])
             if score > value:
                 value = score
                 x_pos = x_
@@ -323,7 +322,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
             x_,y_ = good_box2(board, x,y)
             new_board = board.copy()
             put_in_the_box(new_board,x_, y_, -1)
-            score = min(value, minimax(new_board, depth-1, alpha, beta, MaximizingPlayer)[2])
+            score = min(value, minimax(new_board, depth-1, MaximizingPlayer)[2])
             if score < value:
                 value = score
                 x_pos = x_
@@ -381,7 +380,7 @@ def main():
                         Grid.print_grid()
 
         if player == 1 and not Grid.game_over:
-                x, y, score = minimax(board, 4, alpha, beta, True)
+                x, y, score = minimax(board, 4, True)
                 print("called minimax")
                 print("x : ", x, "y : ", y, "score", score)
                 if Grid.get_cell_value(x,y) == 0:
