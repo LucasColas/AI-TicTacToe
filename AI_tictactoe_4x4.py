@@ -138,6 +138,10 @@ class Grid():
 def good_box(board, x,y):
     return board[y][x] == 0
 
+def good_box2(board, x,y):
+    if board[y][x] == 0:
+        return x,y
+
 def empty_cells(board):
     empty = []
     for row in range(len(board)):
@@ -278,80 +282,55 @@ def is_terminal_node(board):
 
 
 def minimax(board, depth, alpha, beta, MaximizingPlayer):
-    valid_locations = get_valid_locations(board)
-    print("valid_locations", valid_locations)
     terminal_node = is_terminal_node(board)
-    #print("terminal_node", terminal_node)
-    #print("depth : ", depth)
+    valid_locations = get_valid_locations(board)
 
-    if depth == 0 or terminal_node:
-        #print("depth 0 or terminal_node")
-        if terminal_node:
-            #print("terminal_node")
-            if check_game(board, -1):
-                #print("Player wins")
-                return (None, None, -1000000)
 
-            elif check_game(board, 1):
-                #print("AI wins")
-                return (None, None, 1000000)
+    if terminal_node or depth == 0:
+        if check_game(board, -1):
+            return None, None, -1000000000
+        elif check_game(bord, 1):
+            return None, None, 1000000000
 
-            else:
-                #print("No one wins")
-                return (None, None, 0)
         else:
-            #print("else")
-            print("evaluate", evaluate(board,1))
-            return (None, None, evaluate(board, 1))
+            return evaluate(board, 1)
 
     if MaximizingPlayer:
         value = -infinity
-        x_pos = random.randint(0,3)
-        y_pos = random.randint(0,3)
-        print("random pos", x_pos, y_pos)
-        max_value = -infinity
+        x_pos = random.randint(0,2)
+        y_pos = random.choice([0,1,2])
         for box in valid_locations:
-            print("box", box)
-            x,y = box[0], box[1]
+            x = box[0]
+            y = box[1]
+            x_,y_ = good_box2(board, x,y)
             new_board = board.copy()
-            put_in_the_box(new_board, x,y, 1)
-            max_value = max(value, minimax(new_board, depth-1, alpha, beta, False)[2])
-            print("max_value", max_value)
-            print("value", value)
-            if max_value > value:
-                value = max_value
-                x_pos = x
-                y_pos = y
-                #print(" > ")
+            put_in_the_box(new_board,x_, y_)
+            score = max(value, minimax(new_board, depth-1, alpha, beta, MaximizingPlayer)[2])
+            if score > value:
+                value = score
+                x_pos = x_
+                y_pos = y_
 
-            alpha = max(alpha, value)
+        return x_pos, y_pos, score
 
-            if alpha >= beta:
-                break
-            print("value", value)
-        print("return")
-        return x_pos, y_pos, max_value
-
-    if not MaximizingPlayer:
+    else:
         value = infinity
-        x_pos = random.randint(0,3)
-        y_pos = random.randint(0,3)
-        min_value = infinity
+        x_pos = random.randint(0,2)
+        y_pos = random.choice([0,1,2])
         for box in valid_locations:
-            print("box else", box)
-            x,y = box[0], box[1]
+            x = box[0]
+            y = box[1]
+            x_,y_ = good_box2(board, x,y)
             new_board = board.copy()
-            put_in_the_box(new_board, x,y, -1)
-            min_value = min(value, minimax(new_board, depth-1, alpha, beta, True)[2])
-            if min_value <= value:
-                value = min_value
-                x_pos, y_pos = x,y
-                print(" < ")
-            beta = min(beta, value)
-            if alpha >= beta:
-                break
-        print("return ")
-        return x_pos, y_pos, min_value
+            put_in_the_box(new_board,x_, y_)
+            score = min(value, minimax(new_board, depth-1, alpha, beta, MaximizingPlayer)[2])
+            if score < value:
+                value = score
+                x_pos = x_
+                y_pos = y_
+
+        return x_pos, y_pos, score
+
 
 def redraw_window():
     Win.fill(Bg)
@@ -402,7 +381,7 @@ def main():
                         Grid.print_grid()
 
         if player == 1 and not Grid.game_over:
-                x, y, score = minimax(board, 1, alpha, beta, True)
+                x, y, score = minimax(board, 4, alpha, beta, True)
                 print("called minimax")
                 print("x : ", x, "y : ", y, "score", score)
                 if Grid.get_cell_value(x,y) == 0:
