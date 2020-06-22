@@ -248,6 +248,7 @@ def good_y(board, x):
     for y in range(len(board)):
         for col in range(len(board[y])):
             if board[y][x] == 0:
+                return x,y
 
 
 def is_terminal_node(board):
@@ -274,10 +275,11 @@ def minimax(board, depth, MaximizingPlayer):
         y_pos = random.choice([0,1,2])
         for box in valid_locations:
             x = box[0]
-            y = box[1]
+            #y = box[1]
             #x_,y_ = good_box2(board, x,y)[0], good_box2(board, x,y)[1]
             #new_board = board.copy()
             #put_in_the_box(new_board,x_, y_, 1)
+            y = good_y(board, x)
             new_board = board.copy()
             new_board[y][x] = 1
             score = max(value, minimax(new_board, depth-1, False)[2])
@@ -295,11 +297,11 @@ def minimax(board, depth, MaximizingPlayer):
         y_pos = random.choice([0,1,2])
         for box in valid_locations:
             x = box[0]
-            y = box[1]
+
             #x_,y_ = good_box2(board, x,y)
             #new_board = board.copy()
             #put_in_the_box(new_board,x_, y_, -1)
-
+            y = good_y(board, x)
             new_board = board.copy()
             new_board[y][x] = -1
             score = min(value, minimax(new_board, depth-1, True)[2])
