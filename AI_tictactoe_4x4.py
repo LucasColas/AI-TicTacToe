@@ -276,6 +276,7 @@ def minimax(board, depth, MaximizingPlayer):
             new_board = board.copy()
             new_board[y][x] = 1
             score = max(value, minimax(new_board, depth-1, False)[2])
+            print("called minimax inside function")
             if score > value:
                 value = score
                 x_pos = x
@@ -296,6 +297,7 @@ def minimax(board, depth, MaximizingPlayer):
             new_board = board.copy()
             new_board[y][x] = -1
             score = min(value, minimax(new_board, depth-1, True)[2])
+            print("called minimax inside function")
             if score < value:
                 value = score
                 x_pos = x
@@ -356,13 +358,13 @@ def main():
                 x, y, score = minimax(board, 4, True)
                 print("called minimax")
                 print("x : ", x, "y : ", y, "score", score)
-                if Grid.get_cell_value(x,y) == 0:
-                    Grid.get_mouse(board, x, y, player)
-                    if Grid.switch:
-                        if player == -1:
-                            player = 1
-                        else:
-                            player = -1
-                    Grid.print_grid()
+
+                Grid.get_mouse(board, x, y, player)
+                if Grid.switch:
+                    if player == -1:
+                        player = 1
+                    else:
+                        player = -1
+                Grid.print_grid()
 
 main()
