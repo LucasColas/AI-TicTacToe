@@ -208,38 +208,6 @@ def evaluate(board, player):
 
     score = 0
 
-    """
-    #Score (horizontally)
-    for row in range(len(board)):
-        new_board = [int(j) for j in board[row]]
-        score += rewards(new_board, player)
-
-    #Score (vertically)
-    board_vt = []
-    for row in range(len(board)):
-        for i in range(len(board)-1):
-            board_vt.append(board[i][row])
-            score += rewards(board_vt, player)
-
-    #Score (diagonally)
-    # First diagonal (from the left to the right)
-    board_dg = []
-    for position in range(len(board)):
-        extension = board[position][position]
-        board_dg.append(extension)
-        if position == (len(board)-1):
-            score += rewards(board_dg, player)
-
-    # Second diagonal (from the right to the left)
-    board_dg2 = []
-    for indx, position in enumerate(reversed(range(len(board)))):
-        extension = board[indx][position]
-        board_dg2.append(extension)
-        if indx == (len(board)-1):
-            score += rewards(board_dg2, player)
-
-    """
-
     if check_game(board, -1):
         score -= 5
 
