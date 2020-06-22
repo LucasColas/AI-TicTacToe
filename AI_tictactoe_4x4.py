@@ -304,7 +304,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
             y = box[1]
             x_,y_ = good_box2(board, x,y)
             new_board = board.copy()
-            put_in_the_box(new_board,x_, y_)
+            put_in_the_box(new_board,x_, y_, 1)
             score = max(value, minimax(new_board, depth-1, alpha, beta, MaximizingPlayer)[2])
             if score > value:
                 value = score
@@ -322,7 +322,7 @@ def minimax(board, depth, alpha, beta, MaximizingPlayer):
             y = box[1]
             x_,y_ = good_box2(board, x,y)
             new_board = board.copy()
-            put_in_the_box(new_board,x_, y_)
+            put_in_the_box(new_board,x_, y_, -1)
             score = min(value, minimax(new_board, depth-1, alpha, beta, MaximizingPlayer)[2])
             if score < value:
                 value = score
