@@ -270,14 +270,16 @@ def minimax(board, depth, MaximizingPlayer):
         for box in valid_locations:
             x = box[0]
             y = box[1]
-            x_,y_ = good_box2(board, x,y)[0], good_box2(board, x,y)[1]
+            #x_,y_ = good_box2(board, x,y)[0], good_box2(board, x,y)[1]
+            #new_board = board.copy()
+            #put_in_the_box(new_board,x_, y_, 1)
             new_board = board.copy()
-            put_in_the_box(new_board,x_, y_, 1)
-            score = max(value, minimax(new_board, depth-1, MaximizingPlayer)[2])
+            new_board[y][x] = 1
+            score = max(value, minimax(new_board, depth-1, False)[2])
             if score > value:
                 value = score
-                x_pos = x_
-                y_pos = y_
+                x_pos = x
+                y_pos = y
 
         return x_pos, y_pos, score
 
@@ -288,14 +290,16 @@ def minimax(board, depth, MaximizingPlayer):
         for box in valid_locations:
             x = box[0]
             y = box[1]
-            x_,y_ = good_box2(board, x,y)
+            #x_,y_ = good_box2(board, x,y)
+            #new_board = board.copy()
+            #put_in_the_box(new_board,x_, y_, -1)
             new_board = board.copy()
-            put_in_the_box(new_board,x_, y_, -1)
-            score = min(value, minimax(new_board, depth-1, MaximizingPlayer)[2])
+            new_board[y][x] = -1
+            score = min(value, minimax(new_board, depth-1, True)[2])
             if score < value:
                 value = score
-                x_pos = x_
-                y_pos = y_
+                x_pos = x
+                y_pos = y
 
         return x_pos, y_pos, score
 
