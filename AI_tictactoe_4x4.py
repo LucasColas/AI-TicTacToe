@@ -244,6 +244,11 @@ def check_game(board, player):
     if diags_2.count(player) == len(diags_2):
         return True
 
+def good_y(board, x):
+    for y in range(len(board)):
+        for col in range(len(board[y])):
+            if board[y][x] == 0:
+
 
 def is_terminal_node(board):
     return check_game(board, -1) or check_game(board, 1) or len(get_valid_locations(board)) == 0
@@ -294,6 +299,7 @@ def minimax(board, depth, MaximizingPlayer):
             #x_,y_ = good_box2(board, x,y)
             #new_board = board.copy()
             #put_in_the_box(new_board,x_, y_, -1)
+
             new_board = board.copy()
             new_board[y][x] = -1
             score = min(value, minimax(new_board, depth-1, True)[2])
