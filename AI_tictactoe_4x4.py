@@ -204,7 +204,7 @@ def rewards(board, player):
 
     return score
 
-def evaluate(board, player):
+def evaluate(board):
 
     score = 0
 
@@ -260,14 +260,10 @@ def minimax(board, depth, MaximizingPlayer):
     valid_locations = get_valid_locations(board)
     print(valid_locations)
 
-    if terminal_node or depth == 0 or len(board) == 0:
-        if check_game(board, -1):
-            return None, None, -1000000000
-        elif check_game(board, 1):
-            return None, None, 1000000000
+    if terminal_node or depth == 0:
+        score = evaluate(board)
+        return [-1, -1, score]
 
-        else:
-            return None, None, evaluate(board, 1)
 
     if MaximizingPlayer:
         value = -infinity
@@ -297,7 +293,6 @@ def minimax(board, depth, MaximizingPlayer):
         y_pos = random.choice([0,1,2])
         for box in valid_locations:
             x = box[0]
-
             #x_,y_ = good_box2(board, x,y)
             #new_board = board.copy()
             #put_in_the_box(new_board,x_, y_, -1)
