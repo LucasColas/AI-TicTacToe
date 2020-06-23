@@ -260,53 +260,32 @@ def minimax(board, depth, MaximizingPlayer):
     valid_locations = get_valid_locations(board)
     print(valid_locations)
 
+    if MaximizingPlayer:
+        best = [-1,-1,-infinity]
+    else:
+        best = [-1,-1,infinity]
+
     if terminal_node or depth == 0:
         score = evaluate(board)
         return [-1, -1, score]
 
+    for box in valid_locations:
+        x = box[0]
+        y = box[1]
+        board[y][x] = 1
+        info = minimax(board, depth-1, False)[2])
+        board[y][x] = 0
+        info[0], info[1] = x,y
 
-    if MaximizingPlayer:
-        value = -infinity
-        x_pos = random.randint(0,2)
-        y_pos = random.choice([0,1,2])
-        for box in valid_locations:
-            x = box[0]
-            #y = box[1]
-            #x_,y_ = good_box2(board, x,y)[0], good_box2(board, x,y)[1]
-            #new_board = board.copy()
-            #put_in_the_box(new_board,x_, y_, 1)
-            y = good_y(board, x)
-            new_board = board.copy()
-            new_board[y][x] = 1
-            score = max(value, minimax(new_board, depth-1, False)[2])
-            print("called minimax inside function")
-            if score > value:
-                value = score
-                x_pos = x
-                y_pos = y
+        if MaximizingPlayer:
+            if info[2] > best:
+                best = info
+        else:
+            if if info[2] < best:
+                best = info
 
-        return x_pos, y_pos, score
 
-    else:
-        value = infinity
-        x_pos = random.randint(0,2)
-        y_pos = random.choice([0,1,2])
-        for box in valid_locations:
-            x = box[0]
-            #x_,y_ = good_box2(board, x,y)
-            #new_board = board.copy()
-            #put_in_the_box(new_board,x_, y_, -1)
-            y = good_y(board, x)
-            new_board = board.copy()
-            new_board[y][x] = -1
-            score = min(value, minimax(new_board, depth-1, True)[2])
-            print("called minimax inside function")
-            if score < value:
-                value = score
-                x_pos = x
-                y_pos = y
-
-        return x_pos, y_pos, score
+        return best
 
 
 def redraw_window():
