@@ -281,7 +281,7 @@ def minimax(board, depth, MaximizingPlayer):
             if info[2] > best:
                 best = info
         else:
-            if if info[2] < best:
+            if info[2] < best:
                 best = info
 
 
