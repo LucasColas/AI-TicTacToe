@@ -17,6 +17,8 @@ Circle = pygame.transform.scale(pygame.image.load(os.path.join("assets", "circle
 clock = pygame.time.Clock()
 FPS = 80
 
+AI = 1
+
 def fill(surface, color):
     w, h = surface.get_size()
     r, g, b, _ = color
@@ -255,12 +257,12 @@ def is_terminal_node(board):
     return check_game(board, -1) or check_game(board, 1) or len(get_valid_locations(board)) == 0
 
 
-def minimax(board, depth, MaximizingPlayer):
+def minimax(board, depth, Player):
     terminal_node = is_terminal_node(board)
     valid_locations = get_valid_locations(board)
     print(valid_locations)
 
-    if MaximizingPlayer:
+    if Player == AI:
         best = [-1,-1,-infinity]
     else:
         best = [-1,-1,infinity]
@@ -273,11 +275,11 @@ def minimax(board, depth, MaximizingPlayer):
         x = box[0]
         y = box[1]
         board[y][x] = 1
-        info = minimax(board, depth-1, False)[2])
+        info = minimax(board, depth-1, -AI)[2])
         board[y][x] = 0
         info[0], info[1] = x,y
 
-        if MaximizingPlayer:
+        if Player == AI:
             if info[2] > best:
                 best = info
         else:
