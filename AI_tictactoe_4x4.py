@@ -275,14 +275,14 @@ def minimax(board, depth, Player):
         x = box[0]
         y = box[1]
         board[y][x] = Player
-        info = minimax(board, depth-1, -AI)[2])
+        info = minimax(board, depth-1, -AI)
         board[y][x] = 0
         info[0], info[1] = x,y
 
-        if Player == AI:
+        if Player == AI: #Maximizing
             if info[2] > best:
                 best = info
-        else:
+        else: #Minimizing
             if info[2] < best:
                 best = info
 
