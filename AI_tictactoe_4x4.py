@@ -155,10 +155,10 @@ def empty_cells(board):
 
 def get_valid_locations(board):
     valid_locations = []
-    for x in range(len(board)):
-        for y in range(len(board[x])):
-            if good_box(board, y,x):
-                valid_locations.append([x,y])
+    for x, row in enumerate(state):
+        for y, cell in enumerate(row):
+            if cell == 0:
+                valid_locations.append([x, y])
 
     return valid_locations
 
