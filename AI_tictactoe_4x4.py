@@ -156,8 +156,8 @@ def empty_cells(board):
 def get_valid_locations(board):
     valid_locations = []
     for x, row in enumerate(state):
-        for y, cell in enumerate(row):
-            if cell == 0:
+        for y, box in enumerate(row):
+            if box == 0:
                 valid_locations.append([x, y])
 
     return valid_locations
@@ -256,9 +256,11 @@ def good_y(board, x):
 def is_terminal_node(board):
     return check_game(board, -1) or check_game(board, 1) or len(get_valid_locations(board)) == 0
 
+def game_over(board):
+    return check_game(board, -1) or check_game(board, 1)
+
 
 def minimax(board, depth, Player):
-    terminal_node = is_terminal_node(board)
     valid_locations = get_valid_locations(board)
     print(valid_locations)
 
@@ -267,7 +269,7 @@ def minimax(board, depth, Player):
     else:
         best = [-1,-1,infinity]
 
-    if terminal_node or depth == 0:
+    if game_over(board) or depth == 0 or len(valid_locations) == 0:
         score = evaluate(board)
         return [-1, -1, score]
 
