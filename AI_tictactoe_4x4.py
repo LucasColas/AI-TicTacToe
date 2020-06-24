@@ -280,10 +280,10 @@ def minimax(board, depth, Player):
         info[0], info[1] = x,y
 
         if Player == AI: #Maximizing
-            if info[2] > best:
+            if info[2] > best[2]:
                 best = info
         else: #Minimizing
-            if info[2] < best:
+            if info[2] < best[2]:
                 best = info
 
 
