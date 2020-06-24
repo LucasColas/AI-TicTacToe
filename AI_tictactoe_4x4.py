@@ -274,7 +274,7 @@ def minimax(board, depth, Player):
     for box in valid_locations:
         x = box[0]
         y = box[1]
-        board[y][x] = 1
+        board[y][x] = Player
         info = minimax(board, depth-1, -AI)[2])
         board[y][x] = 0
         info[0], info[1] = x,y
@@ -339,7 +339,7 @@ def main():
                         Grid.print_grid()
 
         if player == 1 and not Grid.game_over:
-                x, y, score = minimax(board, 3, True)
+                x, y, score = minimax(board, depth, player)
                 print("called minimax")
                 print("x : ", x, "y : ", y, "score", score)
 
