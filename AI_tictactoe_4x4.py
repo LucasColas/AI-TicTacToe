@@ -246,12 +246,6 @@ def check_game(board, player):
     if diags_2.count(player) == len(diags_2):
         return True
 
-def good_y(board, x):
-    for y in range(len(board)):
-        for col in range(len(board[y])):
-            if board[y][x] == 0:
-                return x,y
-
 
 def game_over(board):
     return check_game(board, -1) or check_game(board, 1)
@@ -286,6 +280,22 @@ def minimax(board, depth, Player):
                 best = info
 
         return best
+
+def valid_move(board, x,y):
+    if [x,y] in get_valid_locations(board):
+        return True
+    else:
+        return False
+
+def set_move(board, x,y, player):
+    if valid_move(board, x,y):
+        board[x][y] = player
+        return True
+    else:
+        return False
+
+def ai_turn(board):
+    pass
 
 
 def redraw_window():
@@ -337,7 +347,7 @@ def main():
                         Grid.print_grid()
 
         if player == 1 and not Grid.game_over:
-
+            print(board)
             x, y, score = minimax(board, depth, player)
             print("called minimax")
             print("x : ", x, "y : ", y, "score", score)
