@@ -294,8 +294,11 @@ def set_move(board, x,y, player):
     else:
         return False
 
-def ai_turn(board):
-    pass
+def ai_turn(board, depth, player):
+    move = minimax(board, depth, player)
+    x,y = move[0], move[1]
+    if set_move(board, x,y, player):
+        Grid.switch = True
 
 
 def redraw_window():
@@ -347,11 +350,7 @@ def main():
                         Grid.print_grid()
 
         if player == 1 and not Grid.game_over:
-            print(board)
-            x, y, score = minimax(board, depth, player)
-            print("called minimax")
-            print("x : ", x, "y : ", y, "score", score)
-            Grid.get_mouse(board, x, y, player)
+            ai_turn(board,depth,player)
             if Grid.switch:
                 if player == -1:
                     player = 1
