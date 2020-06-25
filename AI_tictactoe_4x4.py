@@ -155,7 +155,7 @@ def empty_cells(board):
 
 def get_valid_locations(board):
     valid_locations = []
-    for x, row in enumerate(state):
+    for x, row in enumerate(board):
         for y, box in enumerate(row):
             if box == 0:
                 valid_locations.append([x, y])
@@ -285,7 +285,6 @@ def minimax(board, depth, Player):
             if info[2] < best[2]:
                 best = info
 
-
         return best
 
 
@@ -338,16 +337,16 @@ def main():
                         Grid.print_grid()
 
         if player == 1 and not Grid.game_over:
-                x, y, score = minimax(board, depth, player)
-                print("called minimax")
-                print("x : ", x, "y : ", y, "score", score)
 
-                Grid.get_mouse(board, x, y, player)
-                if Grid.switch:
-                    if player == -1:
-                        player = 1
-                    else:
-                        player = -1
-                Grid.print_grid()
+            x, y, score = minimax(board, depth, player)
+            print("called minimax")
+            print("x : ", x, "y : ", y, "score", score)
+            Grid.get_mouse(board, x, y, player)
+            if Grid.switch:
+                if player == -1:
+                    player = 1
+                else:
+                    player = -1
+            Grid.print_grid()
 
 main()
