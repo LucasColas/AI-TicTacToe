@@ -253,9 +253,6 @@ def good_y(board, x):
                 return x,y
 
 
-def is_terminal_node(board):
-    return check_game(board, -1) or check_game(board, 1) or len(get_valid_locations(board)) == 0
-
 def game_over(board):
     return check_game(board, -1) or check_game(board, 1)
 
@@ -276,9 +273,9 @@ def minimax(board, depth, Player):
     for box in valid_locations:
         x = box[0]
         y = box[1]
-        board[y][x] = Player
+        board[x][y] = Player
         info = minimax(board, depth-1, -AI)
-        board[y][x] = 0
+        board[x][y] = 0
         info[0], info[1] = x,y
 
         if Player == AI: #Maximizing
