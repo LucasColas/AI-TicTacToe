@@ -140,6 +140,8 @@ class Grid():
         for row in board:
             print(row)
 
+Grid = Grid()
+
 def good_box(board, x,y):
     return board[y][x] == 0
 
@@ -309,7 +311,6 @@ def redraw_window():
     Grid.draw(board, Win)
     pygame.display.flip()
 
-Grid = Grid()
 
 def main():
     start = [-1,1]
