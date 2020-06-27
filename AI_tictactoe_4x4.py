@@ -297,8 +297,7 @@ def set_move(board, x,y, player):
 def ai_turn(board, depth, player):
     move = minimax(board, depth, player)
     x,y = move[0], move[1]
-    if set_move(board, x,y, player):
-        Grid.switch = True
+    Grid.get_mouse(board, x,y, player)
 
 
 def redraw_window():
