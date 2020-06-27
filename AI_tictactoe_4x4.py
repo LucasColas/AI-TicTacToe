@@ -147,20 +147,11 @@ def good_box2(board, x,y):
     if board[y][x] == 0:
         return x,y
 
-def empty_cells(board):
-    empty = []
-    for row in range(len(board)):
-        for col in range(len(board[row])):
-            if board[row][col] == 0:
-                empty.append([row, col])
-
-    return empty
-
 def get_valid_locations(board):
     valid_locations = []
     for x, row in enumerate(board):
         for y, box in enumerate(row):
-            if box == 0:
+            if box == 0 and box != -1 and box != 1:
                 valid_locations.append([x, y])
 
     return valid_locations
