@@ -17,6 +17,7 @@ Circle = pygame.transform.scale(pygame.image.load(os.path.join("assets", "circle
 clock = pygame.time.Clock()
 FPS = 80
 
+Board = [[0 for x in range(4)] for y in range(4)]
 AI = 1
 
 def fill(surface, color):
@@ -28,33 +29,35 @@ def fill(surface, color):
             surface.set_at((x, y), pygame.Color(r, g, b, a))
 
 
+
+
 class Grid():
     def __init__(self):
         self.grid = [((0, Height//4), (Width, Height//4)), ((0, (2*Height)//4), (Width, (2*Height)//4)), ((0, (3*Height)//4), (Width, (3*Height)//4)), ((Width//4, 0), (Width//4, Height)), (((2*Width)//4, 0), ((2*Width)//4, Height)), (((3*Width)//4,0), ((3*Width)//4, Height))]
 
-        self.grid2 = [[0 for x in range(4)] for y in range(4)]
+
         self.Cross = Cross
         self.Circle = Circle
 
         self.switch = True
         self.game_over = False
 
-    def draw(self, window):
+    def draw(self, board, window):
         for line in self.grid:
             pygame.draw.line(window, (255, 255, 255), line[0], line[1], 2)
 
-        for x in range(len(self.grid2)):
-            for y in range(len(self.grid2[x])):
+        for x in range(len(board)):
+            for y in range(len(board[x])):
                 if self.get_cell_value(x,y) == 1:
                     window.blit(self.Cross, (x*(Width//4),y*(Height//4)))
                 elif self.get_cell_value(x,y) == -1:
                     window.blit(self.Circle, (x*(Width//4),y*(Height//4)))
 
-    def get_cell_value(self, x,y):
-        return self.grid2[y][x]
+    def get_cell_value(self,board, x,y):
+        return board[y][x]
 
-    def set_cell_value(self, x, y, value):
-        self.grid2[y][x] = value
+    def set_cell_value(self,board, x, y, value):
+        board[y][x] = value
 
     def get_mouse(self, board, x, y, player):
         if self.get_cell_value(x,y) == 0:
@@ -73,8 +76,8 @@ class Grid():
         else:
             self.switch = False
 
-    def check_rows(self, player):
-        for row in self.grid2:
+    def check_rows(self, board,player):
+        for row in board:
             if row[0] == row[1] == row[2] == row[3] == player:
 
                 if player == -1:
@@ -83,10 +86,10 @@ class Grid():
                     print("X wins")
                 self.game_over = True
 
-    def check_columns(self, player):
-        for col in range(len(self.grid2[0])):
+    def check_columns(self, board, player):
+        for col in range(len(board[0])):
             check = []
-            for row in self.grid2:
+            for row in board:
                 check.append(row[col])
             if check.count(check[0]) == len(check) and check[0] != 0:
                 if player == -1:
@@ -95,10 +98,10 @@ class Grid():
                     print("X wins")
                 self.game_over = True
 
-    def check_diagonals(self,player):
+    def check_diagonals(self,board, player):
         diags = []
-        for indx in range(len(self.grid2)):
-            diags.append(self.grid2[indx][indx])
+        for indx in range(len(board)):
+            diags.append(board[indx][indx])
         if diags.count(diags[0]) == len(diags) and diags[0] != 0:
             if player == -1:
                 print("O wins")
@@ -107,8 +110,8 @@ class Grid():
             self.game_over = True
 
         diags_2 = []
-        for indx, rev_indx in enumerate(reversed(range(len(self.grid2)))):
-            ext = self.grid2[indx][rev_indx]
+        for indx, rev_indx in enumerate(reversed(range(len(board)))):
+            ext = board[indx][rev_indx]
             diags_2.append(ext)
         if diags_2.count(player) == len(diags_2):
             if player == -1:
@@ -118,9 +121,9 @@ class Grid():
             self.game_over = True
 
 
-    def check_game(self):
+    def check_game(self, board):
         zero = []
-        for row in self.grid2:
+        for row in board:
             for box in row:
                 zero.append(box)
         if zero.count(0) == 0:
@@ -128,13 +131,13 @@ class Grid():
             self.game_over = True
         return self.game_over
 
-    def reset(self):
-        for y in range(len(self.grid2)):
-            for x in range(len(self.grid2[y])):
+    def reset(self, board):
+        for y in range(len(board)):
+            for x in range(len(board[y])):
                 self.set_cell_value(x, y, 0)
 
-    def print_grid(self):
-        for row in self.grid2:
+    def print_grid(self, board):
+        for row in board:
             print(row)
 
 def good_box(board, x,y):
@@ -303,7 +306,7 @@ def ai_turn(board, depth, player):
 def redraw_window():
     Win.fill(Bg)
 
-    Grid.draw(Win)
+    Grid.draw(board, Win)
     pygame.display.flip()
 
 Grid = Grid()
@@ -313,7 +316,6 @@ def main():
     player = random.choice(start)
     run = True
     Grid.print_grid()
-    board = Grid.grid2
     color = (0,255,0,0)
     alpha = -infinity
     beta = infinity
@@ -321,6 +323,7 @@ def main():
     while run:
         clock.tick(FPS)
         fill(Circle, color)
+
 
         redraw_window()
         Win.fill(pygame.Color('lightskyblue4'))
@@ -346,7 +349,8 @@ def main():
                                 player = 1
                             else:
                                 player = -1
-                        Grid.print_grid()
+                        Grid.print_grid(board)
+
 
         if player == 1 and not Grid.game_over:
             ai_turn(board,depth,player)
@@ -355,6 +359,7 @@ def main():
                     player = 1
                 else:
                     player = -1
-            Grid.print_grid()
+            Grid.print_grid(board)
+
 
 main()
