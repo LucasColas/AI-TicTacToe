@@ -28,9 +28,6 @@ def fill(surface, color):
             a = surface.get_at((x, y))[3]
             surface.set_at((x, y), pygame.Color(r, g, b, a))
 
-
-
-
 class Grid():
     def __init__(self):
         self.grid = [((0, Height//4), (Width, Height//4)), ((0, (2*Height)//4), (Width, (2*Height)//4)), ((0, (3*Height)//4), (Width, (3*Height)//4)), ((Width//4, 0), (Width//4, Height)), (((2*Width)//4, 0), ((2*Width)//4, Height)), (((3*Width)//4,0), ((3*Width)//4, Height))]
@@ -48,9 +45,10 @@ class Grid():
 
         for x in range(len(board)):
             for y in range(len(board[x])):
-                if self.get_cell_value(x,y) == 1:
+                #print("y", y)
+                if self.get_cell_value(board, x,y) == 1:
                     window.blit(self.Cross, (x*(Width//4),y*(Height//4)))
-                elif self.get_cell_value(x,y) == -1:
+                elif self.get_cell_value(board, x,y) == -1:
                     window.blit(self.Circle, (x*(Width//4),y*(Height//4)))
 
     def get_cell_value(self,board, x,y):
@@ -64,14 +62,14 @@ class Grid():
             self.switch = True
 
             if player == 1:
-                self.set_cell_value(x,y, 1)
+                self.set_cell_value(board,x,y, 1)
             elif player == -1:
-                self.set_cell_value(x, y, -1)
+                self.set_cell_value(board,x, y, -1)
             #self.check(x,y, player)
-            self.check_rows(player)
-            self.check_columns(player)
-            self.check_diagonals(player)
-            self.check_game()
+            self.check_rows(board,player)
+            self.check_columns(board,player)
+            self.check_diagonals(board,player)
+            self.check_game(board)
 
         else:
             self.switch = False
@@ -305,7 +303,7 @@ def ai_turn(board, depth, player):
     Grid.get_mouse(board, x,y, player)
 
 
-def redraw_window():
+def redraw_window(board):
     Win.fill(Bg)
 
     Grid.draw(board, Win)
@@ -313,10 +311,11 @@ def redraw_window():
 
 
 def main():
+
     start = [-1,1]
     player = random.choice(start)
     run = True
-    Grid.print_grid(board)
+    Grid.print_grid(Board)
     color = (0,255,0,0)
     alpha = -infinity
     beta = infinity
@@ -326,7 +325,7 @@ def main():
         fill(Circle, color)
 
 
-        redraw_window()
+        redraw_window(Board)
         Win.fill(pygame.Color('lightskyblue4'))
 
         for event in pygame.event.get():
@@ -344,19 +343,19 @@ def main():
                     pos = pygame.mouse.get_pos()
                     if player == -1 and not Grid.game_over:
                         #print(pos[0] // (Width // 4), pos[1] // (Height // 4))
-                        Grid.get_mouse(board, pos[0] // (Width // 4), pos[1] // (Height // 4), player)
+                        Grid.get_mouse(Board, pos[0] // (Width // 4), pos[1] // (Height // 4), player)
                         if Grid.switch:
                             if player == -1:
                                 player = 1
                             else:
                                 player = -1
-                        Grid.print_grid(board)
+                        Grid.print_grid(Board)
 
 
         if player == 1 and not Grid.game_over:
-            ai_turn(board,depth,player)
+            ai_turn(Board,depth,player)
             player = -1
-            Grid.print_grid(board)
+            Grid.print_grid(Board)
 
 
 main()
