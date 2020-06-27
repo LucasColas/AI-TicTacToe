@@ -58,7 +58,7 @@ class Grid():
         board[y][x] = value
 
     def get_mouse(self, board, x, y, player):
-        if self.get_cell_value(x,y) == 0:
+        if self.get_cell_value(board, x,y) == 0:
             self.switch = True
 
             if player == 1:
