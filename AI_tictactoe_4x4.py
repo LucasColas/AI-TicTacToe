@@ -316,7 +316,7 @@ def main():
     start = [-1,1]
     player = random.choice(start)
     run = True
-    Grid.print_grid()
+    Grid.print_grid(board)
     color = (0,255,0,0)
     alpha = -infinity
     beta = infinity
@@ -355,11 +355,7 @@ def main():
 
         if player == 1 and not Grid.game_over:
             ai_turn(board,depth,player)
-            if Grid.switch:
-                if player == -1:
-                    player = 1
-                else:
-                    player = -1
+            player = -1
             Grid.print_grid(board)
 
 
