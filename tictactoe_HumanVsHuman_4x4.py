@@ -70,6 +70,15 @@ class Grid():
         else:
             self.switch = False
 
+    def get_valid_locations():
+        valid_locations = []
+        for x, row in enumerate(self.grid2):
+            for y, box in enumerate(row):
+                if box == 0 and box != -1 and box != 1:
+                    valid_locations.append([x, y])
+
+        return valid_locations
+
     def check_rows(self, player):
         for row in self.grid2:
             if row[0] == row[1] == row[2] == row[3] == player:
@@ -141,6 +150,7 @@ def redraw_window():
 
     Grid.draw(Win)
     pygame.display.flip()
+
 
 
 def main():
