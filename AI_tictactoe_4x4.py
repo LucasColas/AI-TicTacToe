@@ -184,13 +184,18 @@ def eval_score(board, piece):
                 if row.count(opp_piece) == i and row.count(piece) == j:
                     score -= (2*i + 2*j)
 
+
     for col in range(len(board)):
         column = []
         for row in board:
             column.append(row[col])
         for i in range(3):
-            if check.count(piece) == i:
+            if column.count(piece) == i:
                 score += 2*i + 4
+
+
+
+
 
 def evaluate(board):
 
