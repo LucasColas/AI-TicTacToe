@@ -167,7 +167,8 @@ def put_in_the_box(board,x,y, value):
     return board[y][x] == value
 
 
-def eval_score(board, piece):
+
+def eval_window(board, piece):
     score = 0
     AI_piece = AI
     opp_piece = -1
@@ -191,6 +192,13 @@ def eval_score(board, piece):
         for i in range(3):
             if column.count(piece) == i:
                 score += 2*i + 4
+
+    diags = []
+    for pos in range(len(board)):
+        diags.append(board[pos][pos])
+    for i in range(3):
+
+
 
 
     return score
