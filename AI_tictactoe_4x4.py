@@ -350,7 +350,11 @@ def main():
 
         if player == 1 and not Grid.game_over:
             ai_turn(Board,depth,player)
-
+            if Grid.switch:
+                if player == 1:
+                    player = -1
+                else:
+                    player = 1
             Grid.print_grid(Board)
 
 
