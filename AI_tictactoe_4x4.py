@@ -5,6 +5,12 @@ import random
 import time
 from math import inf as infinity
 
+"""
+Rules :
+place three noughts in a horizontal, vertical, or diagonal row
+before the AI to win.
+"""
+
 pygame.font.init()
 
 Width, Height = 750, 750
@@ -160,46 +166,6 @@ def get_valid_locations(board):
 def put_in_the_box(board,x,y, value):
     return board[y][x] == value
 
-def rewards(board, player):
-    score = 0
-    opp_piece = -1
-    if player == -1:
-        opp_piece = 1
-
-    if board.count(player) == 4:
-        score += 400
-
-    if board.count(player) == 3 and board.count(-1) == 1:
-        score += 50
-
-    if board.count(player) == 2 and board.count(-1) == 2:
-        score += 10
-
-    if board.count(player) == 1 and board.count(-1) == 3:
-        score -= 10
-
-    if board.count(player) == 1:
-        score += 3
-
-    if board.count(player) == 2:
-        score += 6
-
-    if board.count(player) == 3:
-        score += 10
-
-    if board.count(opp_piece) == 3 and board.count(-1) == 1:
-        score -= 10
-
-    if board.count(opp_piece) == 2 :
-        score -= 20
-
-    if board.count(opp_piece) == 3:
-        score -= 30
-
-    if board.count(opp_piece) == 4:
-        score -= 400
-
-    return score
 
 def eval_score(board, piece):
     score = 0
@@ -218,10 +184,13 @@ def eval_score(board, piece):
                 if row.count(opp_piece) == i and row.count(piece) == j:
                     score -= (2*i + 2*j)
 
-    
-
-
-
+    for col in range(len(board)):
+        column = []
+        for row in board:
+            column.append(row[col])
+        for i in range(3):
+            if check.count(piece) == i:
+                
 
 def evaluate(board):
 
