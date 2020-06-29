@@ -261,9 +261,10 @@ def minimax(board, depth, Player):
     for box in valid_locations:
         x = box[0]
         y = box[1]
-        board[x][y] = Player
+        new_board = board.copy()
+        new_board[x][y] = Player
         info = minimax(board, depth-1, -AI)
-        board[x][y] = 0
+        new_board[x][y] = 0
         info[0], info[1] = x,y
 
         if Player == AI: #Maximizing
@@ -283,15 +284,19 @@ def valid_move(board, x,y):
 
 def set_move(board, x,y, player):
     if valid_move(board, x,y):
-        board[x][y] = player
+        #board[x][y] = player
         return True
     else:
         return False
 
 def ai_turn(board, depth, player):
-    move = minimax(board, depth, player)
-    x,y = move[0], move[1]
-    Grid.get_mouse(board, x,y, player)
+    Done = False
+    while not Done:
+        move = minimax(board, depth, player)
+        x,y = move[0], move[1]
+        if set_move(board,x,y, player):
+            Grid.get_mouse(board, x,y, player)
+            Done = True
 
 
 def redraw_window(board):
@@ -345,7 +350,7 @@ def main():
 
         if player == 1 and not Grid.game_over:
             ai_turn(Board,depth,player)
-            player = -1
+
             Grid.print_grid(Board)
 
 
