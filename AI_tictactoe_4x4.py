@@ -177,7 +177,7 @@ def eval_score(board, piece):
     for row in board:
         for j in range(3):
             if row.count(piece) == j:
-                score += 5*j + 1
+                score += 5*j + 4
 
         for i in range(2):
             for j in range(2):
@@ -190,7 +190,7 @@ def eval_score(board, piece):
             column.append(row[col])
         for i in range(3):
             if check.count(piece) == i:
-                
+                score += 2*i + 4
 
 def evaluate(board):
 
