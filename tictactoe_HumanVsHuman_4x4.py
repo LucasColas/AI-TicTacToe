@@ -182,7 +182,7 @@ def main():
                         else:
                             player = -1
                     Grid.print_grid()
-                    print(valid_locations)
+                    print("valid locations :", valid_locations)
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE and Grid.game_over:
