@@ -284,19 +284,27 @@ def valid_move(board, x,y):
 
 def set_move(board, x,y, player):
     if valid_move(board, x,y):
-        #board[x][y] = player
+        board[x][y] = player
         return True
     else:
         return False
 
-def ai_turn(board, depth, player):
-    Done = False
-    while not Done:
-        move = minimax(board, depth, player)
-        x,y = move[0], move[1]
-        if set_move(board,x,y, player):
-            Grid.get_mouse(board, x,y, player)
-            Done = True
+def ai_turn(board, player):
+    depth = len(get_valid_locations(board))
+
+    if depth == 0 or game_over(board):
+        return
+
+    if depth == 16:
+        x = choice([0, 1, 2, 3])
+        y = choice([0, 1, 2, 3])
+
+    else:
+        box_pos = minimax(board, depth, player)
+        x,y = box_pos[0], box_pos[1]
+
+    set_move(board, x,y, player)
+    time.sleep(1)
 
 
 def redraw_window(board):
@@ -349,7 +357,7 @@ def main():
 
 
         if player == 1 and not Grid.game_over:
-            ai_turn(Board,depth,player)
+            ai_turn(Board,player)
             if Grid.switch:
                 if player == 1:
                     player = -1
