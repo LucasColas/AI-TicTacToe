@@ -193,6 +193,8 @@ def eval_score(board, piece):
             if column.count(piece) == i:
                 score += 2*i + 4
 
+    
+
 
 
 
