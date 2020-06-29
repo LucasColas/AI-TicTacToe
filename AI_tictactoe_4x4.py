@@ -2,6 +2,7 @@ import pygame
 import sys
 import os
 import random
+import time
 from math import inf as infinity
 
 pygame.font.init()
