@@ -208,33 +208,17 @@ def eval_score(board, piece):
     if piece == -1:
         opp_piece = AI
 
-
     for row in board:
-        if row.count(piece) == 0:
-            score += 5
-        if row.count(piece) == 1:
-            score += 10
+        for j in range(3):
+            if row.count(piece) == j:
+                score += 5*j + 1
 
-        if row.count(piece) == 2:
-            score += 15
+        for i in range(2):
+            for j in range(2):
+                if row.count(opp_piece) == i and row.count(piece) == j:
+                    score -= (2*i + 2*j)
 
-        if row.count(piece) == 3:
-            score += 30
-
-        if row.count(opp_piece) == 1:
-            score -= 12
-
-        if row.count(opp_piece) == 2:
-            score += 20
-
-        if row.count(opp_piece) == 3:
-            score += 50
-
-        if row.count(piece) == 1 and row.count(opp_piece) == 3:
-            score -= 12
-
-        if row.count(piece) == 2 and row.count(opp_piece) == 2:
-            score -= 12
+    
 
 
 
