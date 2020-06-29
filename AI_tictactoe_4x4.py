@@ -339,7 +339,7 @@ def main():
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE and Grid.game_over:
-                    Grid.reset()
+                    Grid.reset(Board)
                     Grid.game_over = False
 
             if event.type == pygame.MOUSEBUTTONDOWN and not Grid.game_over:
