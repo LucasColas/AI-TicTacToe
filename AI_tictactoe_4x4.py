@@ -201,15 +201,53 @@ def rewards(board, player):
 
     return score
 
+def eval_score(board, piece):
+    score = 0
+    AI_piece = AI
+    opp_piece = -1
+    if piece == -1:
+        opp_piece = AI
+
+
+    for row in board:
+        if row.count(piece) == 0:
+            score += 5
+        if row.count(piece) == 1:
+            score += 10
+
+        if row.count(piece) == 2:
+            score += 15
+
+        if row.count(piece) == 3:
+            score += 30
+
+        if row.count(opp_piece) == 1:
+            score -= 12
+
+        if row.count(opp_piece) == 2:
+            score += 20
+
+        if row.count(opp_piece) == 3:
+            score += 50
+
+        if row.count(piece) == 1 and row.count(opp_piece) == 3:
+            score -= 12
+
+        if row.count(piece) == 2 and row.count(opp_piece) == 2:
+            score -= 12
+
+
+
+
 def evaluate(board):
 
     score = 0
 
     if check_game(board, -1):
-        score -= 5
+        score -= 50
 
     elif check_game(board, 1):
-        score += 5
+        score += 50
 
     else:
         score = 0
@@ -248,7 +286,7 @@ def game_over(board):
 
 def minimax(board, depth, Player):
     valid_locations = get_valid_locations(board)
-    print(valid_locations)
+    print("minimax valid loc ",valid_locations)
 
     if Player == AI:
         best = [-1,-1,-infinity]
@@ -263,7 +301,7 @@ def minimax(board, depth, Player):
         x = box[0]
         y = box[1]
         new_board = board.copy()
-        new_board[x][y] = Player
+        new_board[y][x] = Player
         info = minimax(board, depth-1, -AI)
         new_board[x][y] = 0
         info[0], info[1] = x,y
@@ -285,7 +323,7 @@ def valid_move(board, x,y):
 
 def set_move(board, x,y, player):
     if valid_move(board, x,y):
-        board[x][y] = player
+        board[y][x] = player
         return True
     else:
         return False
@@ -305,7 +343,7 @@ def ai_turn(board, player):
         x,y = box_pos[0], box_pos[1]
 
     set_move(board, x,y, player)
-    time.sleep(1)
+    #time.sleep(1)
 
 
 def redraw_window(board):
