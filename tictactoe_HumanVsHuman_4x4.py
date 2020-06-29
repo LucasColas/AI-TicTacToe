@@ -70,7 +70,7 @@ class Grid():
         else:
             self.switch = False
 
-    def get_valid_locations():
+    def get_valid_locations(self):
         valid_locations = []
         for x, row in enumerate(self.grid2):
             for y, box in enumerate(row):
