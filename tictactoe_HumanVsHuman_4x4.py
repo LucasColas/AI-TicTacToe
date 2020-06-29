@@ -159,6 +159,7 @@ def main():
     run = True
     Grid.print_grid()
     color = (0,255,0,0)
+    valid_locations = Grid.get_valid_locations()
     while run:
         clock.tick(FPS)
         fill(Circle, color)
@@ -181,6 +182,7 @@ def main():
                         else:
                             player = -1
                     Grid.print_grid()
+                    print(valid_locations)
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE and Grid.game_over:
