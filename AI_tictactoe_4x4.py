@@ -197,6 +197,7 @@ def eval_window(board, piece):
     for pos in range(len(board)):
         diags.append(board[pos][pos])
     for i in range(3):
+        pass
 
 
 
