@@ -133,7 +133,7 @@ class Grid():
     def reset(self, board):
         for y in range(len(board)):
             for x in range(len(board[y])):
-                self.set_cell_value(x, y, 0)
+                self.set_cell_value(board,x, y, 0)
 
     def print_grid(self, board):
         for row in board:
@@ -297,8 +297,8 @@ def ai_turn(board, player):
         return
 
     if depth == 16:
-        x = choice([0, 1, 2, 3])
-        y = choice([0, 1, 2, 3])
+        x = random.choice([0, 1, 2, 3])
+        y = random.choice([0, 1, 2, 3])
 
     else:
         box_pos = minimax(board, depth, player)
