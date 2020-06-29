@@ -196,8 +196,6 @@ def eval_score(board, piece):
     return score
 
 
-
-
 def evaluate(board):
 
     score = 0
