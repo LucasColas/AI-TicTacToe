@@ -209,7 +209,6 @@ def eval_window(board, piece):
 
 
 
-
     return score
 
 
