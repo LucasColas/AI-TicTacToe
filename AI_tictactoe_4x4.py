@@ -201,6 +201,7 @@ def eval_window(board, piece):
             score += 3*i+4
 
     diags_2 = []
+    for indx, value in enumerate
 
 
 
