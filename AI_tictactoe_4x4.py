@@ -223,11 +223,8 @@ def evaluate(board):
     if check_game(board, -1):
         score -= 50
 
-    elif check_game(board, 1):
+    if check_game(board, 1):
         score += 50
-
-    else:
-        score = 0
 
     return score
 
