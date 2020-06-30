@@ -201,7 +201,11 @@ def eval_window(board, piece):
             score += 3*i+4
 
     diags_2 = []
-    for indx, value in enumerate
+    for idx, rev_idx in enumerate(reversed(range(len(board)))):
+        diags_2.append(board[idx][rev_idx])
+    for i in range(3):
+        if column.count(piece) == i:
+            score += 3*i+4
 
 
 
