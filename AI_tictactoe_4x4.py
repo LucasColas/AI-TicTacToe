@@ -158,7 +158,7 @@ def get_valid_locations(board):
     valid_locations = []
     for x, row in enumerate(board):
         for y, box in enumerate(row):
-            if box == 0 and box != -1 and box != 1:
+            if box == 0:
                 valid_locations.append([x, y])
 
     return valid_locations
