@@ -167,7 +167,6 @@ def put_in_the_box(board,x,y, value):
     return board[y][x] == value
 
 
-
 def eval_window(board, piece):
     score = 0
     AI_piece = AI
@@ -179,11 +178,13 @@ def eval_window(board, piece):
         for j in range(3):
             if row.count(piece) == j:
                 score += 5*j + 4
+    print(score)
 
-        for i in range(2):
-            for j in range(2):
-                if row.count(opp_piece) == i and row.count(piece) == j:
-                    score -= (2*i + 2*j)
+    for i in range(2):
+        for j in range(2):
+            if row.count(opp_piece) == i and row.count(piece) == j:
+                score -= (2*i + 2*j)
+    print(score)
 
     for col in range(len(board)):
         column = []
@@ -192,13 +193,15 @@ def eval_window(board, piece):
         for i in range(3):
             if column.count(piece) == i:
                 score += 2*i + 4
+    print(score)
 
     diags = []
     for pos in range(len(board)):
         diags.append(board[pos][pos])
     for i in range(3):
-        if column.count(piece) == i:
+        if diags.count(piece) == i:
             score += 3*i+4
+    print(score)
 
     diags_2 = []
     for idx, rev_idx in enumerate(reversed(range(len(board)))):
@@ -206,8 +209,7 @@ def eval_window(board, piece):
     for i in range(3):
         if column.count(piece) == i:
             score += 3*i+4
-
-
+    print(score)
 
     return score
 
@@ -270,6 +272,7 @@ def minimax(board, depth, Player):
 
     if game_over(board) or depth == 0 or len(valid_locations) == 0:
         score = evaluate(board)
+        print(score)
         return [-1, -1, score]
 
     for box in valid_locations:
