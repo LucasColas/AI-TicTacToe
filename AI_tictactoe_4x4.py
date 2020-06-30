@@ -197,7 +197,10 @@ def eval_window(board, piece):
     for pos in range(len(board)):
         diags.append(board[pos][pos])
     for i in range(3):
-        pass
+        if column.count(piece) == i:
+            score += 3*i+4
+
+    diags_2 = []
 
 
 
@@ -209,7 +212,7 @@ def evaluate(board):
 
     score = 0
 
-    score = eval_score(board, 1)
+    score = eval_window(board, 1)
 
     if check_game(board, -1):
         score -= 50
