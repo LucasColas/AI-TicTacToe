@@ -304,7 +304,6 @@ def set_move(board, x,y, player):
         return False
 
 def ai_turn(board, player):
-    Good = False
     depth = len(get_valid_locations(board))
 
     if depth == 0 or game_over(board):
@@ -315,14 +314,10 @@ def ai_turn(board, player):
         y = random.choice([0, 1, 2, 3])
 
     else:
-        while not Good:
+        box_pos = minimax(board, depth, player)
+        x,y = box_pos[0], box_pos[1]
 
-            box_pos = minimax(board, depth, player)
-            x,y = box_pos[0], box_pos[1]
-            if valid_move(board,x,y):
-                set_move(board,x,y,player)
-                Good = False
-                break
+    set_move(board, x,y, player)
     #time.sleep(1)
 
 
