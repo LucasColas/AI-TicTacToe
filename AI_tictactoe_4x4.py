@@ -291,7 +291,7 @@ def minimax(board, depth, Player):
         return best
 
 def valid_move(board, x,y):
-    if [x,y] in get_valid_locations(board):
+    if board[y][x] == 0:
         return True
     else:
         return False
