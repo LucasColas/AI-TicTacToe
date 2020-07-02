@@ -36,11 +36,14 @@ def create_board():
 
 def print_board(board):
     #print(board)
+    Gap = Width // 3
     for row in board:
         print(row)
 
 def draw_board(board):
-    for i in range(3)
+    for i in range(3):
+
+
 
 def redraw_window(board):
 
