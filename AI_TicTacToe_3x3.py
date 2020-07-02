@@ -22,6 +22,14 @@ FPS = 80
 AI = 1
 Human = -1
 
+def fill(surface, color):
+    w, h = surface.get_size()
+    r, g, b, _ = color
+    for x in range(w):
+        for y in range(h):
+            a = surface.get_at((x, y))[3]
+            surface.set_at((x, y), pygame.Color(r, g, b, a))
+
 def create_board():
     new_board = [[0 for i in range(3)] for j in range(3)]
     return new_board
@@ -31,6 +39,15 @@ def print_board(board):
     for row in board:
         print(row)
 
-
 board = create_board()
-print_board(board)
+
+def main():
+    run = True
+    green = (0,255,0,0)
+
+    while run:
+        fill(Circle, green)
+        
+        for event in event.pygame.get():
+            if event.type == pygame.QUIT:
+                quit()
