@@ -25,6 +25,7 @@ clock = pygame.time.Clock()
 FPS = 80
 
 AI = 1
+switch = True
 
 def Create_Board():
     Game_Board = [[0 for x in range(4)] for y in range(4)]
@@ -46,7 +47,6 @@ class Grid():
         self.Cross = Cross
         self.Circle = Circle
 
-        self.switch = True
         self.game_over = False
 
     def draw(self, board, window):
@@ -69,7 +69,7 @@ class Grid():
 
     def get_mouse(self, board, x, y, player):
         if self.get_cell_value(board, x,y) == 0:
-            self.switch = True
+            switch = True
 
             if player == 1:
                 self.set_cell_value(board,x,y, 1)
@@ -82,7 +82,7 @@ class Grid():
             self.check_game(board)
 
         else:
-            self.switch = False
+            switch = False
 
     def check_rows(self, board,player):
         for row in board:
@@ -295,10 +295,10 @@ def valid_move(board, x,y):
 def set_move(board, x,y, player):
     if valid_move(board, x,y):
         board[y][x] = player
-        Grid.switch = True
+        switch = True
         return True
     else:
-        Grid.switch = False
+        switch = False
         return False
 
 def ai_turn(board):
@@ -358,7 +358,7 @@ def main():
                     if player == -1 and not Grid.game_over:
                         #print(pos[0] // (Width // 4), pos[1] // (Height // 4))
                         Grid.get_mouse(Board, pos[0] // (Width // 4), pos[1] // (Height // 4), player)
-                        if Grid.switch:
+                        if switch:
                             if player == -1:
                                 player = 1
                             else:
@@ -368,7 +368,7 @@ def main():
 
         if player == 1 and not Grid.game_over:
             ai_turn(Board,1)
-            if Grid.switch:
+            if switch:
                 if player == 1:
                     player = -1
                 else:
