@@ -366,7 +366,7 @@ def main():
                         Grid.print_grid(Board)
 
 
-        if player == 1 and not Grid.game_over:
+        if player == AI and not Grid.game_over:
             ai_turn(Board,1)
             if switch:
                 if player == 1:
