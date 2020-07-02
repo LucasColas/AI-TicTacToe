@@ -26,6 +26,10 @@ FPS = 80
 
 AI = 1
 
+def Create_Board():
+    Game_Board = [[0 for x in range(4)] for y in range(4)]
+    return Game_Board
+
 def fill(surface, color):
     w, h = surface.get_size()
     r, g, b, _ = color
@@ -145,13 +149,6 @@ class Grid():
             print(row)
 
 Grid = Grid()
-
-def good_box(board, x,y):
-    return board[y][x] == 0
-
-def good_box2(board, x,y):
-    if board[y][x] == 0:
-        return x,y
 
 def get_valid_locations(board):
     valid_locations = []
@@ -280,7 +277,7 @@ def minimax(board, depth, Player):
         new_board[x][y] = 0
         info[0], info[1] = x,y
 
-        if Player == 1: #Maximizing
+        if Player == AI: #Maximizing
             if info[2] > best[2]:
                 best = info
         else: #Minimizing
@@ -290,7 +287,7 @@ def minimax(board, depth, Player):
     return best
 
 def valid_move(board, x,y):
-    if board[y][x] == 0:
+    if [x,y] in get_valid_locations(board):
         return True
     else:
         return False
@@ -298,13 +295,14 @@ def valid_move(board, x,y):
 def set_move(board, x,y, player):
     if valid_move(board, x,y):
         board[y][x] = player
+        Grid.switch = True
         return True
     else:
+        Grid.switch = False
         return False
 
-def ai_turn(board, player):
+def ai_turn(board):
     depth = len(get_valid_locations(board))
-
     if depth == 0 or game_over(board):
         return
 
@@ -313,11 +311,11 @@ def ai_turn(board, player):
         y = random.choice([0, 1, 2, 3])
 
     else:
-        box_pos = minimax(board, depth, player)
+        box_pos = minimax(board, depth, AI)
         x,y = box_pos[0], box_pos[1]
 
-    set_move(board, x,y, player)
-    #time.sleep(1)
+    set_move(board, x,y, AI)
+    time.sleep(1)
 
 
 def redraw_window(board):
@@ -326,13 +324,10 @@ def redraw_window(board):
     Grid.draw(board, Win)
     pygame.display.flip()
 
-def Board():
-    return [[0 for x in range(4)] for y in range(4)]
+Board = Create_Board()
 
 def main():
-
-    Board = Board()
-
+    global Board
     start = [-1,1]
     player = random.choice(start)
     run = True
@@ -344,8 +339,6 @@ def main():
     while run:
         clock.tick(FPS)
         fill(Circle, color)
-
-
         redraw_window(Board)
         Win.fill(pygame.Color('lightskyblue4'))
 
@@ -382,5 +375,5 @@ def main():
                     player = 1
             Grid.print_grid(Board)
 
-
-main()
+if __name__ == "__main__":
+    main()
