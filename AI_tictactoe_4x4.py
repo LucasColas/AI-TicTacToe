@@ -24,7 +24,6 @@ Circle = pygame.transform.scale(pygame.image.load(os.path.join("assets", "circle
 clock = pygame.time.Clock()
 FPS = 80
 
-Board = [[0 for x in range(4)] for y in range(4)]
 AI = 1
 
 def fill(surface, color):
@@ -327,8 +326,12 @@ def redraw_window(board):
     Grid.draw(board, Win)
     pygame.display.flip()
 
+def Board():
+    return [[0 for x in range(4)] for y in range(4)]
 
 def main():
+
+    Board = Board()
 
     start = [-1,1]
     player = random.choice(start)
