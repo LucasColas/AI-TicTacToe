@@ -40,7 +40,7 @@ def print_board(board):
         print(row)
 
 def draw_board(board):
-    pass
+    for i in range(3)
 
 def redraw_window(board):
 
