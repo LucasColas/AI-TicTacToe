@@ -271,9 +271,9 @@ def minimax(board, depth, Player):
     for box in valid_locations:
         x = box[0]
         y = box[1]
-        board[x][y] = Player
+        board[y][x] = Player
         info = minimax(board, depth-1, -AI)
-        board[x][y] = 0
+        board[y][x] = 0
         info[0], info[1] = x,y
 
         if Player == AI: #Maximizing
