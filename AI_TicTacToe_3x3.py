@@ -47,7 +47,8 @@ def main():
 
     while run:
         fill(Circle, green)
-        
+
         for event in event.pygame.get():
             if event.type == pygame.QUIT:
                 quit()
+            
