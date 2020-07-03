@@ -24,6 +24,9 @@ Circle = pygame.transform.scale(pygame.image.load(os.path.join("assets", "circle
 Bg = (0,0,0)
 Clock = pygame.time.Clock()
 
+AI = 1
+Human = -1
+
 FPS = 80
 
 def fill(surface, color):
@@ -37,6 +40,8 @@ def fill(surface, color):
 def create_board():
     new_board = [[0 for i in range(3)] for j in range(3)]
     return new_board
+
+def
 
 def print_board(board):
     #print(board)
@@ -61,8 +66,6 @@ board = create_board()
 
 def main():
     global board
-    AI = 1
-    Human = -1
     #turn = random.choice([-1,1])
     turn = 1
     run = True
@@ -83,7 +86,8 @@ def main():
                     print("Yes 2")
                     pos = pygame.mouse.get_pos()
                     if turn == Human and not game_over:
-                        print("pos", pos[0]//(Width//3), pos[1]//(Width//3))
+                        #print("pos", pos[0]//(Width//3), pos[1]//(Width//3))
+
 
 
 main()
