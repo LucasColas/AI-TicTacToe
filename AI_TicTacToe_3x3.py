@@ -36,18 +36,21 @@ def create_board():
 
 def print_board(board):
     #print(board)
-    Gap = Width // 3
     for row in board:
         print(row)
 
-def draw_board(board):
-    for i in range(3):
+def draw_board(Win):
+    for i in range(1,3): #Draw vertical lines
+        pygame.draw.line(Win, (255,255,255), (Width*(i/3),0), (Width*(i/3), Height), 1)
+
+    for j in range(1,3): #Draw horizontal lines
+        pygame.draw.line(Win, (255,255,255), (0,Width*(j/3)), (Width, Width*(j/3)), 1)
 
 
-
-def redraw_window(board):
+def redraw_window(Win):
 
     Win.fill(Bg)
+    draw_board(Win)
     pygame.display.update()
 
 board = create_board()
@@ -59,10 +62,11 @@ def main():
 
     while run:
         Clock.tick(FPS)
-        redraw_window(board)
+        redraw_window(Win)
         fill(Circle, green)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 quit()
+        
 
 main()
