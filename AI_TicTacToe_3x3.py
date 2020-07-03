@@ -5,9 +5,16 @@ from math import inf as infinity
 import sys
 import os
 
+"""
+
+TicTacToe
+Made with pygame
+
+"""
+
 pygame.font.init()
 
-Width, Height = 750,750
+Width, Height = 770,770
 Win = pygame.display.set_mode((Width, Height))
 
 
@@ -18,9 +25,6 @@ Bg = (0,0,0)
 Clock = pygame.time.Clock()
 
 FPS = 80
-
-AI = 1
-Human = -1
 
 def fill(surface, color):
     w, h = surface.get_size()
@@ -57,8 +61,13 @@ board = create_board()
 
 def main():
     global board
+    AI = 1
+    Human = -1
+    #turn = random.choice([-1,1])
+    turn = 1
     run = True
     green = (0,255,0,0)
+    game_over = False
 
     while run:
         Clock.tick(FPS)
@@ -67,6 +76,14 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 quit()
-        
+
+            if event.type == pygame.MOUSEBUTTONDOWN and not game_over:
+                print("Yes")
+                if pygame.mouse.get_pressed()[0] and turn == Human:
+                    print("Yes 2")
+                    pos = pygame.mouse.get_pos()
+                    if turn == Human and not game_over:
+                        print("pos", pos[0]//(Width//3), pos[1]//(Width//3))
+
 
 main()
