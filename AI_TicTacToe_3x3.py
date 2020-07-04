@@ -41,6 +41,23 @@ def create_board():
     new_board = [[0 for i in range(3)] for j in range(3)]
     return new_board
 
+
+def check_game(board, player):
+
+    for row in board:
+        if row[0] == row[1] == row[2] == player:
+            print("player", player, "wins")
+
+    for col in range(len(board)):
+        check = []
+        for row in board:
+            check.append(row[col])
+
+
+
+
+
+
 def empty_cells(board):
     empty_cells = []
     for x,row in enumerate(board):
@@ -107,8 +124,10 @@ def main():
                         if valid_locations(board,pos[0]//(Width//3), pos[1]//(Width//3),turn):
                             turn = AI
 
+
             if turn == AI and not game_over:
-                
+                pass
+
 
 
 
