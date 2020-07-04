@@ -87,6 +87,9 @@ def valid_locations(board,x,y,player):
         board[y][x] = player
         return True
 
+def terminal_node(board):
+    return check_game(board, 1) or check_game(board,-1)
+
 
 def print_board(board):
     #print(board)
@@ -174,7 +177,7 @@ def main():
                 x,y = [1,1]
             else:
                 x,y = minimax()
-                
+
             if valid_locations(board,x,y, turn):
                 if check_game(board, turn):
                     game_over = True
