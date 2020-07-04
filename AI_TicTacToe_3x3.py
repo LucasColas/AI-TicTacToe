@@ -165,8 +165,16 @@ def main():
 
 
         if turn == AI and not game_over:
+            """
+            #select randomly
             random_pos = random.randint(0,len(empty_cells(board))-1)
             x,y = empty_cells(board)[random_pos]
+            """
+            if [1,1] in empty_cells(board):
+                x,y = [1,1]
+            else:
+                x,y = minimax()
+                
             if valid_locations(board,x,y, turn):
                 if check_game(board, turn):
                     game_over = True
