@@ -102,11 +102,22 @@ def draw_board(Win):
     for j in range(1,3): #Draw horizontal lines
         pygame.draw.line(Win, (255,255,255), (0,Width*(j/3)), (Width, Width*(j/3)), 1)
 
+def draw_pieces(Win, board):
+    for x in range(len(board)):
+        for y in range(len(board)):
+            if board[y][x] == -1:
+                Win.blit(Circle, (x*(Width//3), y*(Width//3)))
+            elif board[y][x] == 1:
+                Win.blit(Cross, (x*(Width//3), y*(Width//3)))
 
-def redraw_window(Win):
+
+
+
+def redraw_window(Win, board):
 
     Win.fill(Bg)
     draw_board(Win)
+    draw_pieces(Win,board)
     pygame.display.update()
 
 board = create_board()
@@ -121,7 +132,7 @@ def main():
 
     while run:
         Clock.tick(FPS)
-        redraw_window(Win)
+        redraw_window(Win, board)
         fill(Circle, green)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -137,17 +148,24 @@ def main():
                         #board[pos[1]//(Width//3)][pos[0]//(Width//3)] = 1
                         #print(empty_cells(board))
                         if valid_locations(board,pos[0]//(Width//3), pos[1]//(Width//3),turn):
-                            #turn = AI
+                            check_game(board, turn)
+                            turn = AI
                             print("Gooooood")
                             print_board(board)
                             print(empty_cells(board))
-                        check_game(board, turn) :
+
 
 
 
 
         if turn == AI and not game_over:
-            pass
+            random_pos = random.randint(0,len(empty_cells(board))-1)
+
+            x,y = empty_cells(board)[random_pos]
+            if valid_locations(board,x,y, turn):
+                check_game(board, turn)
+                turn = Human
+                print("ok")
 
 
 
