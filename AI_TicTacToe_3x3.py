@@ -67,7 +67,7 @@ def check_game(board, player):
     diags_2 = []
     for indx, rev_indx in enumerate(reversed(range(len(board)))):
         diags_2.append(board[indx][rev_indx])
-    if diags.count(player) == len(diags_2) and diags_2[0] != 0:
+    if diags_2.count(player) == len(diags_2) and diags_2[0] != 0:
         print("player", player, "wins")
         return True
 
@@ -127,8 +127,7 @@ board = create_board()
 
 def main():
     global board
-    #turn = random.choice([-1,1])
-    turn = -1
+    turn = random.choice([-1,1])
     run = True
     green = (0,255,0,0)
     game_over = False
@@ -144,6 +143,7 @@ def main():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE and game_over:
                     reset_board(board)
+                    turn = random.choice([-1,1])
                     game_over = False
 
             if event.type == pygame.MOUSEBUTTONDOWN and turn == Human and not game_over:
@@ -168,7 +168,6 @@ def main():
 
         if turn == AI and not game_over:
             random_pos = random.randint(0,len(empty_cells(board))-1)
-
             x,y = empty_cells(board)[random_pos]
             if valid_locations(board,x,y, turn):
                 if check_game(board, turn):
