@@ -41,7 +41,22 @@ def create_board():
     new_board = [[0 for i in range(3)] for j in range(3)]
     return new_board
 
-def
+def empty_cells(board):
+    empty_cells = []
+    for x,row in enumerate(board):
+        for y,case in enumerate(row):
+            if case == 0:
+                empty_cells.append([x,y])
+
+    return empty_cells
+
+def valid_locations(board,x,y,player):
+    if [x,y] in empty_cells(board):
+        print("good")
+        board[y][x] = player
+        return True
+
+
 
 def print_board(board):
     #print(board)
@@ -67,7 +82,7 @@ board = create_board()
 def main():
     global board
     #turn = random.choice([-1,1])
-    turn = 1
+    turn = -1
     run = True
     green = (0,255,0,0)
     game_over = False
@@ -80,13 +95,21 @@ def main():
             if event.type == pygame.QUIT:
                 quit()
 
-            if event.type == pygame.MOUSEBUTTONDOWN and not game_over:
-                print("Yes")
+            if event.type == pygame.MOUSEBUTTONDOWN and turn == Human and not game_over:
+                #print("Yes")
                 if pygame.mouse.get_pressed()[0] and turn == Human:
-                    print("Yes 2")
+                    #print("Yes 2")
                     pos = pygame.mouse.get_pos()
                     if turn == Human and not game_over:
                         #print("pos", pos[0]//(Width//3), pos[1]//(Width//3))
+                        #board[pos[1]//(Width//3)][pos[0]//(Width//3)] = 1
+                        #print(empty_cells(board))
+                        if valid_locations(board,pos[0]//(Width//3), pos[1]//(Width//3),turn):
+                            turn = AI
+
+            if turn == AI and not game_over:
+                
+
 
 
 
