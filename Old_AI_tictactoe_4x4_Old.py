@@ -215,12 +215,13 @@ def evaluate(board):
     score = 0
 
     score = eval_window(board, 1)
-
     if check_game(board, -1):
         score -= 50
 
     if check_game(board, 1):
         score += 50
+
+    
 
     return score
 

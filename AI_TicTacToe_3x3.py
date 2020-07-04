@@ -90,6 +90,44 @@ def valid_locations(board,x,y,player):
 def terminal_node(board):
     return check_game(board, 1) or check_game(board,-1)
 
+def evaluate(board):
+    score = 0
+    if check_game(board, 1):
+        score += 10
+    elif check_game(board, -1):
+        score -= 10
+
+    for row in board:
+            for j in range(len(row)):
+                if row.count(j) == 1:
+                    score += 2*j + 2
+            for i in range(len(row)):
+                if row.count(i) == -1:
+                    score -= j + 3
+
+
+
+    return score
+
+
+
+
+def minimax(board, depth, MaximizingPlayer, player):
+    terminal_node = terminal_node(board)
+    empty_cells = empty_cells(board)
+
+    if depth == 0 or terminal_node:
+        if check_game(board, -1):
+            return [0,0,-infinity]
+        if check_game(board, 1):
+            return [0,0, infinity]
+        else:
+
+            return [0,0, score]
+    for piece in empty_cells(board):
+        x,y = piece
+        info = minimax()
+
 
 
 def print_board(board):
