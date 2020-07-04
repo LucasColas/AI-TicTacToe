@@ -47,21 +47,37 @@ def check_game(board, player):
     for row in board:
         if row[0] == row[1] == row[2] == player:
             print("player", player, "wins")
+            return True
 
     for col in range(len(board)):
         check = []
         for row in board:
             check.append(row[col])
+        if check.count(player) == len(check) and check[0] != 0:
+            print("player", player, "wins")
+            return True
 
+    diags = []
+    for indx in range(len(board)):
+        diags.append(board[indx][indx])
+    if diags.count(player) == len(diags) and diags[0] != 0:
+        print("player", player, "wins")
+        return True
 
+    diags_2 = []
+    for indx, rev_indx in enumerate(reversed(range(len(board)))):
+        diags_2.append(board[indx][rev_indx])
+    if diags.count(player) == len(diags_2) and diags_2[0] != 0:
+        print("player", player, "wins")
+        return True
 
 
 
 
 def empty_cells(board):
     empty_cells = []
-    for x,row in enumerate(board):
-        for y,case in enumerate(row):
+    for y,row in enumerate(board):
+        for x,case in enumerate(row):
             if case == 0:
                 empty_cells.append([x,y])
 
@@ -72,7 +88,6 @@ def valid_locations(board,x,y,player):
         print("good")
         board[y][x] = player
         return True
-
 
 
 def print_board(board):
@@ -113,22 +128,26 @@ def main():
                 quit()
 
             if event.type == pygame.MOUSEBUTTONDOWN and turn == Human and not game_over:
-                #print("Yes")
+                print("Yes")
                 if pygame.mouse.get_pressed()[0] and turn == Human:
-                    #print("Yes 2")
+                    print("Yes 2")
                     pos = pygame.mouse.get_pos()
                     if turn == Human and not game_over:
-                        #print("pos", pos[0]//(Width//3), pos[1]//(Width//3))
+                        print("pos", pos[0]//(Width//3), pos[1]//(Width//3))
                         #board[pos[1]//(Width//3)][pos[0]//(Width//3)] = 1
                         #print(empty_cells(board))
                         if valid_locations(board,pos[0]//(Width//3), pos[1]//(Width//3),turn):
-                            turn = AI
+                            #turn = AI
+                            print("Gooooood")
+                            print_board(board)
+                            print(empty_cells(board))
+                        check_game(board, turn) :
 
 
-            if turn == AI and not game_over:
-                pass
 
 
+        if turn == AI and not game_over:
+            pass
 
 
 
