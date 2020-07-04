@@ -95,6 +95,12 @@ def print_board(board):
     for row in board:
         print(row)
 
+def reset_board(board):
+    for x, row in enumerate(board):
+        for y in range(len(row)):
+            board[y][x] = 0
+
+
 def draw_board(Win):
     for i in range(1,3): #Draw vertical lines
         pygame.draw.line(Win, (255,255,255), (Width*(i/3),0), (Width*(i/3), Height), 1)
@@ -109,9 +115,6 @@ def draw_pieces(Win, board):
                 Win.blit(Circle, (x*(Width//3), y*(Width//3)))
             elif board[y][x] == 1:
                 Win.blit(Cross, (x*(Width//3), y*(Width//3)))
-
-
-
 
 def redraw_window(Win, board):
 
@@ -138,9 +141,14 @@ def main():
             if event.type == pygame.QUIT:
                 quit()
 
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE and game_over:
+                    reset_board(board)
+                    game_over = False
+
             if event.type == pygame.MOUSEBUTTONDOWN and turn == Human and not game_over:
                 print("Yes")
-                if pygame.mouse.get_pressed()[0] and turn == Human:
+                if pygame.mouse.get_pressed()[0] and turn == Human and not game_over:
                     print("Yes 2")
                     pos = pygame.mouse.get_pos()
                     if turn == Human and not game_over:
@@ -148,13 +156,13 @@ def main():
                         #board[pos[1]//(Width//3)][pos[0]//(Width//3)] = 1
                         #print(empty_cells(board))
                         if valid_locations(board,pos[0]//(Width//3), pos[1]//(Width//3),turn):
-                            check_game(board, turn)
+                            if check_game(board, turn):
+                                print("stop")
+                                game_over = True
                             turn = AI
                             print("Gooooood")
                             print_board(board)
                             print(empty_cells(board))
-
-
 
 
 
@@ -163,7 +171,8 @@ def main():
 
             x,y = empty_cells(board)[random_pos]
             if valid_locations(board,x,y, turn):
-                check_game(board, turn)
+                if check_game(board, turn):
+                    game_over = True
                 turn = Human
                 print("ok")
 
