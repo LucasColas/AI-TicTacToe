@@ -91,6 +91,7 @@ def terminal_node(board):
     return check_game(board, 1) or check_game(board,-1)
 
 
+
 def print_board(board):
     #print(board)
     for row in board:
