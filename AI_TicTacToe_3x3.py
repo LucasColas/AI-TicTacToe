@@ -72,8 +72,6 @@ def check_game(board, player):
         return True
 
 
-
-
 def empty_cells(board):
     empty_cells = []
     for y,row in enumerate(board):
