@@ -125,16 +125,26 @@ def minimax(board, depth, MaximizingPlayer, player):
 
             return [0,0, score]
     if MaximizingPlayer:
-
+        value = -infinity
         for piece in empty_cells(board):
-            value = -infinity
             x,y = piece
             board[y][x] = player
             info = minimax(board, depth-1, True, -player)
             max_score = max(value, info[2])
-
             if max_score > value:
                 value = max_score
+        return info
+    else:
+        value = -infinity
+        for piece in empty_cells(board):
+            x,y = piece
+            board[y][x] = player
+            info = minimax(board, depth-1, True, -player)
+            min_score = min(value, info[2])
+            if min_score < value:
+                value = min_score
+        return info
+
 
 
 
