@@ -120,11 +120,12 @@ def end(board):
         return score
 
 
-def minimax(board, depth, MaximizingPlayer, player):
+def minimax(board, depth, MaximizingPlayer):
     terminal_node = is_terminal_node(board)
 
     if depth == 0 or terminal_node:
         score = end(board)
+        print("end")
         return [0,0,score]
 
     if MaximizingPlayer:
@@ -132,26 +133,32 @@ def minimax(board, depth, MaximizingPlayer, player):
         x,y = random.choice([0,1,2]),random.choice([0,1,2])
         max_score = 0
         for piece in empty_cells(board):
-            x,y = piece
-            new_board = board.copy()
-            new_board[y][x] = player
-            info = minimax(new_board, depth-1, False, -player)
-            max_score = max(value, info[2])
-            if max_score > value:
-                value = max_score
+            if len(empty_cells(board)) == 0:
+                return
+            else:
+                x,y = piece
+                new_board = board.copy()
+                new_board[y][x] = 1
+                info = minimax(new_board, depth-1, False)
+                max_score = max(value, info[2])
+                if max_score > value:
+                    value = max_score
         return [x,y,max_score]
     else:
         value = infinity
         x,y = random.choice([0,1,2]),random.choice([0,1,2])
         min_score = 0
         for piece in empty_cells(board):
-            x,y = piece
-            new_board = board.copy()
-            new_board[y][x] = player
-            info = minimax(new_board, depth-1, True, -player)
-            min_score = min(value, info[2])
-            if min_score < value:
-                value = min_score
+            if len(empty_cells(board)) == 0:
+                return
+            else:
+                x,y = piece
+                new_board = board.copy()
+                new_board[y][x] = -1
+                info = minimax(new_board, depth-1, True)
+                min_score = min(value, info[2])
+                if min_score < value:
+                    value = min_score
         return [x,y,min_score]
 
 
@@ -240,8 +247,7 @@ def main():
             if [1,1] in empty_cells(board):
                 x,y = [1,1]
             else:
-                x,y,score = minimax(board, depth, True, turn)
-
+                x,y,score = minimax(board, 2, True)
             if valid_locations(board,x,y, turn):
                 if check_game(board, turn):
                     game_over = True
