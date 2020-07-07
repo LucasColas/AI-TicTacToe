@@ -129,6 +129,7 @@ def minimax(board, depth, MaximizingPlayer, player):
 
     if MaximizingPlayer:
         value = -infinity
+        x,y = random.choice([0,1,2]),random.choice([0,1,2]) 
         for piece in empty_cells(board):
             x,y = piece
             new_board = board.copy()
@@ -140,6 +141,7 @@ def minimax(board, depth, MaximizingPlayer, player):
         return [x,y,max_score]
     else:
         value = infinity
+        x,y = random.choice([0,1,2]),random.choice([0,1,2])
         for piece in empty_cells(board):
             x,y = piece
             new_board = board.copy()
