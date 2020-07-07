@@ -125,8 +125,14 @@ def minimax(board, depth, MaximizingPlayer, player):
 
             return [0,0, score]
     for piece in empty_cells(board):
+        value = -infinity
         x,y = piece
-        info = minimax()
+        board[y][x] = player
+        info = minimax(board, depth-1, True, -player)
+        max_score = max(value, info[2])
+        
+
+
 
 
 
@@ -205,7 +211,6 @@ def main():
                             print(empty_cells(board))
 
 
-
         if turn == AI and not game_over:
             """
             #select randomly
@@ -216,6 +221,7 @@ def main():
                 x,y = [1,1]
             else:
                 x,y = minimax()
+
 
             if valid_locations(board,x,y, turn):
                 if check_game(board, turn):
