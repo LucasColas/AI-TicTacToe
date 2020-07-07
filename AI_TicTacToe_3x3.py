@@ -87,7 +87,7 @@ def valid_locations(board,x,y,player):
         board[y][x] = player
         return True
 
-def terminal_node(board):
+def is_terminal_node(board):
     return check_game(board, 1) or check_game(board,-1)
 
 def evaluate(board):
@@ -105,38 +105,41 @@ def evaluate(board):
                 if row.count(i) == -1:
                     score -= j + 3
 
-
-
     return score
 
-
+def end(board):
+    score = 0
+    if check_game(board, -1):
+        score -= 5
+        return score
+    elif check_game(board, 1):
+        score += 5
+        return score
+    else:
+        score = 0
+        return score
 
 
 def minimax(board, depth, MaximizingPlayer, player):
-    terminal_node = terminal_node(board)
-    empty_cells = empty_cells(board)
+    terminal_node = is_terminal_node(board)
 
     if depth == 0 or terminal_node:
-        if check_game(board, -1):
-            return [0,0,-infinity]
-        if check_game(board, 1):
-            return [0,0, infinity]
-        else:
+        score = end(board)
+        return [0,0,score]
 
-            return [0,0, score]
     if MaximizingPlayer:
         value = -infinity
         for piece in empty_cells(board):
             x,y = piece
             new_board = board.copy()
             new_board[y][x] = player
-            info = minimax(new_board, depth-1, True, -player)
+            info = minimax(new_board, depth-1, False, -player)
             max_score = max(value, info[2])
             if max_score > value:
                 value = max_score
-        return info
+        return [x,y,max_score]
     else:
-        value = -infinity
+        value = infinity
         for piece in empty_cells(board):
             x,y = piece
             new_board = board.copy()
@@ -145,13 +148,7 @@ def minimax(board, depth, MaximizingPlayer, player):
             min_score = min(value, info[2])
             if min_score < value:
                 value = min_score
-        return info
-
-
-
-
-
-
+        return [x,y,min_score]
 
 
 def print_board(board):
@@ -195,6 +192,7 @@ def main():
     run = True
     green = (0,255,0,0)
     game_over = False
+    depth = len(empty_cells(board))
 
     while run:
         Clock.tick(FPS)
@@ -238,8 +236,7 @@ def main():
             if [1,1] in empty_cells(board):
                 x,y = [1,1]
             else:
-                x,y = minimax()
-
+                x,y = minimax(board, depth, True, turn)
 
             if valid_locations(board,x,y, turn):
                 if check_game(board, turn):
