@@ -124,13 +124,13 @@ def end(board):
 def minimax(board, depth, player):
     terminal_node = is_terminal_node(board)
     if player == 1:
-        best = [None,None,-infinity]
+        best = [-1,-1,-infinity]
     else:
-        best = [None, None, infinity]
+        best = [-1, -1, infinity]
 
     if depth == 0 or terminal_node:
         score = end(board)
-        return [None, None,score]
+        return [-1, -1,score]
 
     for cell in empty_cells(board):
         x,y = cell[0], cell[1]
@@ -143,7 +143,7 @@ def minimax(board, depth, player):
             if info[2] > best[2]:
                 best = info
         else:
-            if score[2] < best[2]:
+            if info[2] < best[2]:
                 best = info
 
     return best
