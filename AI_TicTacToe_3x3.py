@@ -119,49 +119,54 @@ def end(board):
         score = 0
         return score
 
-def next_piece()
 
 
-def minimax(board, depth, MaximizingPlayer):
+def minimax(board, depth, player):
     terminal_node = is_terminal_node(board)
+    if player == 1:
+        best = [None,None,-infinity]
+    else:
+        best = [None, None, infinity]
 
     if depth == 0 or terminal_node:
         score = end(board)
-        print("end")
-        return [0,0,score]
+        return [None, None,score]
 
-    if MaximizingPlayer:
-        value = -infinity
-        x,y = random.choice([0,1,2]),random.choice([0,1,2])
-        max_score = 0
-        for piece in empty_cells(board):
-            if len(empty_cells(board)) == 0:
-                return
-            else:
-                x,y = piece
-                new_board = board.copy()
-                new_board[y][x] = 1
-                info = minimax(new_board, depth-1, False)
-                max_score = max(value, info[2])
-                if max_score > value:
-                    value = max_score
-        return [x,y,max_score]
+    for cell in empty_cells(board):
+        x,y = cell[0], cell[1]
+        board[y][x] = player
+        info = minimax(board, depth, -player)
+        board[y][x] = 0
+        info[0], info[1] = x,y
+
+        if player == 1:
+            if info[2] > best[2]:
+                best = info
+        else:
+            if score[2] < best[2]:
+                best = info
+
+    return best
+
+def ai_turn(board):
+    depth = len(empty_cells(board))
+    terminal_node = is_terminal_node(board)
+
+    if depth == 0 or terminal_node:
+        return
+
+    if depth == 9:
+        if [1,1] in empty_cells(board):
+            x,y = 1,1
+        else:
+            x = random.choice([0,1,2])
+            y = random.choice([0,1,2])
     else:
-        value = infinity
-        x,y = random.choice([0,1,2]),random.choice([0,1,2])
-        min_score = 0
-        for piece in empty_cells(board):
-            if len(empty_cells(board)) == 0:
-                return
-            else:
-                x,y = piece
-                new_board = board.copy()
-                new_board[y][x] = -1
-                info = minimax(new_board, depth-1, True)
-                min_score = min(value, info[2])
-                if min_score < value:
-                    value = min_score
-        return [x,y,min_score]
+        info = minimax(board, depth, 1)
+        x,y = info[0], info[1]
+    valid_locations(board,x,y,1)
+
+
 
 
 def print_board(board):
