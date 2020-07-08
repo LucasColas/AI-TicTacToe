@@ -167,8 +167,6 @@ def ai_turn(board):
     valid_locations(board,x,y,1)
 
 
-
-
 def print_board(board):
     #print(board)
     for row in board:
@@ -254,7 +252,7 @@ def main():
             if [1,1] in empty_cells(board):
                 x,y = [1,1]
             else:
-                x,y,score = minimax(board, 2, True)
+                x,y,score = ai_turn(board)
             if valid_locations(board,x,y, turn):
                 if check_game(board, turn):
                     game_over = True
