@@ -164,6 +164,7 @@ def ai_turn(board):
     else:
         info = minimax(board, depth, 1)
         x,y = info[0], info[1]
+
     valid_locations(board,x,y,1)
 
 
@@ -252,12 +253,9 @@ def main():
             if [1,1] in empty_cells(board):
                 x,y = [1,1]
             else:
-                x,y,score = ai_turn(board)
-            if valid_locations(board,x,y, turn):
-                if check_game(board, turn):
-                    game_over = True
-                turn = Human
-                print("ok")
+                ai_turn(board)
+            check_game(board, AI)
+            turn = Human
 
 
 
