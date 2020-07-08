@@ -4,6 +4,7 @@ import math
 from math import inf as infinity
 import sys
 import os
+import time
 
 """
 
@@ -166,6 +167,7 @@ def ai_turn(board):
         x,y = info[0], info[1]
 
     valid_locations(board,x,y,1)
+    time.sleep(2)
 
 
 def print_board(board):
@@ -252,9 +254,11 @@ def main():
             """
             if [1,1] in empty_cells(board):
                 x,y = [1,1]
+                board[y][x] = AI
             else:
                 ai_turn(board)
-            check_game(board, AI)
+            if check_game(board, AI):
+                game_over = True
             turn = Human
 
 
