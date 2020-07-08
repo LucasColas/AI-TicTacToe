@@ -119,6 +119,8 @@ def end(board):
         score = 0
         return score
 
+def next_piece()
+
 
 def minimax(board, depth, MaximizingPlayer):
     terminal_node = is_terminal_node(board)
