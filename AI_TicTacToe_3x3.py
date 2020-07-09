@@ -127,12 +127,13 @@ def end(board):
 
 def minimax(board, depth, alpha, beta, player):
     terminal_node = is_terminal_node(board)
+    print("depth in minimax", depth)
     if player == 1:
         best = [-1,-1,-infinity]
     else:
         best = [-1, -1, infinity]
 
-    if depth == 0 or terminal_node:
+    if depth <= 0 or terminal_node:
         score = end(board)
         return [-1, -1,score]
 
@@ -172,6 +173,7 @@ def ai_turn(board, alpha, beta):
             x = random.choice([0,1,2])
             y = random.choice([0,1,2])
     else:
+        print("depth", depth)
         info = minimax(board, depth, alpha, beta,1)
         x,y = info[0], info[1]
 
