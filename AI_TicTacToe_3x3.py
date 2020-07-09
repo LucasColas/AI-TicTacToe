@@ -9,7 +9,10 @@ import time
 """
 
 TicTacToe
-Made with pygame
+Made with pygame.
+You (you have circles) play against an AI (it has crosses).
+For the AI I used Minimax algorithm.
+The player who begins is selected randomly
 
 """
 
