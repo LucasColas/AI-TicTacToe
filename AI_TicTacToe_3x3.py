@@ -174,7 +174,7 @@ def ai_turn(board, alpha, beta):
             y = random.choice([0,1,2])
     else:
         print("depth", depth)
-        info = minimax(board, depth, alpha, beta,1)
+        info = minimax(board, 3, alpha, beta,1)
         x,y = info[0], info[1]
 
     valid_locations(board,x,y,1)
@@ -228,6 +228,8 @@ def main():
         Clock.tick(FPS)
         redraw_window(Win, board)
         fill(Circle, green)
+        if check_game(board, 1) or check_game(board, -1):
+            game_over = True
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 quit()
@@ -248,7 +250,7 @@ def main():
                         #board[pos[1]//(Width//3)][pos[0]//(Width//3)] = 1
                         #print(empty_cells(board))
                         if valid_locations(board,pos[0]//(Width//3), pos[1]//(Width//3),turn):
-                            if check_game(board, turn):
+                            if check_game(board, -1):
                                 print("stop")
                                 game_over = True
                             turn = AI
@@ -270,7 +272,7 @@ def main():
                 alpha = -infinity
                 beta = infinity
                 ai_turn(board,alpha, beta)
-            if check_game(board, AI):
+            if check_game(board, 1):
                 game_over = True
             turn = Human
 
