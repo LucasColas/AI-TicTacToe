@@ -139,10 +139,9 @@ def minimax(board, depth, alpha, beta, player):
 
     for cell in empty_cells(board):
         x,y = cell[0], cell[1]
-        new_board = board.copy()
-        new_board[y][x] = player
-        info = minimax(new_board, depth-1, alpha, beta, -player)
-        #board[y][x] = 0
+        board[y][x] = player
+        info = minimax(board, depth-1, alpha, beta, -player)
+        board[y][x] = 0
         info[0], info[1] = x,y
 
         if player == 1:
@@ -179,7 +178,7 @@ def ai_turn(board, alpha, beta):
         x,y = info[0], info[1]
 
     valid_locations(board,x,y,1)
-    time.sleep(2)
+    #time.sleep()
 
 
 def print_board(board):
