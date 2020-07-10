@@ -139,9 +139,10 @@ def minimax(board, depth, alpha, beta, player):
 
     for cell in empty_cells(board):
         x,y = cell[0], cell[1]
-        board[y][x] = player
-        info = minimax(board, depth-1, alpha, beta, -player)
-        board[y][x] = 0
+        new_board = board.copy()
+        new_board[y][x] = player
+        info = minimax(new_board, depth-1, alpha, beta, -player)
+        #board[y][x] = 0
         info[0], info[1] = x,y
 
         if player == 1:
