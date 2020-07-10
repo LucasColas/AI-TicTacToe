@@ -1,13 +1,15 @@
 # AI-TicTacToe
 
-I'm still working on ! But you can run : 
+You can run this file :
 ```
 AI_tictactoe_4x4.py
 ```
 or 
 ```
-tictactoe_HumanVsHuman_4x4.py
+tictactoe_HumanVsHuman_3x3.py
 ```
+
+If you have any suggestions, leave them ;)
 
 
 # Requirements
