@@ -266,7 +266,7 @@ def main():
             random_pos = random.randint(0,len(empty_cells(board))-1)
             x,y = empty_cells(board)[random_pos]
             """
-            if [1,1] in empty_cells(board):
+            if [1,1] in empty_cells(board): #If the middle cell is available, use it.
                 x,y = [1,1]
                 board[y][x] = AI
             else:
