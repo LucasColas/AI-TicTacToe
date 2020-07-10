@@ -74,6 +74,9 @@ def check_game(board, player):
     if diags_2.count(player) == len(diags_2) and diags_2[0] != 0:
         print("player", player, "wins")
         return True
+    if len(empty_cells(board)) == 0:
+        print("No winner")
+        return True
 
 
 def empty_cells(board):
@@ -174,7 +177,7 @@ def ai_turn(board, alpha, beta):
             y = random.choice([0,1,2])
     else:
         print("depth", depth)
-        info = minimax(board, 3, alpha, beta,1)
+        info = minimax(board, depth, alpha, beta,1)
         x,y = info[0], info[1]
 
     valid_locations(board,x,y,1)
@@ -228,8 +231,6 @@ def main():
         Clock.tick(FPS)
         redraw_window(Win, board)
         fill(Circle, green)
-        if check_game(board, 1) or check_game(board, -1):
-            game_over = True
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 quit()
