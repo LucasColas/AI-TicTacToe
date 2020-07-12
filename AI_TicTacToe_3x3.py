@@ -74,6 +74,7 @@ def check_game(board, player):
     if diags_2.count(player) == len(diags_2) and diags_2[0] != 0:
         print("player", player, "wins")
         return True
+
     if len(empty_cells(board)) == 0:
         print("No winner")
         return True
@@ -210,7 +211,7 @@ def draw_pieces(Win, board):
             elif board[y][x] == 1:
                 Win.blit(Cross, (x*(Width//3), y*(Width//3)))
 
-def print_result(board, Win):
+def print_result(board, Win, player):
     Font = pygame.font.SysFont("monospace", 75)
     Yellow = (255,255,0)
     Play_again = Font.render("Play gain ? Press space bar", 1, Yellow)
@@ -220,11 +221,9 @@ def print_result(board, Win):
         Win.blit(AI_wins, ((Width/2 - AI_wins.get_width()), Height/2))
     elif check_game(board, -1):
         Win.blit(Player_wins, ((Width/2 - Player_wins.get_width()), Height/2))
+    elif check_game(board, player):
+        Win.blit(Play_again, ((Width/2 - Player_wins.get_width()), Height/2))
         
-
-
-
-
 
 
 def redraw_window(Win, board):
