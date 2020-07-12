@@ -223,10 +223,11 @@ def print_result(board, Win, player):
         Win.blit(Player_wins, ((Width/2 - Player_wins.get_width()), Height/2))
     elif check_game(board, player):
         Win.blit(Play_again, ((Width/2 - Player_wins.get_width()), Height/2))
-        
 
 
-def redraw_window(Win, board):
+
+
+def redraw_window(Win, board, player):
 
     Win.fill(Bg)
     draw_board(Win)
@@ -245,7 +246,7 @@ def main():
 
     while run:
         Clock.tick(FPS)
-        redraw_window(Win, board)
+        redraw_window(Win, board, turn)
         fill(Circle, green)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
