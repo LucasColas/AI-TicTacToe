@@ -217,17 +217,14 @@ def print_result(board, Win, player):
     Play_again = Font.render("Play gain ? Press space bar", 1, Yellow)
     AI_wins = Font.render("AI wins. Play again ? Press space bar", 1,Yellow)
     Player_wins = Font.render("Player wins. Play again ? Press space bar", 1,Yellow)
-    check_win = check_game(board, player)
-
-
-    if check_win[0] and check_win[1] == 1:
-        Win.blit(AI_wins, ((Width/2 - AI_wins.get_width()), Height/2))
-
-    if check_win[0] and check_win[1] == -1:
-        Win.blit(Player_wins, ((Width/2 - Player_wins.get_width()), Height/2))
-
-    if check_win[0] and check_win[1] == 42:
-        Win.blit(Play_again, ((Width/2 - Player_wins.get_width()), Height/2))
+    if check_game(board, player):
+        print("print result-check game")
+        if check_game(board,1):
+            Win.blit(AI_wins, ((Width/2 - AI_wins.get_width()), Height/2))
+        elif check_game(board,-1):
+            Win.blit(Player_wins, (Width/2, Height/2))
+        else:
+            Win.blit(Play_again, (Width/2, Height/2))
 
 
 def redraw_window(Win, board, player):
