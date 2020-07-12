@@ -231,19 +231,19 @@ def draw_pieces(Win, board):
             elif board[y][x] == 1:
                 Win.blit(Cross, (x*(Width//3), y*(Width//3)))
 
-def print_result(board, Win, player):
+def print_result(board, Win, player, AI_wins, Player_wins, No_one):
     Font = pygame.font.SysFont("monospace", 75)
     Yellow = (255,255,0)
     Play_again = Font.render("Play gain ? Press space bar", 1, Yellow)
     AI_wins = Font.render("AI wins. Play again ? Press space bar", 1,Yellow)
     Player_wins = Font.render("Player wins. Play again ? Press space bar", 1,Yellow)
-
+    print("AI_wins in print_result", AI_wins)
     if AI_wins:
-        Win.blit(AI_wins, (Width/2, Height/2))
+        Win.blit(AI_wins, (Width/4, Height/2))
     elif Player_wins:
-        Win.blit(Player_wins, (Width/2, Height/2))
+        Win.blit(Player_wins, (Width/4, Height/2))
     if No_one:
-        Win.blit(Play_again, (Width/2, Height/2))
+        Win.blit(Play_again, (Width/4, Height/2))
 
 
 def redraw_window(Win, board, player):
@@ -251,13 +251,16 @@ def redraw_window(Win, board, player):
     Win.fill(Bg)
     draw_board(Win)
     draw_pieces(Win,board)
-    print_result(board, Win,player)
+    print_result(board, Win,player,AI_wins, Player_wins, No_one)
     pygame.display.update()
 
 board = create_board()
 
 def main():
     global board
+    global AI_wins
+    global Player_wins
+    global No_one
     turn = random.choice([-1,1])
     run = True
     green = (0,255,0,0)
@@ -265,6 +268,7 @@ def main():
     depth = len(empty_cells(board))
 
     while run:
+        print(AI_wins)
         Clock.tick(FPS)
         redraw_window(Win, board, turn)
         fill(Circle, green)
