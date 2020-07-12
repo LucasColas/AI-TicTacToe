@@ -214,7 +214,14 @@ def print_result(board, Win):
     Font = pygame.font.SysFont("monospace", 75)
     Yellow = (255,255,0)
     Play_again = Font.render("Play gain ? Press space bar", 1, Yellow)
+    AI_wins = Font.render("AI wins. Play again ? Press space bar", 1,Yellow)
+    Player_wins = Font.render("Player wins. Play again ? Press space bar", 1,Yellow)
     if check_game(board, 1):
+        Win.blit(AI_wins, ((Width/2 - AI_wins.get_width()), Height/2))
+    elif check_game(board, -1):
+        Win.blit(Player_wins, ((Width/2 - Player_wins.get_width()), Height/2))
+        
+
 
 
 
