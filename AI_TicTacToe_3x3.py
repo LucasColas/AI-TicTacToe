@@ -239,7 +239,7 @@ def print_result(board, Win, player):
     Player_wins = Font.render("Player wins. Play again ? Press space bar", 1,Yellow)
 
     if AI_wins:
-        Win.blit(AI_wins, ((Width/2 - AI_wins.get_width()), Height/2))
+        Win.blit(AI_wins, (Width/2, Height/2))
     elif Player_wins:
         Win.blit(Player_wins, (Width/2, Height/2))
     if No_one:
