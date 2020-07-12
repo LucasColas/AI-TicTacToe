@@ -210,6 +210,16 @@ def draw_pieces(Win, board):
             elif board[y][x] == 1:
                 Win.blit(Cross, (x*(Width//3), y*(Width//3)))
 
+def print_result(board, Win):
+    Font = pygame.font.SysFont("monospace", 75)
+    Yellow = (255,255,0)
+    Play_again = Font.render("Play gain ? Press space bar", 1, Yellow)
+    if check_game(board, 1):
+
+
+
+
+
 def redraw_window(Win, board):
 
     Win.fill(Bg)
