@@ -32,6 +32,9 @@ AI = 1
 Human = -1
 
 FPS = 80
+AI_wins = False
+Player_wins = False
+No_one = False
 
 def fill(surface, color):
     w, h = surface.get_size()
@@ -51,6 +54,10 @@ def check_game(board, player):
     for row in board:
         if row[0] == row[1] == row[2] == player:
             print("player", player, "wins")
+            if player == 1:
+                AI_wins = True
+            if player == -1:
+                Player_wins = True
             return True
 
     for col in range(len(board)):
@@ -59,6 +66,10 @@ def check_game(board, player):
             check.append(row[col])
         if check.count(player) == len(check) and check[0] != 0:
             print("player", player, "wins")
+            if player == 1:
+                AI_wins = True
+            if player == -1:
+                Player_wins = True
             return True
 
     diags = []
@@ -66,6 +77,10 @@ def check_game(board, player):
         diags.append(board[indx][indx])
     if diags.count(player) == len(diags) and diags[0] != 0:
         print("player", player, "wins")
+        if player == 1:
+            AI_wins = True
+        if player == -1:
+            Player_wins = True
         return True
 
     diags_2 = []
@@ -73,10 +88,15 @@ def check_game(board, player):
         diags_2.append(board[indx][rev_indx])
     if diags_2.count(player) == len(diags_2) and diags_2[0] != 0:
         print("player", player, "wins")
+        if player == 1:
+            AI_wins = True
+        if player == -1:
+            Player_wins = True
         return True
 
     if len(empty_cells(board)) == 0:
         print("No winner")
+        No_one = True
         return True
 
 
@@ -217,14 +237,13 @@ def print_result(board, Win, player):
     Play_again = Font.render("Play gain ? Press space bar", 1, Yellow)
     AI_wins = Font.render("AI wins. Play again ? Press space bar", 1,Yellow)
     Player_wins = Font.render("Player wins. Play again ? Press space bar", 1,Yellow)
-    if check_game(board, player):
-        print("print result-check game")
-        if check_game(board,1):
-            Win.blit(AI_wins, ((Width/2 - AI_wins.get_width()), Height/2))
-        elif check_game(board,-1):
-            Win.blit(Player_wins, (Width/2, Height/2))
-        else:
-            Win.blit(Play_again, (Width/2, Height/2))
+
+    if AI_wins:
+        Win.blit(AI_wins, ((Width/2 - AI_wins.get_width()), Height/2))
+    elif Player_wins:
+        Win.blit(Player_wins, (Width/2, Height/2))
+    if No_one:
+        Win.blit(Play_again, (Width/2, Height/2))
 
 
 def redraw_window(Win, board, player):
@@ -258,6 +277,12 @@ def main():
                     reset_board(board)
                     turn = random.choice([-1,1])
                     game_over = False
+                    if AI_wins:
+                        AI_wins = False
+                    elif Player_wins:
+                        Player_wins = False
+                    else:
+                        No_one = False
 
             if event.type == pygame.MOUSEBUTTONDOWN and turn == Human and not game_over:
                 print("Yes")
