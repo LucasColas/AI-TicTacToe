@@ -182,6 +182,7 @@ def ai_turn(board, alpha, beta):
         print("depth", depth)
         info = minimax(board, depth, alpha, beta,1)
         x,y = info[0], info[1]
+        print("x,y", x,y)
 
     valid_locations(board,x,y,1)
     #time.sleep()
@@ -234,7 +235,7 @@ def redraw_window(Win, board, player, game_over, AI_wins, Player_wins):
     Win.fill(Bg)
     draw_board(Win)
     draw_pieces(Win,board)
-    print_result(board, Win,player, game_over, AI_wins, Player_wins)
+    #print_result(board, Win,player, game_over, AI_wins, Player_wins)
     pygame.display.update()
 
 board = create_board()
