@@ -214,19 +214,19 @@ def draw_pieces(Win, board):
                 Win.blit(Cross, (x*(Width//3), y*(Width//3)))
 
 def print_result(board, Win, player, game_over, AI_wins, Player_wins):
-    Font = pygame.font.SysFont("monospace", 75)
-    Yellow = (255,255,0)
+    Font = pygame.font.SysFont("monospace", 42)
+    Yellow = (0,0,255)
     Play_again = Font.render("Play gain ? Press space bar", 1, Yellow)
     AI_wins = Font.render("AI wins. Play again ? Press space bar", 1,Yellow)
     Player_wins = Font.render("Player wins. Play again ? Press space bar", 1,Yellow)
     #print("AI_wins in print_result", AI_wins)
     if game_over:
         if AI_wins:
-            Win.blit(AI_wins,(5, Height/2))
+            Win.blit(AI_wins,(5, Height/2 - (AI_wins.get_width()/2)))
         elif Player_wins:
-            Win.blit(Player_wins,(5, Height/2))
+            Win.blit(Player_wins,(5, Height/2 - (Player_wins.get_width()/2)))
         else:
-            Win.blit(Play_again, (5,Height/2))
+            Win.blit(No_one, (5,Height/2 - (No_one.get_width()/2)))
 
 
 def redraw_window(Win, board, player, game_over, AI_wins, Player_wins):
@@ -234,7 +234,7 @@ def redraw_window(Win, board, player, game_over, AI_wins, Player_wins):
     Win.fill(Bg)
     draw_board(Win)
     draw_pieces(Win,board)
-    print_result(board, Win,player, game_over)
+    print_result(board, Win,player, game_over, AI_wins, Player_wins)
     pygame.display.update()
 
 board = create_board()
