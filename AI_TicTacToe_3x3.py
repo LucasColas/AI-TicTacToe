@@ -213,19 +213,22 @@ def draw_pieces(Win, board):
             elif board[y][x] == 1:
                 Win.blit(Cross, (x*(Width//3), y*(Width//3)))
 
-def print_result(board, Win, player):
+def print_result(board, Win, player, game_over):
     Font = pygame.font.SysFont("monospace", 75)
     Yellow = (255,255,0)
     Play_again = Font.render("Play gain ? Press space bar", 1, Yellow)
     AI_wins = Font.render("AI wins. Play again ? Press space bar", 1,Yellow)
     Player_wins = Font.render("Player wins. Play again ? Press space bar", 1,Yellow)
     #print("AI_wins in print_result", AI_wins)
-    if AI_wins == True:
-        Win.blit(AI_wins, (Width/4, Height/2))
-    elif Player_wins == True:
-        Win.blit(Player_wins, (Width/4, Height/2))
-    if No_one == True:
-        Win.blit(Play_again, (Width/4, Height/2))
+    if game_over:
+        if check_game(board,1):
+            Win.blit(AI_wins, (Width/4, Height/2))
+
+        elif check_game(board, -1):
+            Win.blit(Player_wins, (Width/4, Height/2))
+
+        else:
+            Win.blit(Play_again, (Width/4, Height/2))
 
 
 def redraw_window(Win, board, player):
