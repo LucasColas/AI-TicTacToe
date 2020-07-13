@@ -213,7 +213,7 @@ def draw_pieces(Win, board):
             elif board[y][x] == 1:
                 Win.blit(Cross, (x*(Width//3), y*(Width//3)))
 
-def print_result(board, Win, player, game_over):
+def print_result(board, Win, player, game_over, AI_wins, Player_wins):
     Font = pygame.font.SysFont("monospace", 75)
     Yellow = (255,255,0)
     Play_again = Font.render("Play gain ? Press space bar", 1, Yellow)
@@ -229,8 +229,7 @@ def print_result(board, Win, player, game_over):
             Win.blit(Play_again, (5,Height/2))
 
 
-
-def redraw_window(Win, board, player, game_over):
+def redraw_window(Win, board, player, game_over, AI_wins, Player_wins):
 
     Win.fill(Bg)
     draw_board(Win)
