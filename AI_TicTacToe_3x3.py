@@ -51,10 +51,6 @@ def check_game(board, player):
     for row in board:
         if row[0] == row[1] == row[2] == player:
             print("player", player, "wins")
-            if player == 1:
-                AI_wins = True
-            if player == -1:
-                Player_wins = True
             return True
 
     for col in range(len(board)):
@@ -63,10 +59,7 @@ def check_game(board, player):
             check.append(row[col])
         if check.count(player) == len(check) and check[0] != 0:
             print("player", player, "wins")
-            if player == 1:
-                AI_wins = True
-            if player == -1:
-                Player_wins = True
+
             return True
 
     diags = []
@@ -74,10 +67,7 @@ def check_game(board, player):
         diags.append(board[indx][indx])
     if diags.count(player) == len(diags) and diags[0] != 0:
         print("player", player, "wins")
-        if player == 1:
-            AI_wins = True
-        if player == -1:
-            Player_wins = True
+
         return True
 
     diags_2 = []
@@ -85,10 +75,7 @@ def check_game(board, player):
         diags_2.append(board[indx][rev_indx])
     if diags_2.count(player) == len(diags_2) and diags_2[0] != 0:
         print("player", player, "wins")
-        if player == 1:
-            AI_wins = True
-        if player == -1:
-            Player_wins = True
+
         return True
 
     if len(empty_cells(board)) == 0:
@@ -255,9 +242,9 @@ board = create_board()
 
 def main():
     global board
-    AI_wins
-    Player_wins
-    No_one
+    AI_wins = False
+    Player_wins = False
+    No_one = False
     turn = random.choice([-1,1])
     run = True
     green = (0,255,0,0)
