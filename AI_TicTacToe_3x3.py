@@ -279,6 +279,7 @@ def main():
                         if valid_locations(board,pos[0]//(Width//3), pos[1]//(Width//3),turn):
                             if check_game(board, -1):
                                 print("stop")
+                                Player_wins = True
                                 game_over = True
                             turn = AI
                             print("Gooooood")
@@ -300,6 +301,7 @@ def main():
                 beta = infinity
                 ai_turn(board,alpha, beta)
             if check_game(board, 1):
+                AI_wins
                 game_over = True
             turn = Human
 
