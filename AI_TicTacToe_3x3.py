@@ -237,12 +237,12 @@ def print_result(board, Win, player, AI_wins, Player_wins, No_one):
     Play_again = Font.render("Play gain ? Press space bar", 1, Yellow)
     AI_wins = Font.render("AI wins. Play again ? Press space bar", 1,Yellow)
     Player_wins = Font.render("Player wins. Play again ? Press space bar", 1,Yellow)
-    print("AI_wins in print_result", AI_wins)
-    if AI_wins:
+    #print("AI_wins in print_result", AI_wins)
+    if AI_wins == True:
         Win.blit(AI_wins, (Width/4, Height/2))
-    elif Player_wins:
+    elif Player_wins == True:
         Win.blit(Player_wins, (Width/4, Height/2))
-    if No_one:
+    if No_one == True:
         Win.blit(Play_again, (Width/4, Height/2))
 
 
@@ -268,7 +268,7 @@ def main():
     depth = len(empty_cells(board))
 
     while run:
-        print(AI_wins)
+        #print(AI_wins)
         Clock.tick(FPS)
         redraw_window(Win, board, turn,AI_wins, Player_wins, No_one)
         fill(Circle, green)
