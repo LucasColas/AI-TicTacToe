@@ -32,9 +32,6 @@ AI = 1
 Human = -1
 
 FPS = 80
-AI_wins = False
-Player_wins = False
-No_one = False
 
 def fill(surface, color):
     w, h = surface.get_size()
@@ -258,9 +255,9 @@ board = create_board()
 
 def main():
     global board
-    global AI_wins
-    global Player_wins
-    global No_one
+    AI_wins
+    Player_wins
+    No_one
     turn = random.choice([-1,1])
     run = True
     green = (0,255,0,0)
