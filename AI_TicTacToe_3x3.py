@@ -221,8 +221,13 @@ def print_result(board, Win, player, game_over):
     Player_wins = Font.render("Player wins. Play again ? Press space bar", 1,Yellow)
     #print("AI_wins in print_result", AI_wins)
     if game_over:
-        if stg:
-            pass
+        if AI_wins:
+            Win.blit(AI_wins,(5, Height/2))
+        elif Player_wins:
+            Win.blit(Player_wins,(5, Height/2))
+        else:
+            Win.blit(Play_again, (5,Height/2))
+
 
 
 def redraw_window(Win, board, player, game_over):
@@ -294,7 +299,7 @@ def main():
             random_pos = random.randint(0,len(empty_cells(board))-1)
             x,y = empty_cells(board)[random_pos]
             """
-            
+
             if [1,1] in empty_cells(board): #If the middle cell is available, use it.
                 x,y = [1,1]
                 board[y][x] = AI
