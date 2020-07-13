@@ -235,7 +235,7 @@ def redraw_window(Win, board, player, game_over, AI_wins, Player_wins):
     Win.fill(Bg)
     draw_board(Win)
     draw_pieces(Win,board)
-    #print_result(board, Win,player, game_over, AI_wins, Player_wins)
+    #print_result(board, Win,player, game_over, AI_wins, Player_wins) #if you want to add a text when a party is over
     pygame.display.update()
 
 board = create_board()
