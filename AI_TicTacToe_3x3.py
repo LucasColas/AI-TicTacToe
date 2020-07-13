@@ -307,7 +307,7 @@ def main():
                 beta = infinity
                 ai_turn(board,alpha, beta)
             if check_game(board, 1):
-                AI_wins
+                AI_wins = True
                 game_over = True
             turn = Human
 
