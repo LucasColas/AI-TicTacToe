@@ -221,17 +221,11 @@ def print_result(board, Win, player, game_over):
     Player_wins = Font.render("Player wins. Play again ? Press space bar", 1,Yellow)
     #print("AI_wins in print_result", AI_wins)
     if game_over:
-        if check_game(board,1):
-            Win.blit(AI_wins, (Width/10, Height/2))
-
-        elif check_game(board, -1):
-            Win.blit(Player_wins, (Width/10, Height/2))
-
-        else:
-            Win.blit(Play_again, (Width/10, Height/2))
+        if stg:
+            pass
 
 
-def redraw_window(Win, board, player):
+def redraw_window(Win, board, player, game_over):
 
     Win.fill(Bg)
     draw_board(Win)
