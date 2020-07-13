@@ -222,13 +222,13 @@ def print_result(board, Win, player, game_over):
     #print("AI_wins in print_result", AI_wins)
     if game_over:
         if check_game(board,1):
-            Win.blit(AI_wins, (Width/4, Height/2))
+            Win.blit(AI_wins, (Width/10, Height/2))
 
         elif check_game(board, -1):
-            Win.blit(Player_wins, (Width/4, Height/2))
+            Win.blit(Player_wins, (Width/10, Height/2))
 
         else:
-            Win.blit(Play_again, (Width/4, Height/2))
+            Win.blit(Play_again, (Width/10, Height/2))
 
 
 def redraw_window(Win, board, player):
@@ -236,7 +236,7 @@ def redraw_window(Win, board, player):
     Win.fill(Bg)
     draw_board(Win)
     draw_pieces(Win,board)
-    print_result(board, Win,player)
+    print_result(board, Win,player, game_over)
     pygame.display.update()
 
 board = create_board()
@@ -255,7 +255,7 @@ def main():
     while run:
         #print(AI_wins)
         Clock.tick(FPS)
-        redraw_window(Win, board, turn)
+        redraw_window(Win, board, turn, game_over)
         fill(Circle, green)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
