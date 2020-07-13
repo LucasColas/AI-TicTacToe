@@ -75,12 +75,10 @@ def check_game(board, player):
         diags_2.append(board[indx][rev_indx])
     if diags_2.count(player) == len(diags_2) and diags_2[0] != 0:
         print("player", player, "wins")
-
         return True
 
     if len(empty_cells(board)) == 0:
         print("No winner")
-        No_one = True
         return True
 
 
@@ -215,7 +213,7 @@ def draw_pieces(Win, board):
             elif board[y][x] == 1:
                 Win.blit(Cross, (x*(Width//3), y*(Width//3)))
 
-def print_result(board, Win, player, AI_wins, Player_wins, No_one):
+def print_result(board, Win, player):
     Font = pygame.font.SysFont("monospace", 75)
     Yellow = (255,255,0)
     Play_again = Font.render("Play gain ? Press space bar", 1, Yellow)
@@ -230,12 +228,12 @@ def print_result(board, Win, player, AI_wins, Player_wins, No_one):
         Win.blit(Play_again, (Width/4, Height/2))
 
 
-def redraw_window(Win, board, player,AI_wins, Player_wins, No_one):
+def redraw_window(Win, board, player):
 
     Win.fill(Bg)
     draw_board(Win)
     draw_pieces(Win,board)
-    print_result(board, Win,player,AI_wins, Player_wins, No_one)
+    print_result(board, Win,player)
     pygame.display.update()
 
 board = create_board()
@@ -254,7 +252,7 @@ def main():
     while run:
         #print(AI_wins)
         Clock.tick(FPS)
-        redraw_window(Win, board, turn,AI_wins, Player_wins, No_one)
+        redraw_window(Win, board, turn)
         fill(Circle, green)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -267,9 +265,9 @@ def main():
                     game_over = False
                     if AI_wins:
                         AI_wins = False
-                    elif Player_wins:
+                    if Player_wins:
                         Player_wins = False
-                    else:
+                    if No_one:
                         No_one = False
 
             if event.type == pygame.MOUSEBUTTONDOWN and turn == Human and not game_over:
