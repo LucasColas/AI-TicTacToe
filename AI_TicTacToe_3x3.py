@@ -298,13 +298,9 @@ def main():
             x,y = empty_cells(board)[random_pos]
             """
 
-            if [1,1] in empty_cells(board): #If the middle cell is available, use it.
-                x,y = [1,1]
-                board[y][x] = AI
-            else:
-                alpha = -infinity
-                beta = infinity
-                ai_turn(board,alpha, beta)
+            alpha = -infinity
+            beta = +infinity
+            ai_turn(board,alpha, beta)
             if check_game(board, 1):
                 AI_wins = True
                 game_over = True
