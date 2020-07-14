@@ -95,90 +95,26 @@ def empty_cells(board):
 def valid_locations(board,x,y,player):
     if [x,y] in empty_cells(board):
         print("good")
-        board[y][x] = player
         return True
+
+def set_locations(board,x,y,player):
+    if valid_locations(board,x,y,player):
+        board[y][x] = player
 
 def is_terminal_node(board):
     return check_game(board, 1) or check_game(board,-1)
 
+
 def evaluate(board):
-    score = 0
-    if check_game(board, 1):
-        score += 10
-    elif check_game(board, -1):
-        score -= 10
-
-    for row in board:
-            for j in range(len(row)):
-                if row.count(j) == 1:
-                    score += 2*j + 2
-            for i in range(len(row)):
-                if row.count(i) == -1:
-                    score -= j + 3
-
-    return score
-
-def end(board):
-    score = 0
-    if check_game(board, -1):
-        score -= 5
-        return score
-    elif check_game(board, 1):
-        score += 5
-        return score
-    else:
-        score = 0
-        return score
+    pass
 
 
 
 def minimax(board, depth, player):
-    terminal_node = is_terminal_node(board)
-    print("depth in minimax", depth)
-    if player == 1:
-        best = [-1,-1,-infinity]
-    else:
-        best = [-1, -1, +infinity]
-
-    if depth == 0 or terminal_node:
-        score = end(board)
-        return [-1, -1,score]
-
-    for cell in empty_cells(board):
-        x,y = cell[0], cell[1]
-        board[y][x] = player
-        info = minimax(board, depth - 1, -player)
-        board[y][x] = 0
-        info[0], info[1] = x, y
-
-        if player == 1:
-            if info[2] > best[2]:
-                best = info
-
-        else:
-            if info[2] < best[2]:
-                best = info
-
-    return best
+    pass
 
 def ai_turn(board):
-    depth = len(empty_cells(board))
-    terminal_node = is_terminal_node(board)
-
-    if depth == 0 or terminal_node:
-        return
-
-    if depth == 9:
-            x = random.choice([0,1,2])
-            y = random.choice([0,1,2])
-    else:
-        print("depth", depth)
-        info = minimax(board, depth, 1)
-        x,y = info[0], info[1]
-        print("x,y", x,y)
-
-    valid_locations(board,x,y,1)
-    #time.sleep()
+    pass
 
 
 def print_board(board):
@@ -231,10 +167,10 @@ def redraw_window(Win, board, player, game_over, AI_wins, Player_wins):
     """
     pygame.display.update()
 
-board = create_board()
+game_board = create_board()
 
 def main():
-    global board
+    global game_board
     AI_wins = False
     Player_wins = False
     No_one = False
@@ -242,12 +178,12 @@ def main():
     run = True
     green = (0,255,0,0)
     game_over = False
-    depth = len(empty_cells(board))
+    depth = len(empty_cells(game_board))
 
     while run:
         #print(AI_wins)
         Clock.tick(FPS)
-        redraw_window(Win, board, turn, game_over, AI_wins, Player_wins)
+        redraw_window(Win, game_board, turn, game_over, AI_wins, Player_wins)
         fill(Circle, green)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -274,33 +210,28 @@ def main():
                         print("pos", pos[0]//(Width//3), pos[1]//(Width//3))
                         #board[pos[1]//(Width//3)][pos[0]//(Width//3)] = 1
                         #print(empty_cells(board))
-                        if valid_locations(board,pos[0]//(Width//3), pos[1]//(Width//3),turn):
-                            if check_game(board, -1):
+                        if valid_locations(game_board,pos[0]//(Width//3), pos[1]//(Width//3),turn):
+                            if check_game(game_board, -1):
                                 print("stop")
                                 Player_wins = True
                                 game_over = True
                             turn = AI
                             print("Gooooood")
-                            print_board(board)
-                            print(empty_cells(board))
+                            print_board(game_board)
+                            print(empty_cells(game_board))
 
 
         if turn == AI and not game_over:
 
-            """
+
             #select randomly
             random_pos = random.randint(0,len(empty_cells(board))-1)
             x,y = empty_cells(board)[random_pos]
 
-            """
-            #alpha = -infinity
-            #beta = +infinity
-            ai_turn(board)
+            set_locations(board,x,y, AI)
 
-            if valid_locations(board,x,y,1):
-                if check_game(board, 1):
-                    AI_wins = True
-                    game_over = True
+
+
             turn = Human
 
 
