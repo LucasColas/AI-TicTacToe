@@ -161,7 +161,7 @@ def minimax(board, depth, player):
 
     return best
 
-def ai_turn(board, alpha, beta):
+def ai_turn(board):
     depth = len(empty_cells(board))
     terminal_node = is_terminal_node(board)
 
@@ -173,7 +173,7 @@ def ai_turn(board, alpha, beta):
             y = random.choice([0,1,2])
     else:
         print("depth", depth)
-        info = minimax(board, depth, alpha, beta,1)
+        info = minimax(board, depth, 1)
         x,y = info[0], info[1]
         print("x,y", x,y)
 
@@ -293,9 +293,9 @@ def main():
             x,y = empty_cells(board)[random_pos]
 
             """
-            alpha = -infinity
-            beta = +infinity
-            ai_turn(board,alpha, beta)
+            #alpha = -infinity
+            #beta = +infinity
+            ai_turn(board)
 
             if valid_locations(board,x,y,1):
                 if check_game(board, 1):
