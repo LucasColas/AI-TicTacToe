@@ -100,6 +100,9 @@ def valid_locations(board,x,y,player):
 def set_locations(board,x,y,player):
     if valid_locations(board,x,y,player):
         board[y][x] = player
+        return True
+    else:
+        return False
 
 def is_terminal_node(board):
     return check_game(board, 1) or check_game(board,-1)
@@ -107,7 +110,6 @@ def is_terminal_node(board):
 
 def evaluate(board):
     pass
-
 
 
 def minimax(board, depth, player):
@@ -191,7 +193,7 @@ def main():
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE and game_over:
-                    reset_board(board)
+                    reset_board(game_board)
                     turn = random.choice([-1,1])
                     game_over = False
                     if AI_wins:
@@ -210,8 +212,8 @@ def main():
                         print("pos", pos[0]//(Width//3), pos[1]//(Width//3))
                         #board[pos[1]//(Width//3)][pos[0]//(Width//3)] = 1
                         #print(empty_cells(board))
-                        if valid_locations(game_board,pos[0]//(Width//3), pos[1]//(Width//3),turn):
-                            if check_game(game_board, -1):
+                        if set_locations(game_board,pos[0]//(Width//3), pos[1]//(Width//3),turn):
+                            if check_game(game_board, Human):
                                 print("stop")
                                 Player_wins = True
                                 game_over = True
@@ -225,14 +227,15 @@ def main():
 
 
             #select randomly
-            random_pos = random.randint(0,len(empty_cells(board))-1)
-            x,y = empty_cells(board)[random_pos]
+            random_pos = random.randint(0,len(empty_cells(game_board))-1)
+            x,y = empty_cells(game_board)[random_pos]
 
-            set_locations(board,x,y, AI)
+            if set_locations(game_board,x,y, AI):
+                if check_game(game_board, AI):
+                    AI_wins = True
+                    game_over = True
 
-
-
-            turn = Human
+                turn = Human
 
 
 main()
