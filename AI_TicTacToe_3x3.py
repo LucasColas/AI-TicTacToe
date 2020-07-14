@@ -131,6 +131,7 @@ def end(board):
         return score
 
 
+
 def minimax(board, depth, alpha, beta, player):
     terminal_node = is_terminal_node(board)
     print("depth in minimax", depth)
@@ -153,20 +154,15 @@ def minimax(board, depth, alpha, beta, player):
         if player == 1:
             if info[2] > best[2]:
                 best = info
-            """
-            alpha = max(alpha, best[2])
-            if alpha >= beta:
-                break
-            """
-
+            #alpha = max(alpha, best[2])
+            #if alpha >= beta:
+                #break
         else:
             if info[2] < best[2]:
                 best = info
-            """
-            beta = min(beta,best[2])
-            if beta <= alpha:
-                break
-            """
+            #beta = min(beta,best[2])
+            #if alpha >= beta:
+                #break
 
     return best
 
