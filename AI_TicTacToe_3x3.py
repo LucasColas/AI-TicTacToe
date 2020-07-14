@@ -181,7 +181,7 @@ def ai_turn(board, alpha, beta):
             y = random.choice([0,1,2])
     else:
         print("depth", depth)
-        info = minimax(board, depth, alpha, beta,1)
+        info = minimax(board, 12, alpha, beta,1)
         x,y = info[0], info[1]
         print("x,y", x,y)
 
