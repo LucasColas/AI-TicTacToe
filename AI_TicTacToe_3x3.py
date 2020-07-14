@@ -131,7 +131,6 @@ def end(board):
         return score
 
 
-
 def minimax(board, depth, alpha, beta, player):
     terminal_node = is_terminal_node(board)
     print("depth in minimax", depth)
