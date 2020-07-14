@@ -109,7 +109,15 @@ def is_terminal_node(board):
 
 
 def evaluate(board):
-    pass
+    score = 0
+    if check_game(board, 1):
+        score +=5
+    elif check_game(board,-1):
+        score -= 5
+    else:
+        score = 0
+
+    return score
 
 
 def minimax(board, depth, player):
@@ -180,7 +188,6 @@ def main():
     run = True
     green = (0,255,0,0)
     game_over = False
-    depth = len(empty_cells(game_board))
 
     while run:
         #print(AI_wins)
