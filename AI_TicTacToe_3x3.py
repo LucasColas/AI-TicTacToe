@@ -10,7 +10,8 @@ import time
 
 TicTacToe
 Made with pygame.
-You (you have circles) play against an AI (it has crosses).
+You play against an AI.
+You have circles. The AI has crosses.
 For the AI I used Minimax algorithm.
 The player who begins is selected randomly
 
@@ -236,6 +237,7 @@ def redraw_window(Win, board, player, game_over, AI_wins, Player_wins):
     draw_board(Win)
     draw_pieces(Win,board)
     #print_result(board, Win,player, game_over, AI_wins, Player_wins) #if you want to add a text when a party is over
+    """
     Font = pygame.font.SysFont("monospace", 42)
     Yellow = (0,0,255)
     Play_again = Font.render("Play gain ? Press space bar", 1, Yellow)
@@ -249,6 +251,7 @@ def redraw_window(Win, board, player, game_over, AI_wins, Player_wins):
             Win.blit(Player_wins,(5, Height/2 - (Player_wins.get_width()/2)))
         else:
             Win.blit(No_one, (5,Height/2 - (No_one.get_width()/2)))
+    """
     pygame.display.update()
 
 board = create_board()
