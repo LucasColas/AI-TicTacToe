@@ -154,15 +154,15 @@ def minimax(board, depth, alpha, beta, player):
         if player == 1:
             if info[2] > best[2]:
                 best = info
-            alpha = max(alpha, best[2])
-            if alpha >= beta:
-                break
+            #alpha = max(alpha, best[2])
+            #if alpha >= beta:
+                #break
         else:
             if info[2] < best[2]:
                 best = info
-            beta = min(beta,best[2])
-            if alpha >= beta:
-                break
+            #beta = min(beta,best[2])
+            #if alpha >= beta:
+                #break
 
     return best
 
@@ -221,7 +221,7 @@ def redraw_window(Win, board, player, game_over, AI_wins, Player_wins):
     Win.fill(Bg)
     draw_board(Win)
     draw_pieces(Win,board)
-    #if you want to add a text when a party is over : 
+    #if you want to add a text when a game is over :
     """
     Font = pygame.font.SysFont("monospace", 42)
     Yellow = (0,0,255)
