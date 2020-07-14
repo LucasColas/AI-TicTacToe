@@ -99,7 +99,7 @@ def valid_locations(board,x,y,player):
         return True
 
 def is_terminal_node(board):
-    return check_game(board, 1) or check_game(board,-1)
+    return check_game(board, 1) or check_game(board,-1) or len(empty_cells(board)) == 0
 
 def evaluate(board):
     score = 0
