@@ -138,7 +138,7 @@ def minimax(board, depth, alpha, beta, player):
     if player == 1:
         best = [-1,-1,-infinity]
     else:
-        best = [-1, -1, infinity]
+        best = [-1, -1, +infinity]
 
     if depth <= 0 or terminal_node:
         score = end(board)
@@ -147,7 +147,7 @@ def minimax(board, depth, alpha, beta, player):
     for cell in empty_cells(board):
         x,y = cell[0], cell[1]
         board[y][x] = player
-        info = minimax(board, depth-1, alpha, beta, -player)
+        info = minimax(board, depth - 1, alpha, beta, -player)
         board[y][x] = 0
         info[0], info[1] = x,y
 
@@ -174,14 +174,11 @@ def ai_turn(board, alpha, beta):
         return
 
     if depth == 9:
-        if [1,1] in empty_cells(board):
-            x,y = 1,1
-        else:
             x = random.choice([0,1,2])
             y = random.choice([0,1,2])
     else:
         print("depth", depth)
-        info = minimax(board, 12, alpha, beta,1)
+        info = minimax(board, depth, alpha, beta,1)
         x,y = info[0], info[1]
         print("x,y", x,y)
 
