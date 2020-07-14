@@ -292,18 +292,21 @@ def main():
 
         if turn == AI and not game_over:
 
-            """
+
             #select randomly
             random_pos = random.randint(0,len(empty_cells(board))-1)
             x,y = empty_cells(board)[random_pos]
-            """
 
+            """
             alpha = -infinity
             beta = +infinity
             ai_turn(board,alpha, beta)
-            if check_game(board, 1):
-                AI_wins = True
-                game_over = True
+            """
+            if valid_locations(board,x,y,1):
+                if check_game(board, 1):
+                    AI_wins = True
+                    game_over = True
             turn = Human
+
 
 main()
