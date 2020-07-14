@@ -154,16 +154,19 @@ def minimax(board, depth, alpha, beta, player):
         if player == 1:
             if info[2] > best[2]:
                 best = info
+
             alpha = max(alpha, best[2])
             if alpha >= beta:
-                return
+                break
+
         else:
             if info[2] < best[2]:
                 best = info
+
             beta = min(beta,best[2])
             if beta <= alpha:
-                return
-
+                break
+            
     return best
 
 def ai_turn(board, alpha, beta):
