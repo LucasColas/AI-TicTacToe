@@ -154,7 +154,7 @@ def minimax(board, depth, player):
         if player == 1:
             if info[2] > best[2]:
                 best = info
-                
+
         else:
             if info[2] < best[2]:
                 best = info
@@ -287,7 +287,7 @@ def main():
 
         if turn == AI and not game_over:
 
-
+            """
             #select randomly
             random_pos = random.randint(0,len(empty_cells(board))-1)
             x,y = empty_cells(board)[random_pos]
@@ -296,7 +296,7 @@ def main():
             alpha = -infinity
             beta = +infinity
             ai_turn(board,alpha, beta)
-            """
+
             if valid_locations(board,x,y,1):
                 if check_game(board, 1):
                     AI_wins = True
