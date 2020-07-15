@@ -136,9 +136,9 @@ def minimax(board, depth, player):
     for location in empty_cells(board):
         print(location)
         x, y = location[0], location[1]
-        state[y][x] = player
+        board[y][x] = player
         info = minimax(board, depth - 1, -player)
-        state[y][x] = 0
+        board[y][x] = 0
         info[0], info[1] = x,y
 
         if player == AI:
@@ -154,12 +154,12 @@ def minimax(board, depth, player):
 def ai_turn(board):
     depth = len(empty_cells(board))
 
-    if depth == 0 or game_over(board):
+    if depth == 0 or is_terminal_node(board):
         return
 
     if depth == 9:
-        x = choice([0,1,2])
-        y = choice([0,1,2])
+        x = random.choice([0,1,2])
+        y = random.choice([0,1,2])
     else:
         move = minimax(board, depth, AI)
         x,y = move[0], move[1]
@@ -278,7 +278,7 @@ def main():
             x,y = empty_cells(game_board)[random_pos]
             """
 
-            ai_turn(board)
+            ai_turn(game_board)
             if check_game(game_board, AI):
                 AI_wins = True
                 game_over = True
