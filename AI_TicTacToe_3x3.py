@@ -137,7 +137,7 @@ def minimax(board, depth, player):
         print(location)
         x, y = location[0], location[1]
         board[y][x] = player
-        info = minimax(board, depth - 1, -player)
+        info = minimax(board, depth-1, -player)
         board[y][x] = 0
         info[0], info[1] = x,y
 
