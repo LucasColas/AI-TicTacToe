@@ -152,7 +152,21 @@ def minimax(board, depth, player):
     return best
 
 def ai_turn(board):
-    pass
+    depth = len(empty_cells(board))
+
+    if depth == 0 or game_over(board):
+        return
+
+    if depth == 9:
+        x = choice([0,1,2])
+        y = choice([0,1,2])
+    else:
+        move = minimax(board, depth, AI)
+        x,y = move[0], move[1]
+
+
+    set_locations(board,x,y, AI)
+
 
 
 def print_board(board):
