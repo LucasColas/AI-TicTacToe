@@ -122,7 +122,7 @@ def evaluate(board):
     return score
 
 
-def minimax(board, depth, player):
+def minimax(board, depth, alpha, beta, player):
     if player == AI:
         best = [-1,-1,-infinity]
     else:
@@ -144,6 +144,7 @@ def minimax(board, depth, player):
         if player == AI:
             if info[2] > best[2]:
                 best = info
+            
 
         else:
             if best[2] > info[2]:
