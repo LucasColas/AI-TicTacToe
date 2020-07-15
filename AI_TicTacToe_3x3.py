@@ -168,8 +168,6 @@ def ai_turn(board):
     set_locations(board,x,y, AI)
 
 
-
-
 def print_board(board):
     #print(board)
     for row in board:
