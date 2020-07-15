@@ -286,8 +286,8 @@ def main():
             alpha = -infinity
             beta = +infinity
 
-            ai_turn(game_board)
-            if check_game(game_board, alpha, beta,AI):
+            ai_turn(game_board,alpha, beta)
+            if check_game(game_board,AI):
                 AI_wins = True
                 game_over = True
 
