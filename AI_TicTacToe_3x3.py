@@ -166,7 +166,7 @@ def ai_turn(board):
 
 
     set_locations(board,x,y, AI)
-    
+
 
 
 
@@ -280,12 +280,11 @@ def main():
             random_pos = random.randint(0,len(empty_cells(game_board))-1)
             x,y = empty_cells(game_board)[random_pos]
 
-            if set_locations(game_board,x,y, AI):
-                if check_game(game_board, AI):
-                    AI_wins = True
-                    game_over = True
+            if check_game(game_board, AI):
+                AI_wins = True
+                game_over = True
 
-                turn = Human
+            turn = Human
 
 
 main()
