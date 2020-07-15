@@ -29,7 +29,7 @@ Circle = pygame.transform.scale(pygame.image.load(os.path.join("assets", "circle
 Bg = (0,0,0)
 Clock = pygame.time.Clock()
 
-AI = 1
+AI = +1
 Human = -1
 
 FPS = 80
@@ -96,6 +96,8 @@ def valid_locations(board,x,y,player):
     if [x,y] in empty_cells(board):
         print("good")
         return True
+    else:
+        return False
 
 def set_locations(board,x,y,player):
     if valid_locations(board,x,y,player):
@@ -105,15 +107,15 @@ def set_locations(board,x,y,player):
         return False
 
 def is_terminal_node(board):
-    return check_game(board, 1) or check_game(board,-1)
+    return check_game(board, +1) or check_game(board,-1)
 
 
 def evaluate(board):
-    score = 0
+
     if check_game(board, 1):
-        score +=5
+        score = 1
     elif check_game(board,-1):
-        score -= 5
+        score = -1
     else:
         score = 0
 
@@ -121,7 +123,33 @@ def evaluate(board):
 
 
 def minimax(board, depth, player):
-    pass
+    if player == AI:
+        best = [-1,-1,-infinity]
+    else:
+        best = [-1,-1,+infinity]
+
+    if depth == 0 or is_terminal_node(board):
+        print("end")
+        score = evaluate(board)
+        return [-1,-1,score]
+
+    for location in empty_cells(board):
+        print(location)
+        x, y = location[0], location[1]
+        state[y][x] = player
+        info = minimax(board, depth - 1, -player)
+        state[y][x] = 0
+        info[0], info[1] = x,y
+
+        if player == AI:
+            if info[2] > best[2]:
+                best = info
+
+        else:
+            if best[2] > info[2]:
+                best = info
+
+    return best
 
 def ai_turn(board):
     pass
