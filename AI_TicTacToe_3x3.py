@@ -166,6 +166,7 @@ def ai_turn(board):
 
 
     set_locations(board,x,y, AI)
+    
 
 
 
