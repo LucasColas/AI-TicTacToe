@@ -280,6 +280,7 @@ def main():
             random_pos = random.randint(0,len(empty_cells(game_board))-1)
             x,y = empty_cells(game_board)[random_pos]
 
+            ai_turn(board)
             if check_game(game_board, AI):
                 AI_wins = True
                 game_over = True
