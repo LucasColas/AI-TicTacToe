@@ -144,11 +144,16 @@ def minimax(board, depth, alpha, beta, player):
         if player == AI:
             if info[2] > best[2]:
                 best = info
-            
+            alpha = max(alpha, best[2])
+            if alpha >= beta:
+                break
 
         else:
             if best[2] > info[2]:
                 best = info
+            beta = min(beta, best[2])
+            if alpha >= beta:
+                break
 
     return best
 
