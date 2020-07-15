@@ -272,11 +272,11 @@ def main():
 
 
         if turn == AI and not game_over:
-
-
+            """
             #select randomly
             random_pos = random.randint(0,len(empty_cells(game_board))-1)
             x,y = empty_cells(game_board)[random_pos]
+            """
 
             ai_turn(board)
             if check_game(game_board, AI):
