@@ -27,6 +27,8 @@ class QLearning():
 
     def Q_Table(self):
         Q_Table = [0 for i in range(9)]
+        return Q_Table
+        
 
 def fill(surface, color):
     w,h = surface.get_size()
