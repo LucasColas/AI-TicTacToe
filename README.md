@@ -21,6 +21,15 @@ tictactoe_HumanVsHuman_4x4.py
 
 It's human vs human (with a grid of 4 rows and 4 columns). 
 
+Or :
+
+```
+TTT_3x3_HumanVsHuman.py
+```
+
+Original Tic Tac Toe.
+
+
 
 If you have any suggestions, leave them ;)
 
