@@ -16,6 +16,18 @@ Circle = pygame.transform.scale(pygame.image.load(os.path.join("Assets", "circle
 
 clock = pygame.time.Clock()
 
+class QLearning():
+    def __init__(self, lr, gamma, episodes, Epsilon, Min_Epsilon, Decay):
+        self.lr = lr
+        self.gamma = gamma
+        self.episodes = episodes
+        self.Epsilon = Epsilon
+        self.Min_Epsilon = Min_Epsilon
+        self.Decay = Decay
+
+    def Q_Table(self):
+        Q_Table = [0 for i in range(9)]
+
 def fill(surface, color):
     w,h = surface.get_size()
     r,g,b,_ = color
@@ -23,6 +35,8 @@ def fill(surface, color):
         for y in range(h):
             a = surface.get_at((x,y))[3]
             surface.set_at((x,y), pygame.Color(r,g,b,a))
+
+
 
 def check_game(board, player):
 
