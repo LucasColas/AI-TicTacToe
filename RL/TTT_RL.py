@@ -6,16 +6,6 @@ import sys
 import os
 import time
 
-"""
-
-TicTacToe
-Made with pygame.
-You play against an AI.
-You have circles. The AI has crosses.
-For the AI I used Minimax algorithm.
-The player who begins is selected randomly
-
-"""
 
 pygame.font.init()
 
@@ -46,7 +36,7 @@ class QLearning():
     def Q_Table(self):
         Q_Table = [0 for i in range(9)]
         return Q_Table
-        
+
 
 def fill(surface, color):
     w, h = surface.get_size()
