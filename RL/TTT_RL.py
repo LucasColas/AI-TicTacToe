@@ -20,7 +20,7 @@ Bg = (0,0,0)
 Clock = pygame.time.Clock()
 
 AI = +1
-Human = -1
+RL = -1
 
 FPS = 80
 
@@ -232,6 +232,7 @@ def main():
         Clock.tick(FPS)
         redraw_window(Win, game_board, turn, game_over, AI_wins, Player_wins)
         fill(Circle, green)
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 quit()
@@ -248,32 +249,18 @@ def main():
                     if No_one:
                         No_one = False
 
-            if event.type == pygame.MOUSEBUTTONDOWN and turn == Human and not game_over:
-                print("Yes")
-                if pygame.mouse.get_pressed()[0] and turn == Human and not game_over:
-                    print("Yes 2")
-                    pos = pygame.mouse.get_pos()
-                    if turn == Human and not game_over:
-                        print("pos", pos[0]//(Width//3), pos[1]//(Width//3))
-                        #board[pos[1]//(Width//3)][pos[0]//(Width//3)] = 1
-                        #print(empty_cells(board))
-                        if set_locations(game_board,pos[0]//(Width//3), pos[1]//(Width//3),turn):
-                            if check_game(game_board, Human):
-                                print("stop")
-                                Player_wins = True
-                                game_over = True
-                            turn = AI
-                            print("Gooooood")
-                            print_board(game_board)
-                            print(empty_cells(game_board))
+
+        if turn == RL and not game_over:
+            if set_locations(game_board,pos[0]//(Width//3), pos[1]//(Width//3),turn):
+                if check_game(game_board, RL):
+                    print("stop")
+                    Player_wins = True
+                    game_over = True
+                turn = AI
+
 
 
         if turn == AI and not game_over:
-            """
-            #select randomly
-            random_pos = random.randint(0,len(empty_cells(game_board))-1)
-            x,y = empty_cells(game_board)[random_pos]
-            """
             alpha = -infinity
             beta = +infinity
 
@@ -282,7 +269,7 @@ def main():
                 AI_wins = True
                 game_over = True
 
-            turn = Human
+            turn = RL
 
 
 main()
