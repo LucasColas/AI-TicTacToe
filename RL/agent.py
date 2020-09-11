@@ -26,14 +26,11 @@ class QLearning():
 
     def choose_action(self):
 
-
         if random.random() < self.Epsilon:
             #take random action
             i = random.randint(0, len(self.possible_actions(self.board))-1)
             pos = self.pos[i]
             x,y = pos[0], pos[1]
-
-
 
 
         else:
