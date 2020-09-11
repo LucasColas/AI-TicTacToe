@@ -16,12 +16,12 @@ class QLearning():
 
     def choose_action(self):
 
+
         if random.random() < self.Epsilon:
             #take random action
-            pass
+            x = random
 
         else:
             #exploitation
             #take biggest value
             action = max(self.Q_Table)
-            pass
