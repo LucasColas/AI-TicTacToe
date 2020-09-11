@@ -28,8 +28,8 @@ class QLearning():
         if random.random() < self.Epsilon:
             #take random action
 
-            i = random.randint(len(self.possible_actions(board)))
-            
+            i = random.randint(0, len(self.possible_actions(board))-1)
+
 
         else:
             #exploitation
