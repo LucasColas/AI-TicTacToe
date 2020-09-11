@@ -29,6 +29,7 @@ class QLearning():
             #take random action
 
             i = random.randint(len(self.possible_actions(board)))
+            
 
         else:
             #exploitation
