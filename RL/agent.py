@@ -14,12 +14,21 @@ class QLearning():
         Q_Table = [0 for i in range(9)]
         return Q_Table
 
-    def choose_action(self):
+    def possible_actions(self, board):
+        empty_cells = []
+        for y,row in enumerate(board):
+            for x,case in enumerate(row):
+                if case == 0:
+                    empty_cells.append([x,y])
+        return empty_cells
+
+    def choose_action(self, board):
 
 
         if random.random() < self.Epsilon:
             #take random action
-            x = random
+
+            i = random.randint(len(self.possible_actions(board)))
 
         else:
             #exploitation
