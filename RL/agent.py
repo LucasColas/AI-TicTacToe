@@ -37,3 +37,4 @@ class QLearning():
             #exploitation
             #take biggest value
             action = max(self.Q_Table)
+            
