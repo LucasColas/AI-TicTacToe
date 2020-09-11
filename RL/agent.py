@@ -12,3 +12,11 @@ class QLearning():
     def Q_Table(self):
         Q_Table = [0 for i in range(9)]
         return Q_Table
+
+    def choose_action(self):
+
+        if random.random() < self.Epsilon:
+            #take random action
+
+        else:
+            #exploitation
