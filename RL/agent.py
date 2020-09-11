@@ -8,6 +8,7 @@ class QLearning():
         self.Epsilon = Epsilon
         self.Min_Epsilon = Min_Epsilon
         self.Decay = Decay
+        self.Q_Table = self.Q_Table()
 
     def Q_Table(self):
         Q_Table = [0 for i in range(9)]
@@ -17,6 +18,10 @@ class QLearning():
 
         if random.random() < self.Epsilon:
             #take random action
+            pass
 
         else:
             #exploitation
+            #take biggest value
+            action = max(self.Q_Table)
+            pass
