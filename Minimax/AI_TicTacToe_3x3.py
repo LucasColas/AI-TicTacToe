@@ -225,7 +225,8 @@ def main():
     AI_wins = False
     Player_wins = False
     No_one = False
-    turn = random.choice([-1,1])
+    #turn = random.choice([-1,1])
+    turn = 1
     run = True
     green = (0,255,0,0)
     game_over = False
